@@ -60,9 +60,9 @@ export default function HumanEra() {
           viewport={{ once: true }}
           className="text-5xl md:text-7xl font-display font-light tracking-tight text-human-text mb-8"
         >
-          Machines enter
+          Crafting experiences
           <br />
-          <span className="text-human-accent">everyday life</span>
+          <span className="text-human-accent">people love</span>
         </motion.h2>
         
         <motion.p
@@ -72,11 +72,11 @@ export default function HumanEra() {
           viewport={{ once: true }}
           className="text-lg md:text-xl text-human-text/70 font-light max-w-2xl mx-auto mb-12"
         >
-          Windows, icons, menus. The personal computer revolution made technology 
-          accessible, putting power in every home and hand.
+          Technology should feel intuitive. Raj focuses on creating interfaces that 
+          bridge the gap between complex systems and human understanding.
         </motion.p>
         
-        {/* Feature cards */}
+        {/* Skill areas */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -84,7 +84,7 @@ export default function HumanEra() {
           viewport={{ once: true }}
           className="flex flex-wrap justify-center gap-4"
         >
-          {['Point & Click', 'GUI Revolution', 'Desktop Metaphor'].map((feature, i) => (
+          {['Full-Stack Development', 'UI/UX Design', 'System Architecture'].map((feature) => (
             <div
               key={feature}
               className="px-6 py-3 bg-white rounded-full shadow-lg border border-human-text/10 text-human-text font-medium"
