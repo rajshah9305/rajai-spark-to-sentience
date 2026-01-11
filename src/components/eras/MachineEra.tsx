@@ -2,10 +2,11 @@ import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 
 const terminalLines = [
-  '> INITIALIZING SYSTEM...',
-  '> LOADING MEMORY BANKS...',
-  '> PROCESSING UNIT: ONLINE',
-  '> THOUGHT BECOMES MACHINE',
+  '> INITIALIZING RAJ.SYSTEM...',
+  '> LOADING FOUNDATION: COMPUTER SCIENCE',
+  '> PROCESSING: ALGORITHMS & DATA STRUCTURES',
+  '> STATUS: FOUNDATION COMPLETE',
+  '> WHERE CODE MEETS CURIOSITY',
 ];
 
 export default function MachineEra() {
@@ -104,8 +105,19 @@ export default function MachineEra() {
           viewport={{ once: true }}
           className="text-4xl md:text-6xl font-display font-light text-center mt-16 text-foreground"
         >
-          From vacuum tubes to <span className="text-phosphor">silicon dreams</span>
+          Building the <span className="text-phosphor">foundation</span>
         </motion.h2>
+        
+        <motion.p
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 1.8 }}
+          viewport={{ once: true }}
+          className="text-center mt-6 text-machine-green/60 font-mono text-sm max-w-xl mx-auto"
+        >
+          Mastering the fundamentals—systems programming, computational thinking, 
+          and the art of turning logic into reality.
+        </motion.p>
       </div>
     </section>
   );

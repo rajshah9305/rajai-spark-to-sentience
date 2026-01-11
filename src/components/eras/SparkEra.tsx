@@ -39,39 +39,39 @@ export default function SparkEra() {
       
       {/* Content */}
       <div className="relative z-10 text-center px-6 max-w-4xl">
-        <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 1.5 }}
-          viewport={{ once: true }}
-          className="font-mono text-sm tracking-[0.3em] text-spark-glow/60 uppercase mb-8"
-        >
-          Act I — The Spark
-        </motion.p>
-        
-        <motion.h1
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.3 }}
-          viewport={{ once: true }}
-          className="text-5xl md:text-7xl lg:text-8xl font-display font-light tracking-tight text-foreground mb-8"
-        >
-          Every machine began
-          <br />
-          <span className="text-amber-glow">as an idea</span>
-        </motion.h1>
-        
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.6 }}
-          viewport={{ once: true }}
-          className="text-lg md:text-xl text-muted-foreground font-light max-w-2xl mx-auto"
-        >
-          Before silicon, before circuits, before code—there was pure thought. 
-          Logic waiting to be born.
-        </motion.p>
-      </div>
+      <motion.p
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 1.5 }}
+        viewport={{ once: true }}
+        className="font-mono text-sm tracking-[0.3em] text-spark-glow/60 uppercase mb-8"
+      >
+        Act I — The Spark
+      </motion.p>
+      
+      <motion.h1
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1, delay: 0.3 }}
+        viewport={{ once: true }}
+        className="text-5xl md:text-7xl lg:text-8xl font-display font-light tracking-tight text-foreground mb-8"
+      >
+        Every vision begins
+        <br />
+        <span className="text-amber-glow">with a spark</span>
+      </motion.h1>
+      
+      <motion.p
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1, delay: 0.6 }}
+        viewport={{ once: true }}
+        className="text-lg md:text-xl text-muted-foreground font-light max-w-2xl mx-auto"
+      >
+        From curiosity to creation. This is the journey of Raj Shah—
+        tracing the evolution of technology to architect what comes next.
+      </motion.p>
+    </div>
       
       {/* Scroll indicator */}
       <motion.div

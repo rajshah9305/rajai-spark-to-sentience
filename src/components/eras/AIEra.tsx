@@ -119,9 +119,9 @@ export default function AIEra() {
           viewport={{ once: true }}
           className="text-5xl md:text-7xl font-display font-light tracking-tight text-foreground mb-8"
         >
-          Machines no longer wait
+          Building systems
           <br />
-          <span className="text-neural-glow">They anticipate</span>
+          <span className="text-neural-glow">that think</span>
         </motion.h2>
         
         <motion.p
@@ -131,11 +131,11 @@ export default function AIEra() {
           viewport={{ once: true }}
           className="text-lg md:text-xl text-muted-foreground font-light max-w-2xl mx-auto mb-12"
         >
-          Neural networks learn, predict, create. The boundary between human thought 
-          and machine intelligence blurs into something new.
+          Raj works at the intersection of AI and engineering—creating intelligent 
+          systems that learn, adapt, and solve real-world problems.
         </motion.p>
         
-        {/* AI capabilities */}
+        {/* AI focus areas */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -143,7 +143,7 @@ export default function AIEra() {
           viewport={{ once: true }}
           className="flex flex-wrap justify-center gap-3"
         >
-          {['Learning', 'Predicting', 'Creating', 'Evolving'].map((cap, i) => (
+          {['Machine Learning', 'Neural Networks', 'Automation', 'Intelligent Systems'].map((cap) => (
             <motion.span
               key={cap}
               className="px-4 py-2 rounded-full border border-ai-neural/30 text-ai-neural font-mono text-sm"

@@ -3,26 +3,26 @@ import { Github, Mail, Linkedin, ExternalLink } from 'lucide-react';
 
 const projects = [
   {
-    title: 'Neural Architecture',
-    description: 'Deep learning systems for autonomous decision-making',
-    tech: ['Python', 'TensorFlow', 'CUDA'],
+    title: 'AI-Powered Applications',
+    description: 'Building intelligent systems that leverage machine learning to solve complex problems',
+    tech: ['Python', 'TensorFlow', 'React'],
   },
   {
-    title: 'Distributed Systems',
-    description: 'Scalable infrastructure for real-time processing',
-    tech: ['Go', 'Kubernetes', 'gRPC'],
+    title: 'Full-Stack Platforms',
+    description: 'End-to-end web applications with modern architectures and seamless user experiences',
+    tech: ['TypeScript', 'Node.js', 'PostgreSQL'],
   },
   {
-    title: 'Generative Interfaces',
-    description: 'AI-powered creative tools and experiences',
-    tech: ['TypeScript', 'React', 'WebGL'],
+    title: 'Open Source',
+    description: 'Contributing to the developer community through tools, libraries, and shared knowledge',
+    tech: ['GitHub', 'Documentation', 'Community'],
   },
 ];
 
 const signals = [
-  { icon: Github, label: 'GitHub', href: 'https://github.com/rajshah9305', username: '@rajshah9305' },
-  { icon: Linkedin, label: 'LinkedIn', href: 'https://linkedin.com/in/rajshah', username: 'Connect' },
-  { icon: Mail, label: 'Email', href: 'mailto:raj@rajai.org', username: 'raj@rajai.org' },
+  { icon: Github, label: 'GitHub', href: 'https://github.com/rajshah9305', username: 'rajshah9305' },
+  { icon: Linkedin, label: 'LinkedIn', href: 'https://linkedin.com/in/rajshah', username: 'Raj Shah' },
+  { icon: Mail, label: 'Email', href: 'mailto:hello@rajai.org', username: 'hello@rajai.org' },
 ];
 
 export default function RajaiEra() {
@@ -165,7 +165,7 @@ export default function RajaiEra() {
           className="text-center mt-32"
         >
           <p className="font-mono text-xs text-rajai-muted/40 tracking-wider">
-            © 2024 RAJAI.ORG — From Spark to Sentience
+            © 2025 RAJAI.ORG — Raj Shah
           </p>
         </motion.div>
       </div>
