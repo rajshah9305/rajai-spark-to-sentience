@@ -10,7 +10,7 @@ interface ParticlesProps {
 function Particles({ count = 500, color = '#f59e0b' }: ParticlesProps) {
   const mesh = useRef<THREE.Points>(null);
   
-  const particles = useMemo(() => {
+  const { positions, velocities } = useMemo(() => {
     const positions = new Float32Array(count * 3);
     const velocities = new Float32Array(count * 3);
     
@@ -27,36 +27,35 @@ function Particles({ count = 500, color = '#f59e0b' }: ParticlesProps) {
     return { positions, velocities };
   }, [count]);
 
+  const geometry = useMemo(() => {
+    const geo = new THREE.BufferGeometry();
+    geo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    return geo;
+  }, [positions]);
+
   useFrame((state) => {
     if (!mesh.current) return;
     
-    const positions = mesh.current.geometry.attributes.position.array as Float32Array;
+    const posAttr = mesh.current.geometry.attributes.position;
+    const posArray = posAttr.array as Float32Array;
     
     for (let i = 0; i < count; i++) {
-      positions[i * 3] += particles.velocities[i * 3];
-      positions[i * 3 + 1] += particles.velocities[i * 3 + 1];
-      positions[i * 3 + 2] += particles.velocities[i * 3 + 2];
+      posArray[i * 3] += velocities[i * 3];
+      posArray[i * 3 + 1] += velocities[i * 3 + 1];
+      posArray[i * 3 + 2] += velocities[i * 3 + 2];
       
       // Boundary check
-      if (Math.abs(positions[i * 3]) > 10) particles.velocities[i * 3] *= -1;
-      if (Math.abs(positions[i * 3 + 1]) > 10) particles.velocities[i * 3 + 1] *= -1;
-      if (Math.abs(positions[i * 3 + 2]) > 10) particles.velocities[i * 3 + 2] *= -1;
+      if (Math.abs(posArray[i * 3]) > 10) velocities[i * 3] *= -1;
+      if (Math.abs(posArray[i * 3 + 1]) > 10) velocities[i * 3 + 1] *= -1;
+      if (Math.abs(posArray[i * 3 + 2]) > 10) velocities[i * 3 + 2] *= -1;
     }
     
-    mesh.current.geometry.attributes.position.needsUpdate = true;
+    posAttr.needsUpdate = true;
     mesh.current.rotation.y = state.clock.elapsedTime * 0.02;
   });
 
   return (
-    <points ref={mesh}>
-      <bufferGeometry>
-        <bufferAttribute
-          attach="attributes-position"
-          count={count}
-          array={particles.positions}
-          itemSize={3}
-        />
-      </bufferGeometry>
+    <points ref={mesh} geometry={geometry}>
       <pointsMaterial
         size={0.05}
         color={color}
