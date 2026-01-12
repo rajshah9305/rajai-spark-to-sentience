@@ -1,20 +1,50 @@
 import { motion } from 'framer-motion';
 
 const skills = [
-  { name: 'Full-Stack Development', icon: '⚡' },
-  { name: 'UI/UX Design', icon: '✨' },
-  { name: 'System Architecture', icon: '🔧' },
+  { name: 'Full-Stack Development', icon: '⚡', description: 'End-to-end application architecture' },
+  { name: 'UI/UX Design', icon: '✨', description: 'Intuitive user experiences' },
+  { name: 'System Architecture', icon: '🔧', description: 'Scalable infrastructure design' },
+  { name: 'API Development', icon: '🔗', description: 'RESTful & GraphQL services' },
+  { name: 'Mobile Development', icon: '📱', description: 'Cross-platform applications' },
+  { name: 'Performance Optimization', icon: '⚡', description: 'Speed & efficiency focused' },
+];
+
+const designPrinciples = [
+  { title: 'Simplicity', desc: 'Remove complexity, not features', icon: '◯' },
+  { title: 'Clarity', desc: 'Make every interaction obvious', icon: '◇' },
+  { title: 'Delight', desc: 'Create moments of joy', icon: '★' },
+  { title: 'Accessibility', desc: 'Design for everyone', icon: '∞' },
+];
+
+const caseStudies = [
+  {
+    title: 'E-Commerce Platform',
+    description: 'Redesigned checkout flow reducing cart abandonment by 40%',
+    metrics: ['40% ↓ abandonment', '2.5s load time', '98% satisfaction'],
+    color: 'human-accent',
+  },
+  {
+    title: 'Dashboard Analytics',
+    description: 'Complex data visualization made simple and actionable',
+    metrics: ['50+ data points', 'Real-time updates', 'Mobile-first'],
+    color: 'human-secondary',
+  },
+  {
+    title: 'Mobile Application',
+    description: 'Native-feeling cross-platform experience',
+    metrics: ['4.8★ rating', '100K+ downloads', '60fps animations'],
+    color: 'machine-green',
+  },
 ];
 
 export default function HumanEra() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden era-human">
+    <section className="relative min-h-[200vh] flex flex-col items-center justify-start overflow-hidden era-human pt-24 pb-20">
       {/* Soft gradient overlays */}
       <div className="absolute inset-0 bg-gradient-to-b from-human-cream via-human-warm/50 to-human-cream pointer-events-none" />
       
       {/* Desktop metaphor elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {/* Window frames */}
         <motion.div
           initial={{ opacity: 0, x: -80, rotate: -3 }}
           whileInView={{ opacity: 0.12, x: 0, rotate: -3 }}
@@ -54,8 +84,8 @@ export default function HumanEra() {
         </motion.div>
       </div>
       
-      {/* Content */}
-      <div className="relative z-10 text-center px-4 md:px-6 max-w-4xl">
+      {/* Header Content */}
+      <div className="relative z-10 text-center px-4 md:px-6 max-w-4xl mb-16">
         <motion.p
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -97,7 +127,7 @@ export default function HumanEra() {
           viewport={{ once: true }}
           className="flex flex-wrap justify-center gap-3 md:gap-4"
         >
-          {skills.map((skill, i) => (
+          {skills.slice(0, 3).map((skill, i) => (
             <motion.div
               key={skill.name}
               className="px-5 md:px-6 py-3 md:py-3.5 bg-white rounded-full shadow-lg border border-human-text/8 text-human-text font-medium flex items-center gap-2 md:gap-2.5"
@@ -109,6 +139,107 @@ export default function HumanEra() {
             </motion.div>
           ))}
         </motion.div>
+      </div>
+      
+      {/* Design Principles */}
+      <div className="relative z-10 w-full max-w-5xl px-4 md:px-6 mb-20">
+        <motion.h3
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="font-mono text-xs tracking-[0.3em] text-human-accent/70 uppercase mb-10 text-center"
+        >
+          Design Philosophy
+        </motion.h3>
+        
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+          {designPrinciples.map((principle, i) => (
+            <motion.div
+              key={principle.title}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: i * 0.1 }}
+              viewport={{ once: true }}
+              className="bg-white rounded-2xl p-6 shadow-lg border border-human-text/5 text-center hover:shadow-xl transition-shadow"
+            >
+              <span className="text-3xl text-human-accent block mb-3">{principle.icon}</span>
+              <h4 className="font-display font-medium text-human-text mb-2">{principle.title}</h4>
+              <p className="text-sm text-human-text/60">{principle.desc}</p>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+      
+      {/* Skills Detail Grid */}
+      <div className="relative z-10 w-full max-w-5xl px-4 md:px-6 mb-20">
+        <motion.h3
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="font-mono text-xs tracking-[0.3em] text-human-accent/70 uppercase mb-10 text-center"
+        >
+          Core Competencies
+        </motion.h3>
+        
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+          {skills.map((skill, i) => (
+            <motion.div
+              key={skill.name}
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5, delay: i * 0.08 }}
+              viewport={{ once: true }}
+              className="bg-white/80 backdrop-blur-sm rounded-xl p-5 border border-human-text/10 hover:border-human-accent/30 transition-colors group"
+            >
+              <span className="text-2xl mb-3 block">{skill.icon}</span>
+              <h4 className="font-display font-medium text-human-text group-hover:text-human-accent transition-colors">
+                {skill.name}
+              </h4>
+              <p className="text-sm text-human-text/50 mt-1">{skill.description}</p>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+      
+      {/* Case Studies */}
+      <div className="relative z-10 w-full max-w-5xl px-4 md:px-6">
+        <motion.h3
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="font-mono text-xs tracking-[0.3em] text-human-accent/70 uppercase mb-10 text-center"
+        >
+          Impact Highlights
+        </motion.h3>
+        
+        <div className="grid md:grid-cols-3 gap-6">
+          {caseStudies.map((study, i) => (
+            <motion.div
+              key={study.title}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: i * 0.15 }}
+              viewport={{ once: true }}
+              className="bg-white rounded-2xl p-6 shadow-lg border border-human-text/5 hover:shadow-xl transition-all group"
+            >
+              <div className={`w-12 h-1 rounded-full bg-${study.color} mb-4`} 
+                style={{ backgroundColor: i === 0 ? 'hsl(220 85% 55%)' : i === 1 ? 'hsl(340 75% 55%)' : 'hsl(160 100% 45%)' }}
+              />
+              <h4 className="font-display text-lg font-medium text-human-text mb-2">{study.title}</h4>
+              <p className="text-sm text-human-text/60 mb-4">{study.description}</p>
+              <div className="flex flex-wrap gap-2">
+                {study.metrics.map((metric) => (
+                  <span key={metric} className="text-xs font-mono px-2 py-1 bg-human-warm rounded-md text-human-text/70">
+                    {metric}
+                  </span>
+                ))}
+              </div>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   );

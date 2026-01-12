@@ -2,15 +2,33 @@ import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 
 const terminalLines = [
-  '> INITIALIZING RAJ.SYSTEM...',
-  '> LOADING FOUNDATION: COMPUTER SCIENCE',
-  '> PROCESSING: ALGORITHMS & DATA STRUCTURES',
-  '> STATUS: FOUNDATION COMPLETE',
-  '> WHERE CODE MEETS CURIOSITY',
+  { text: '> INITIALIZING RAJ.SYSTEM...', delay: 0 },
+  { text: '> LOADING FOUNDATION: COMPUTER SCIENCE', delay: 0.3 },
+  { text: '> PROCESSING: ALGORITHMS & DATA STRUCTURES', delay: 0.6 },
+  { text: '> COMPILING: SYSTEMS ARCHITECTURE', delay: 0.9 },
+  { text: '> STATUS: FOUNDATION COMPLETE', delay: 1.2 },
+  { text: '> WHERE CODE MEETS CURIOSITY', delay: 1.5, highlight: true },
+];
+
+const techStack = [
+  { name: 'Python', level: 95 },
+  { name: 'JavaScript/TypeScript', level: 92 },
+  { name: 'React & Next.js', level: 90 },
+  { name: 'Node.js', level: 88 },
+  { name: 'SQL & Databases', level: 85 },
+  { name: 'Cloud & DevOps', level: 82 },
+];
+
+const concepts = [
+  { icon: '⚙️', title: 'Algorithms', desc: 'Efficient problem-solving patterns' },
+  { icon: '🏗️', title: 'Architecture', desc: 'Scalable system design' },
+  { icon: '🔄', title: 'Data Structures', desc: 'Optimal data organization' },
+  { icon: '🔒', title: 'Security', desc: 'Protection by design' },
 ];
 
 export default function MachineEra() {
   const [cursorVisible, setCursorVisible] = useState(true);
+  const [activeLines, setActiveLines] = useState<number[]>([]);
   
   useEffect(() => {
     const timer = setInterval(() => {
@@ -20,7 +38,7 @@ export default function MachineEra() {
   }, []);
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden era-machine scanlines">
+    <section className="relative min-h-[200vh] flex flex-col items-center justify-start overflow-hidden era-machine scanlines pt-24 pb-20">
       {/* Animated grid background */}
       <div 
         className="absolute inset-0 opacity-[0.08]"
@@ -37,7 +55,7 @@ export default function MachineEra() {
       <div className="absolute top-1/4 left-1/4 w-80 h-80 rounded-full bg-machine-cyan/5 blur-[100px]" />
       <div className="absolute bottom-1/4 right-1/4 w-60 h-60 rounded-full bg-machine-green/5 blur-[80px]" />
       
-      {/* Punch card decoration */}
+      {/* Punch card decoration - left */}
       <motion.div 
         className="absolute left-4 md:left-10 top-1/4 w-32 md:w-40 h-56 md:h-64 opacity-15"
         initial={{ opacity: 0, x: -50 }}
@@ -61,8 +79,8 @@ export default function MachineEra() {
         </div>
       </motion.div>
       
-      {/* Content */}
-      <div className="relative z-10 w-full max-w-4xl px-4 md:px-6">
+      {/* Header */}
+      <div className="relative z-10 w-full max-w-4xl px-4 md:px-6 mb-16">
         <motion.p
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -96,15 +114,15 @@ export default function MachineEra() {
                 key={index}
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.4, delay: index * 0.3 }}
+                transition={{ duration: 0.4, delay: line.delay }}
                 viewport={{ once: true }}
                 className={`mb-2.5 ${
-                  index === terminalLines.length - 1 
+                  line.highlight 
                     ? 'text-phosphor text-lg md:text-xl font-medium mt-6' 
                     : 'text-machine-cyan/70'
                 }`}
               >
-                {line}
+                {line.text}
               </motion.div>
             ))}
             <span className={`inline-block w-2.5 h-5 bg-machine-cyan ml-1 transition-opacity duration-100 ${cursorVisible ? 'opacity-100' : 'opacity-0'}`} />
@@ -114,7 +132,7 @@ export default function MachineEra() {
         <motion.h2
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 1.4 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
           viewport={{ once: true }}
           className="text-3xl md:text-5xl lg:text-6xl font-display font-light text-center mt-14 text-foreground"
         >
@@ -124,7 +142,7 @@ export default function MachineEra() {
         <motion.p
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 1.6 }}
+          transition={{ duration: 0.8, delay: 0.6 }}
           viewport={{ once: true }}
           className="text-center mt-5 text-machine-cyan/60 font-mono text-sm max-w-xl mx-auto leading-relaxed"
         >
@@ -132,6 +150,95 @@ export default function MachineEra() {
           and the art of turning logic into reality.
         </motion.p>
       </div>
+      
+      {/* Core Concepts Grid */}
+      <div className="relative z-10 w-full max-w-4xl px-4 md:px-6 mb-20">
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="grid grid-cols-2 md:grid-cols-4 gap-4"
+        >
+          {concepts.map((concept, i) => (
+            <motion.div
+              key={concept.title}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: i * 0.1 }}
+              viewport={{ once: true }}
+              className="bg-machine-cyan/5 border border-machine-cyan/20 rounded-xl p-4 text-center hover:border-machine-cyan/40 transition-colors"
+            >
+              <span className="text-2xl mb-2 block">{concept.icon}</span>
+              <h4 className="font-mono text-sm text-machine-cyan font-medium">{concept.title}</h4>
+              <p className="text-xs text-machine-cyan/50 mt-1">{concept.desc}</p>
+            </motion.div>
+          ))}
+        </motion.div>
+      </div>
+      
+      {/* Tech Stack Bars */}
+      <div className="relative z-10 w-full max-w-3xl px-4 md:px-6 mb-20">
+        <motion.h3
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="font-mono text-xs tracking-[0.3em] text-machine-cyan/50 uppercase mb-8 text-center"
+        >
+          Technical Proficiency
+        </motion.h3>
+        
+        <div className="space-y-4">
+          {techStack.map((tech, i) => (
+            <motion.div
+              key={tech.name}
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, delay: i * 0.1 }}
+              viewport={{ once: true }}
+            >
+              <div className="flex justify-between items-center mb-1">
+                <span className="font-mono text-sm text-machine-cyan">{tech.name}</span>
+                <span className="font-mono text-xs text-machine-cyan/50">{tech.level}%</span>
+              </div>
+              <div className="h-2 bg-machine-cyan/10 rounded-full overflow-hidden">
+                <motion.div
+                  className="h-full bg-gradient-to-r from-machine-cyan to-machine-green rounded-full"
+                  initial={{ width: 0 }}
+                  whileInView={{ width: `${tech.level}%` }}
+                  transition={{ duration: 1, delay: i * 0.1 + 0.3 }}
+                  viewport={{ once: true }}
+                />
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+      
+      {/* Code Philosophy */}
+      <motion.div
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
+        className="relative z-10 max-w-2xl mx-auto px-6 text-center"
+      >
+        <div className="bg-machine-cyan/5 border border-machine-cyan/20 rounded-xl p-8">
+          <pre className="font-mono text-sm text-machine-cyan/80 text-left overflow-x-auto">
+{`function philosophy() {
+  const approach = {
+    clean: true,
+    efficient: true,
+    scalable: true,
+    documented: true
+  };
+  
+  return buildSomethingGreat(approach);
+}`}
+          </pre>
+        </div>
+      </motion.div>
     </section>
   );
 }
