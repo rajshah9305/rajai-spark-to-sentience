@@ -10,7 +10,7 @@
     --spark-void: 230 30% 3%;
     --spark-glow: 45 100% 60%;
     --spark-pulse: 35 100% 70%;
-    --spark-secondary: 84 100% 50%; /* Electric Lime instead of purple */
+    --spark-secondary: 280 60% 60%;
     
     /* Era II: The Machine - Retro terminal with cyan phosphor */
     --machine-black: 200 30% 4%;
@@ -29,9 +29,9 @@
     /* Era IV: AI Era - Electric neural networks */
     --ai-deep: 240 40% 6%;
     --ai-neural: 200 100% 55%;
-    --ai-synapse: 16 100% 50%; /* International Orange instead of purple */
+    --ai-synapse: 320 85% 60%;
     --ai-glow: 190 100% 65%;
-    --ai-electric: 180 100% 14%; /* Deep Teal instead of purple */
+    --ai-electric: 260 100% 70%;
     
     /* Era V: Rajai - Premium synthesis of all eras */
     --rajai-bg: 235 35% 5%;
@@ -81,7 +81,7 @@
     --gradient-spark: radial-gradient(ellipse at 50% 50%, hsl(45 100% 60% / 0.12) 0%, hsl(280 60% 60% / 0.05) 40%, transparent 70%);
     --gradient-machine: linear-gradient(180deg, hsl(200 30% 4%) 0%, hsl(170 100% 45% / 0.08) 100%);
     --gradient-human: linear-gradient(180deg, hsl(45 40% 97%) 0%, hsl(40 35% 94%) 100%);
-    --gradient-neural: radial-gradient(ellipse at 30% 40%, hsl(200 100% 55% / 0.15) 0%, transparent 50%), radial-gradient(ellipse at 70% 60%, hsl(16 100% 50% / 0.1) 0%, transparent 50%);
+    --gradient-neural: radial-gradient(ellipse at 30% 40%, hsl(200 100% 55% / 0.15) 0%, transparent 50%), radial-gradient(ellipse at 70% 60%, hsl(320 85% 60% / 0.1) 0%, transparent 50%);
     --gradient-rajai: linear-gradient(160deg, hsl(235 35% 5%) 0%, hsl(235 30% 8%) 50%, hsl(235 25% 6%) 100%);
     
     /* Enhanced Shadows */
@@ -126,8 +126,7 @@
   /* Era-specific backgrounds */
   .era-spark {
     background: hsl(var(--spark-void));
-    /* Clean background without any patterns or gradients */
-    position: relative;
+    background-image: var(--gradient-spark);
   }
   
   .era-machine {
@@ -264,7 +263,7 @@
     inset: 0;
     border-radius: inherit;
     padding: 1px;
-    background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent)), hsl(84 100% 50%));
+    background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent)), hsl(var(--ai-synapse)));
     mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
@@ -296,238 +295,5 @@
   /* Smooth backdrop */
   .backdrop-blur-smooth {
     backdrop-filter: blur(20px) saturate(180%);
-  }
-  
-  /* Micro-interaction utilities */
-  .hover-lift {
-    transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
-  }
-  
-  .hover-lift:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-  }
-  
-  .magnetic-hover {
-    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  }
-  
-  .text-shimmer {
-    background: linear-gradient(
-      90deg,
-      hsl(var(--foreground)) 0%,
-      hsl(var(--primary)) 50%,
-      hsl(var(--foreground)) 100%
-    );
-    background-size: 200% 100%;
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: shimmer 2s ease-in-out infinite;
-  }
-  
-  .ripple-effect {
-    position: relative;
-    overflow: hidden;
-  }
-  
-  .ripple-effect::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0;
-    height: 0;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.5);
-    transform: translate(-50%, -50%);
-    transition: width 0.6s, height 0.6s;
-  }
-  
-  .ripple-effect:active::before {
-    width: 300px;
-    height: 300px;
-  }
-  
-  /* Floating animation */
-  .float {
-    animation: float 6s ease-in-out infinite;
-  }
-  
-  .float-delayed {
-    animation: float 6s ease-in-out infinite;
-    animation-delay: -2s;
-  }
-  
-  /* Pulse glow effect */
-  .pulse-glow {
-    animation: pulse-glow 2s ease-in-out infinite alternate;
-  }
-  
-  /* Morphing border */
-  .morphing-border {
-    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
-    animation: morph 8s ease-in-out infinite;
-  }
-  
-  /* Gradient text */
-  .gradient-text {
-    background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent)));
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-  
-  /* Interactive card */
-  .interactive-card {
-    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    transform-style: preserve-3d;
-  }
-  
-  .interactive-card:hover {
-    transform: translateY(-8px) rotateX(5deg) rotateY(5deg);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-  }
-  
-  /* Elastic scale */
-  .elastic-scale {
-    transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-  }
-  
-  .elastic-scale:hover {
-    transform: scale(1.05);
-  }
-  
-  .elastic-scale:active {
-    transform: scale(0.95);
-  }
-}
-
-/* Enhanced keyframe animations */
-@keyframes shimmer {
-  0% { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-20px); }
-}
-
-@keyframes pulse-glow {
-  0% { 
-    box-shadow: 0 0 5px hsl(var(--primary) / 0.5);
-  }
-  100% { 
-    box-shadow: 0 0 20px hsl(var(--primary) / 0.8), 0 0 30px hsl(var(--primary) / 0.4);
-  }
-}
-
-@keyframes morph {
-  0%, 100% { 
-    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; 
-  }
-  25% { 
-    border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; 
-  }
-  50% { 
-    border-radius: 40% 60% 60% 40% / 60% 40% 60% 40%; 
-  }
-  75% { 
-    border-radius: 70% 30% 40% 60% / 40% 70% 50% 30%; 
-  }
-}
-
-@keyframes neural-pulse {
-  0%, 100% { 
-    opacity: 0.7;
-    transform: scale(1);
-  }
-  50% { 
-    opacity: 1;
-    transform: scale(1.1);
-  }
-}
-
-@keyframes spark-flicker {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.8; }
-  75% { opacity: 0.9; }
-}
-
-@keyframes machine-scan {
-  0% { transform: translateX(-100%); }
-  100% { transform: translateX(100vw); }
-}
-
-@keyframes typewriter {
-  from { width: 0; }
-  to { width: 100%; }
-}
-
-@keyframes blink-caret {
-  from, to { border-color: transparent; }
-  50% { border-color: hsl(var(--primary)); }
-}
-
-/* Responsive micro-interactions */
-@media (hover: hover) and (pointer: fine) {
-  .hover-only:hover {
-    transform: translateY(-2px);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .float,
-  .float-delayed,
-  .pulse-glow,
-  .morphing-border,
-  .text-shimmer {
-    animation: none;
-  }
-  
-  .hover-lift:hover,
-  .interactive-card:hover,
-  .elastic-scale:hover {
-    transform: none;
-  }
-}
-/* Performance optimizations */
-.era-spark,
-.era-machine,
-.era-human,
-.era-ai,
-.era-rajai {
-  transform: translateZ(0);
-  will-change: transform;
-}
-
-/* Fix potential rendering artifacts */
-canvas {
-  display: block;
-  outline: none;
-}
-
-/* Smooth transitions for all interactive elements */
-button,
-a,
-input,
-textarea {
-  transition: all 0.2s ease-in-out;
-}
-
-/* Ensure proper stacking context */
-.relative {
-  isolation: isolate;
-}
-
-/* Fix mobile viewport issues */
-@media (max-width: 768px) {
-  .era-spark,
-  .era-machine,
-  .era-human,
-  .era-ai,
-  .era-rajai {
-    min-height: 100vh;
   }
 }

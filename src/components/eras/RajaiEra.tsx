@@ -1,607 +1,452 @@
-import { motion } from 'framer-motion';
-import { GithubIcon, Mail, LinkedinIcon, ExternalLink, ArrowUpRight, MapPin, Calendar, Award, Users, Code, Zap } from 'lucide-react';
-import ContactForm from '../ContactForm';
-
-const projects = [
-  {
-    title: 'AI-Powered Document Intelligence',
-    description: 'Enterprise-grade document processing system using advanced NLP and computer vision to extract, classify, and analyze complex documents with 98% accuracy.',
-    tech: ['GPT-4', 'LangChain', 'Vector DB', 'FastAPI', 'React'],
-    link: '#',
-    metrics: ['98% accuracy', '10M+ docs processed', '50% time saved'],
-    status: 'Production',
-    category: 'AI/ML'
-  },
-  {
-    title: 'Scalable Microservices Platform',
-    description: 'Cloud-native platform handling 1M+ daily requests with auto-scaling, monitoring, and CI/CD pipelines. Built for a fintech startup.',
-    tech: ['Node.js', 'Kubernetes', 'PostgreSQL', 'Redis', 'AWS'],
-    link: '#',
-    metrics: ['1M+ requests/day', '99.9% uptime', '5ms avg response'],
-    status: 'Production',
-    category: 'Backend'
-  },
-  {
-    title: 'Real-time Analytics Dashboard',
-    description: 'Interactive dashboard processing streaming data from multiple sources with real-time visualizations and predictive insights.',
-    tech: ['React', 'D3.js', 'WebSocket', 'Python', 'Apache Kafka'],
-    link: '#',
-    metrics: ['Real-time updates', '50+ data sources', '100K+ events/sec'],
-    status: 'Production',
-    category: 'Frontend'
-  },
-  {
-    title: 'Open Source ML Framework',
-    description: 'Contributing to the developer community through tools, libraries, and shared knowledge. Building the future together.',
-    tech: ['Python', 'TensorFlow', 'Docker', 'GitHub Actions'],
-    link: 'https://github.com/rajshah9305',
-    metrics: ['1K+ stars', '50+ contributors', '10K+ downloads'],
-    status: 'Active',
-    category: 'Open Source'
-  },
-];
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { Github, Mail, Linkedin, ArrowUpRight, MapPin, Calendar } from 'lucide-react';
+import { useRef } from 'react';
+import GitHubProjects from '@/components/GitHubProjects';
 
 const signals = [
-  { icon: GithubIcon, label: 'GitHub', href: 'https://github.com/rajshah9305', username: 'rajshah9305', followers: '2.5K' },
-  { icon: LinkedinIcon, label: 'LinkedIn', href: 'https://linkedin.com/in/rajshah', username: 'Raj Shah', followers: '5K+' },
-  { icon: Mail, label: 'Email', href: 'mailto:hello@rajai.org', username: 'hello@rajai.org', followers: 'Direct' },
+  { icon: Github, label: 'GitHub', href: 'https://github.com/rajshah9305', username: 'rajshah9305' },
+  { icon: Linkedin, label: 'LinkedIn', href: 'https://linkedin.com/in/rajshah', username: 'Raj Shah' },
+  { icon: Mail, label: 'Email', href: 'mailto:hello@rajai.org', username: 'hello@rajai.org' },
 ];
 
 const timeline = [
-  { 
-    year: '2025', 
-    event: 'Founded RAJAI.ORG', 
-    desc: 'AI-first development studio',
-    details: 'Launched independent consultancy focusing on AI integration and scalable system architecture for startups and enterprises.'
-  },
-  { 
-    year: '2024', 
-    event: 'Senior AI Engineer', 
-    desc: 'Leading ML infrastructure',
-    details: 'Led a team of 8 engineers building production ML systems processing 10M+ daily transactions with 99.9% reliability.'
-  },
-  { 
-    year: '2023', 
-    event: 'Full-Stack Architect', 
-    desc: 'Scaling enterprise systems',
-    details: 'Architected microservices platform serving 1M+ users, reducing infrastructure costs by 40% while improving performance.'
-  },
-  { 
-    year: '2022', 
-    event: 'Software Engineer', 
-    desc: 'Building production applications',
-    details: 'Developed and deployed multiple full-stack applications, establishing expertise in modern web technologies and cloud platforms.'
-  },
+  { year: '2025', event: 'Founded RAJAI.ORG', desc: 'AI-first development studio' },
+  { year: '2024', event: 'Senior AI Engineer', desc: 'Leading ML infrastructure' },
+  { year: '2023', event: 'Full-Stack Architect', desc: 'Scaling enterprise systems' },
+  { year: '2022', event: 'Software Engineer', desc: 'Building production applications' },
 ];
 
 const values = [
-  { 
-    icon: '🎯', 
-    title: 'Purpose-Driven', 
-    desc: 'Building technology that matters',
-    details: 'Every project starts with understanding the real problem and creating solutions that make a meaningful impact.'
-  },
-  { 
-    icon: '🔬', 
-    title: 'Continuous Learning', 
-    desc: 'Always exploring new frontiers',
-    details: 'Technology evolves rapidly. I dedicate time daily to learning new tools, techniques, and industry best practices.'
-  },
-  { 
-    icon: '🤝', 
-    title: 'Collaboration', 
-    desc: 'Great things are built together',
-    details: 'The best solutions emerge from diverse perspectives. I believe in inclusive, collaborative development processes.'
-  },
-  { 
-    icon: '✨', 
-    title: 'Excellence', 
-    desc: 'Quality in every detail',
-    details: 'From code architecture to user experience, I strive for excellence in every aspect of software development.'
-  },
+  { icon: '🎯', title: 'Purpose-Driven', desc: 'Building technology that matters' },
+  { icon: '🔬', title: 'Continuous Learning', desc: 'Always exploring new frontiers' },
+  { icon: '🤝', title: 'Collaboration', desc: 'Great things are built together' },
+  { icon: '✨', title: 'Excellence', desc: 'Quality in every detail' },
 ];
 
 const services = [
   {
-    title: 'AI & Machine Learning',
-    description: 'Strategic AI implementation, custom ML models, and intelligent automation solutions for your business challenges.',
+    title: 'AI Consulting',
+    description: 'Strategic AI implementation and architecture guidance for your business',
     icon: '🧠',
-    features: ['Custom ML Models', 'AI Strategy Consulting', 'Data Pipeline Design', 'Model Deployment & Monitoring'],
-    pricing: 'From $5K/month'
   },
   {
     title: 'Full-Stack Development',
-    description: 'End-to-end web applications with modern technologies, scalable architecture, and exceptional user experiences.',
-    icon: '⚡',
-    features: ['React/Next.js Frontend', 'Node.js/Python Backend', 'Database Design', 'API Development'],
-    pricing: 'From $3K/month'
+    description: 'End-to-end application development from concept to deployment',
+    icon: '💻',
   },
   {
-    title: 'System Architecture',
-    description: 'Scalable, maintainable systems designed for growth, performance, and reliability at enterprise scale.',
-    icon: '🏗️',
-    features: ['Microservices Design', 'Cloud Infrastructure', 'Performance Optimization', 'Security Implementation'],
-    pricing: 'From $4K/month'
+    title: 'Technical Advisory',
+    description: 'Expert guidance on technology decisions and team building',
+    icon: '🎯',
   },
-  {
-    title: 'Technical Leadership',
-    description: 'Engineering leadership, team mentoring, and technical strategy for growing technology organizations.',
-    icon: '👥',
-    features: ['Team Leadership', 'Technical Strategy', 'Code Reviews', 'Mentoring & Training'],
-    pricing: 'From $6K/month'
-  },
-];
-
-const stats = [
-  { number: '50+', label: 'Projects Delivered', icon: Code },
-  { number: '10M+', label: 'Users Impacted', icon: Users },
-  { number: '99.9%', label: 'System Uptime', icon: Zap },
-  { number: '5+', label: 'Years Experience', icon: Award },
-];
-
-const testimonials = [
-  {
-    quote: "Raj's technical expertise and leadership transformed our entire development process. The AI solutions he built increased our efficiency by 300%.",
-    author: "Sarah Chen",
-    role: "CTO, TechFlow Inc",
-    company: "TechFlow"
-  },
-  {
-    quote: "Working with Raj was exceptional. He delivered a complex microservices architecture that scaled seamlessly from 10K to 1M+ users.",
-    author: "Michael Rodriguez",
-    role: "Founder, ScaleUp",
-    company: "ScaleUp"
-  },
-  {
-    quote: "Raj's ability to translate business requirements into elegant technical solutions is unmatched. Highly recommend for any AI project.",
-    author: "Dr. Emily Watson",
-    role: "Head of Data Science, DataCorp",
-    company: "DataCorp"
-  }
 ];
 
 export default function RajaiEra() {
-  return (
-    <section className="relative min-h-[400vh] flex flex-col items-center justify-start overflow-hidden era-rajai pt-24 pb-20">
-      {/* Enhanced background pattern */}
-      <div className="absolute inset-0 opacity-[0.03]">
-        <div 
-          className="w-full h-full"
-          style={{
-            backgroundImage: `
-              radial-gradient(circle at 20% 20%, hsl(var(--primary)) 2px, transparent 2px),
-              radial-gradient(circle at 80% 80%, hsl(var(--accent)) 1px, transparent 1px),
-              radial-gradient(circle at 40% 60%, hsl(var(--primary)) 1px, transparent 1px)
-            `,
-            backgroundSize: '120px 120px, 80px 80px, 60px 60px',
-          }}
-        />
-      </div>
+  const containerRef = useRef<HTMLDivElement>(null);
+  
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"]
+  });
+  
+  // Parallax transforms for different sections
+  const heroY = useTransform(scrollYProgress, [0, 1], [100, -100]);
+  const aboutY = useTransform(scrollYProgress, [0, 1], [80, -60]);
+  const valuesY = useTransform(scrollYProgress, [0, 1], [60, -80]);
+  const servicesY = useTransform(scrollYProgress, [0, 1], [50, -50]);
+  const timelineY = useTransform(scrollYProgress, [0, 1], [40, -70]);
+  const projectsY = useTransform(scrollYProgress, [0, 1], [30, -30]);
+  const ctaY = useTransform(scrollYProgress, [0, 1], [20, -40]);
+  const glowY = useTransform(scrollYProgress, [0, 1], [150, -150]);
 
-      {/* Hero Section */}
-      <div className="relative z-10 text-center px-6 max-w-5xl mb-20">
+  return (
+    <section 
+      ref={containerRef}
+      className="relative min-h-[300vh] flex flex-col items-center justify-start overflow-hidden era-rajai py-20 md:py-24"
+    >
+      {/* Subtle animated grid */}
+      <div 
+        className="absolute inset-0 opacity-[0.025]"
+        style={{
+          backgroundImage: `
+            linear-gradient(hsl(var(--rajai-accent)) 1px, transparent 1px),
+            linear-gradient(90deg, hsl(var(--rajai-accent)) 1px, transparent 1px)
+          `,
+          backgroundSize: '80px 80px',
+        }}
+      />
+      
+      {/* Multi-layered accent glows with parallax */}
+      <motion.div 
+        className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] md:w-[900px] h-[300px] md:h-[450px] bg-rajai-accent/6 blur-[150px] rounded-full"
+        style={{ y: glowY }}
+        animate={{ opacity: [0.06, 0.1, 0.06] }}
+        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+      />
+      <motion.div 
+        className="absolute bottom-1/4 right-1/4 w-[300px] md:w-[400px] h-[300px] md:h-[400px] bg-rajai-highlight/4 blur-[120px] rounded-full"
+        style={{ y: useTransform(scrollYProgress, [0, 1], [-100, 100]) }}
+        animate={{ opacity: [0.04, 0.08, 0.04] }}
+        transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+      />
+      
+      {/* Hero Content with parallax */}
+      <motion.div 
+        className="relative z-10 w-full max-w-6xl px-4 md:px-6 mb-20"
+        style={{ y: heroY }}
+      >
         <motion.p
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
           transition={{ duration: 1 }}
           viewport={{ once: true }}
-          className="font-mono text-xs md:text-sm tracking-[0.4em] text-primary/70 uppercase mb-10"
+          className="font-mono text-xs md:text-sm tracking-[0.4em] text-rajai-accent/70 uppercase mb-10 text-center"
         >
           Act V — The Architect
         </motion.p>
         
-        <motion.h1
+        <motion.h2
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.2 }}
+          transition={{ duration: 0.8, delay: 0.15 }}
           viewport={{ once: true }}
-          className="text-4xl md:text-6xl lg:text-8xl font-display font-light tracking-tight text-foreground mb-8 leading-tight"
+          className="text-5xl md:text-7xl lg:text-8xl font-display font-light tracking-tight text-center mb-6"
         >
-          Building the
-          <br />
-          <span className="text-primary font-normal">future</span>
-        </motion.h1>
+          <span className="text-foreground">Raj</span>
+          <motion.span 
+            className="text-rajai-accent"
+            animate={{ opacity: [1, 0.7, 1] }}
+            transition={{ duration: 2, repeat: Infinity }}
+          >
+            ai
+          </motion.span>
+        </motion.h2>
         
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.4 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
           viewport={{ once: true }}
-          className="text-lg md:text-xl text-muted-foreground font-light max-w-3xl mx-auto leading-relaxed mb-12"
+          className="text-lg md:text-xl text-rajai-muted font-light text-center max-w-3xl mx-auto mb-3"
         >
-          Where innovation meets execution. I craft intelligent systems that bridge 
-          the gap between human creativity and machine capability, turning ambitious 
-          visions into scalable reality.
+          I don't just use systems.
         </motion.p>
-
-        {/* Stats */}
+        
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          viewport={{ once: true }}
+          className="text-xl md:text-2xl text-foreground font-medium text-center max-w-3xl mx-auto mb-10"
+        >
+          I design what comes next.
+        </motion.p>
+        
+        {/* Quick Stats */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.5 }}
+          viewport={{ once: true }}
+          className="flex flex-wrap justify-center gap-4 md:gap-8 text-sm font-mono text-rajai-muted"
+        >
+          <motion.span 
+            className="flex items-center gap-2"
+            whileHover={{ scale: 1.05, color: 'hsl(var(--rajai-accent))' }}
+          >
+            <MapPin className="w-4 h-4" /> Global / Remote
+          </motion.span>
+          <motion.span 
+            className="flex items-center gap-2"
+            whileHover={{ scale: 1.05, color: 'hsl(var(--rajai-accent))' }}
+          >
+            <Calendar className="w-4 h-4" /> Available for Projects
+          </motion.span>
+        </motion.div>
+      </motion.div>
+      
+      {/* About Section with parallax */}
+      <motion.div 
+        className="relative z-10 w-full max-w-4xl px-4 md:px-6 mb-20"
+        style={{ y: aboutY }}
+      >
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
+          transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12"
+          className="card-glass rounded-2xl p-8 md:p-10"
+          whileHover={{ scale: 1.01 }}
         >
-          {stats.map((stat, i) => (
+          <h3 className="font-mono text-xs tracking-[0.3em] text-rajai-accent/70 uppercase mb-6">About</h3>
+          <p className="text-lg text-foreground/90 leading-relaxed mb-6">
+            I'm Raj Shah, a software engineer and AI architect passionate about building technology that makes a difference. 
+            With expertise spanning full-stack development, machine learning, and system architecture, I transform complex 
+            problems into elegant solutions.
+          </p>
+          <p className="text-base text-rajai-muted leading-relaxed">
+            Through RAJAI.ORG, I help organizations navigate the AI revolution—from strategy to implementation. 
+            Whether it's building intelligent applications, optimizing existing systems, or exploring new frontiers, 
+            I bring a unique blend of technical depth and strategic thinking.
+          </p>
+        </motion.div>
+      </motion.div>
+      
+      {/* Values with parallax */}
+      <motion.div 
+        className="relative z-10 w-full max-w-5xl px-4 md:px-6 mb-20"
+        style={{ y: valuesY }}
+      >
+        <motion.h3
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="font-mono text-xs tracking-[0.3em] text-rajai-accent/70 uppercase mb-10 text-center"
+        >
+          Core Values
+        </motion.h3>
+        
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          {values.map((value, i) => (
             <motion.div
-              key={stat.label}
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: 0.7 + i * 0.1 }}
+              key={value.title}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: i * 0.1 }}
               viewport={{ once: true }}
-              className="text-center p-4 rounded-xl bg-card/30 border border-border/30"
+              className="text-center p-6"
+              whileHover={{ y: -6 }}
             >
-              <stat.icon className="w-6 h-6 text-primary mx-auto mb-2" />
-              <div className="text-2xl md:text-3xl font-display font-bold text-primary mb-1">
-                {stat.number}
-              </div>
-              <div className="text-sm text-muted-foreground font-mono">
-                {stat.label}
-              </div>
+              <motion.span 
+                className="text-3xl mb-3 block"
+                animate={{ rotate: [0, 5, -5, 0] }}
+                transition={{ duration: 4, repeat: Infinity, delay: i * 0.5 }}
+              >
+                {value.icon}
+              </motion.span>
+              <h4 className="font-display font-medium text-foreground mb-1">{value.title}</h4>
+              <p className="text-sm text-rajai-muted">{value.desc}</p>
             </motion.div>
           ))}
-        </motion.div>
-
-        {/* Location & Status */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.8 }}
-          viewport={{ once: true }}
-          className="flex flex-wrap justify-center gap-6 text-sm text-muted-foreground mb-16"
-        >
-          <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-card/30 border border-border/30">
-            <MapPin className="w-4 h-4" />
-            <span>San Francisco, CA</span>
-          </div>
-          <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/30">
-            <Calendar className="w-4 h-4 text-primary" />
-            <span className="text-primary">Available for Projects</span>
-          </div>
-        </motion.div>
-      </div>
-
-      {/* About Section */}
-      <div className="relative z-10 w-full max-w-7xl px-6 mb-24">
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
+        </div>
+      </motion.div>
+      
+      {/* Services with parallax */}
+      <motion.div 
+        className="relative z-10 w-full max-w-5xl px-4 md:px-6 mb-20"
+        style={{ y: servicesY }}
+      >
+        <motion.h3
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="grid md:grid-cols-2 gap-16 items-center"
+          className="font-mono text-xs tracking-[0.3em] text-rajai-accent/70 uppercase mb-10 text-center"
         >
-          <div>
-            <h2 className="text-3xl md:text-5xl font-display font-light text-foreground mb-8">
-              About Raj
-            </h2>
-            <div className="space-y-6 text-muted-foreground leading-relaxed text-lg">
-              <p>
-                A technologist at heart, I've spent years exploring the intersection of 
-                artificial intelligence, software engineering, and human-centered design. 
-                My journey spans from building simple scripts to architecting systems 
-                that serve millions of users.
-              </p>
-              <p>
-                From building scalable web applications to architecting AI systems, 
-                I believe in creating technology that amplifies human potential rather 
-                than replacing it. Every line of code I write is guided by the principle 
-                that technology should make life better, not more complicated.
-              </p>
-              <p>
-                Currently focused on developing intelligent systems that solve real-world 
-                problems while maintaining ethical standards and user privacy. I'm passionate 
-                about mentoring the next generation of engineers and contributing to open 
-                source projects that benefit the entire community.
-              </p>
-            </div>
-          </div>
-          
-          {/* Enhanced Values Grid */}
-          <div className="grid grid-cols-2 gap-6">
-            {values.map((value, i) => (
-              <motion.div
-                key={value.title}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
-                viewport={{ once: true }}
-                className="group p-6 rounded-xl bg-card/50 border border-border/50 hover:border-primary/30 hover:bg-card/70 transition-all duration-300"
-              >
-                <div className="text-3xl mb-4">{value.icon}</div>
-                <h3 className="font-medium text-foreground mb-2 group-hover:text-primary transition-colors">
-                  {value.title}
-                </h3>
-                <p className="text-sm text-muted-foreground mb-3">{value.desc}</p>
-                <p className="text-xs text-muted-foreground/70 group-hover:text-muted-foreground transition-colors">
-                  {value.details}
-                </p>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
-      </div>
-
-      {/* Services Section */}
-      <div className="relative z-10 w-full max-w-7xl px-6 mb-24">
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="text-3xl md:text-5xl font-display font-light text-center text-foreground mb-16"
-        >
-          Services & Expertise
-        </motion.h2>
+          Services
+        </motion.h3>
         
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid md:grid-cols-3 gap-6">
           {services.map((service, i) => (
             <motion.div
               key={service.title}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: i * 0.1 }}
+              transition={{ duration: 0.6, delay: i * 0.15 }}
               viewport={{ once: true }}
-              className="group p-8 rounded-2xl bg-card/30 border border-border/30 hover:bg-card/50 hover:border-primary/30 transition-all duration-300"
+              className="card-glass rounded-xl p-6 text-center hover:border-rajai-accent/30 transition-all"
+              whileHover={{ y: -8, scale: 1.02 }}
             >
-              <div className="flex items-start justify-between mb-6">
-                <div className="text-4xl">{service.icon}</div>
-                <div className="text-sm font-mono text-primary bg-primary/10 px-3 py-1 rounded-full">
-                  {service.pricing}
-                </div>
-              </div>
-              <h3 className="text-xl font-display font-medium text-foreground mb-4 group-hover:text-primary transition-colors">
-                {service.title}
-              </h3>
-              <p className="text-muted-foreground leading-relaxed mb-6">
-                {service.description}
-              </p>
-              <div className="space-y-2">
-                {service.features.map((feature) => (
-                  <div key={feature} className="flex items-center gap-2 text-sm text-muted-foreground">
-                    <div className="w-1.5 h-1.5 bg-primary rounded-full"></div>
-                    {feature}
-                  </div>
-                ))}
-              </div>
+              <motion.span 
+                className="text-4xl mb-4 block"
+                whileHover={{ scale: 1.2, rotate: 10 }}
+              >
+                {service.icon}
+              </motion.span>
+              <h4 className="font-display text-lg font-medium text-foreground mb-2">{service.title}</h4>
+              <p className="text-sm text-rajai-muted">{service.description}</p>
             </motion.div>
           ))}
         </div>
-      </div>
-
-      {/* Timeline Section */}
-      <div className="relative z-10 w-full max-w-5xl px-6 mb-24">
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+      </motion.div>
+      
+      {/* Timeline with parallax */}
+      <motion.div 
+        className="relative z-10 w-full max-w-3xl px-4 md:px-6 mb-20"
+        style={{ y: timelineY }}
+      >
+        <motion.h3
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-3xl md:text-5xl font-display font-light text-center text-foreground mb-16"
+          className="font-mono text-xs tracking-[0.3em] text-rajai-accent/70 uppercase mb-10 text-center"
         >
-          Professional Journey
-        </motion.h2>
+          Journey
+        </motion.h3>
         
-        <div className="space-y-12">
+        <div className="relative">
+          <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-rajai-accent/30 via-rajai-accent/20 to-transparent" />
+          
           {timeline.map((item, i) => (
             <motion.div
               key={item.year}
-              initial={{ opacity: 0, x: -40 }}
+              initial={{ opacity: 0, x: i % 2 === 0 ? -30 : 30 }}
               whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: i * 0.1 }}
+              transition={{ duration: 0.6, delay: i * 0.15 }}
               viewport={{ once: true }}
-              className="flex gap-8 items-start"
+              className={`relative flex items-start gap-6 mb-8 pl-10 md:pl-0 ${
+                i % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
+              }`}
             >
-              <div className="flex-shrink-0 w-20 text-right">
-                <span className="font-mono text-lg font-bold text-primary">{item.year}</span>
+              <div className={`hidden md:block flex-1 ${i % 2 === 0 ? 'text-right' : 'text-left'}`}>
+                <span className="font-mono text-sm text-rajai-accent">{item.year}</span>
+                <h4 className="font-display font-medium text-foreground">{item.event}</h4>
+                <p className="text-sm text-rajai-muted">{item.desc}</p>
               </div>
-              <div className="flex-shrink-0 w-3 h-3 rounded-full bg-primary mt-2 shadow-[0_0_20px_hsl(var(--primary)_/_0.5)]" />
-              <div className="flex-1 pb-8">
-                <h3 className="font-display text-xl font-medium text-foreground mb-2">{item.event}</h3>
-                <p className="text-muted-foreground mb-3">{item.desc}</p>
-                <p className="text-sm text-muted-foreground/70 leading-relaxed">{item.details}</p>
+              
+              <motion.div 
+                className="absolute left-0 md:relative md:left-auto w-8 h-8 rounded-full bg-rajai-surface border-2 border-rajai-accent/50 flex items-center justify-center"
+                whileHover={{ scale: 1.2, borderColor: 'hsl(var(--rajai-accent))' }}
+              >
+                <motion.div 
+                  className="w-2 h-2 rounded-full bg-rajai-accent"
+                  animate={{ scale: [1, 1.2, 1] }}
+                  transition={{ duration: 2, repeat: Infinity, delay: i * 0.3 }}
+                />
+              </motion.div>
+              
+              <div className="flex-1 md:hidden">
+                <span className="font-mono text-sm text-rajai-accent">{item.year}</span>
+                <h4 className="font-display font-medium text-foreground">{item.event}</h4>
+                <p className="text-sm text-rajai-muted">{item.desc}</p>
               </div>
+              
+              <div className="hidden md:block flex-1" />
             </motion.div>
           ))}
         </div>
-      </div>
-
-      {/* Featured Projects */}
-      <div className="relative z-10 w-full max-w-7xl px-6 mb-24">
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
+      </motion.div>
+      
+      {/* GitHub Projects Grid with parallax */}
+      <motion.div 
+        className="relative z-10 w-full max-w-6xl px-4 md:px-6 mb-20"
+        style={{ y: projectsY }}
+      >
+        <motion.h3
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="font-mono text-xs tracking-[0.3em] text-rajai-accent/70 uppercase mb-10 text-center"
+        >
+          GitHub Projects
+        </motion.h3>
+        
+        <GitHubProjects />
+      </motion.div>
+      
+      {/* CTA Section with parallax */}
+      <motion.div 
+        className="relative z-10 w-full max-w-4xl px-4 md:px-6 mb-20"
+        style={{ y: ctaY }}
+      >
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-3xl md:text-5xl font-display font-light text-center text-foreground mb-16"
+          className="card-glass rounded-2xl p-8 md:p-12 text-center"
+          whileHover={{ scale: 1.01 }}
         >
-          Featured Work
-        </motion.h2>
-        
-        <div className="grid md:grid-cols-2 gap-8">
-          {projects.map((project, i) => (
-            <motion.div
-              key={project.title}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: i * 0.1 }}
-              viewport={{ once: true }}
-              className="group p-8 rounded-2xl bg-card/30 border border-border/30 hover:bg-card/50 hover:border-primary/30 transition-all duration-300"
+          <h3 className="text-2xl md:text-3xl font-display font-light text-foreground mb-4">
+            Let's build something <motion.span 
+              className="text-rajai-accent font-medium"
+              animate={{ opacity: [1, 0.7, 1] }}
+              transition={{ duration: 2, repeat: Infinity }}
             >
-              <div className="flex items-start justify-between mb-6">
-                <div className="flex items-center gap-3">
-                  <div className={`px-3 py-1 rounded-full text-xs font-mono ${
-                    project.status === 'Production' ? 'bg-green-500/20 text-green-400' : 'bg-blue-500/20 text-blue-400'
-                  }`}>
-                    {project.status}
-                  </div>
-                  <div className="px-3 py-1 rounded-full text-xs font-mono bg-primary/20 text-primary">
-                    {project.category}
-                  </div>
-                </div>
-                <ArrowUpRight className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
-              </div>
-              
-              <h3 className="text-xl font-display font-medium text-foreground group-hover:text-primary transition-colors mb-4">
-                {project.title}
-              </h3>
-              
-              <p className="text-muted-foreground leading-relaxed mb-6">
-                {project.description}
-              </p>
-
-              {/* Metrics */}
-              <div className="flex flex-wrap gap-2 mb-6">
-                {project.metrics.map((metric) => (
-                  <span key={metric} className="px-3 py-1 text-xs font-mono bg-card/50 border border-border/50 rounded-full text-foreground">
-                    {metric}
-                  </span>
-                ))}
-              </div>
-              
-              {/* Tech Stack */}
-              <div className="flex flex-wrap gap-2">
-                {project.tech.map((tech) => (
-                  <span
-                    key={tech}
-                    className="px-2 py-1 text-xs font-mono bg-primary/10 text-primary rounded border border-primary/20"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
-            </motion.div>
+              extraordinary
+            </motion.span>
+          </h3>
+          <p className="text-rajai-muted mb-8 max-w-xl mx-auto">
+            Whether you have a project in mind or just want to explore possibilities, I'd love to hear from you.
+          </p>
+          <motion.a
+            href="mailto:hello@rajai.org"
+            className="inline-flex items-center gap-2 px-8 py-4 bg-rajai-accent text-rajai-bg font-medium rounded-full hover:bg-rajai-accent-soft transition-colors"
+            whileHover={{ scale: 1.05, y: -2 }}
+            whileTap={{ scale: 0.98 }}
+          >
+            <Mail className="w-5 h-5" />
+            Get in Touch
+          </motion.a>
+        </motion.div>
+      </motion.div>
+      
+      {/* Signals / Contact */}
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.2 }}
+        viewport={{ once: true }}
+        className="relative z-10 flex flex-col items-center"
+      >
+        <p className="font-mono text-xs tracking-[0.25em] text-rajai-muted uppercase mb-8">
+          Connect
+        </p>
+        
+        <div className="flex flex-wrap justify-center gap-3 md:gap-4">
+          {signals.map((signal, i) => (
+            <motion.a
+              key={signal.label}
+              href={signal.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2.5 md:gap-3 px-5 md:px-6 py-2.5 md:py-3 rounded-full border border-border hover:border-rajai-accent/50 bg-rajai-surface/60 backdrop-blur-sm transition-all duration-300 group"
+              whileHover={{ scale: 1.05, y: -4 }}
+              whileTap={{ scale: 0.98 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: i * 0.1 }}
+              viewport={{ once: true }}
+            >
+              <signal.icon className="w-4 h-4 md:w-5 md:h-5 text-rajai-muted group-hover:text-rajai-accent transition-colors duration-300" />
+              <span className="font-mono text-xs md:text-sm text-foreground group-hover:text-rajai-accent transition-colors duration-300">
+                {signal.username}
+              </span>
+            </motion.a>
           ))}
         </div>
-      </div>
-
-      {/* Testimonials */}
-      <div className="relative z-10 w-full max-w-6xl px-6 mb-24">
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="text-3xl md:text-5xl font-display font-light text-center text-foreground mb-16"
-        >
-          Client Testimonials
-        </motion.h2>
-        
-        <div className="grid md:grid-cols-3 gap-8">
-          {testimonials.map((testimonial, i) => (
-            <motion.div
-              key={testimonial.author}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: i * 0.1 }}
-              viewport={{ once: true }}
-              className="p-8 rounded-2xl bg-card/30 border border-border/30"
+      </motion.div>
+      
+      {/* Footer signature */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 1, delay: 0.3 }}
+        viewport={{ once: true }}
+        className="relative z-10 text-center mt-24 md:mt-32"
+      >
+        <div className="mb-4">
+          <span className="text-3xl font-display font-light">
+            <span className="text-foreground">Raj</span>
+            <motion.span 
+              className="text-rajai-accent"
+              animate={{ opacity: [1, 0.6, 1] }}
+              transition={{ duration: 3, repeat: Infinity }}
             >
-              <div className="text-4xl text-primary/30 mb-4">"</div>
-              <p className="text-muted-foreground leading-relaxed mb-6 italic">
-                {testimonial.quote}
-              </p>
-              <div>
-                <div className="font-medium text-foreground">{testimonial.author}</div>
-                <div className="text-sm text-muted-foreground">{testimonial.role}</div>
-                <div className="text-xs text-primary font-mono mt-1">{testimonial.company}</div>
-              </div>
-            </motion.div>
-          ))}
+              ai
+            </motion.span>
+          </span>
         </div>
-      </div>
-
-      {/* Contact Section */}
-      <div className="relative z-10 w-full max-w-6xl px-6">
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="text-3xl md:text-5xl font-display font-light text-center text-foreground mb-16"
-        >
-          Let's Build Something Amazing
-        </motion.h2>
-        
-        <div className="grid md:grid-cols-2 gap-16 items-start">
-          {/* Contact Form */}
-          <div>
-            <motion.h3
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-              className="text-2xl font-display font-medium text-foreground mb-8"
-            >
-              Start a Conversation
-            </motion.h3>
-            <ContactForm />
-          </div>
-          
-          {/* Social Links */}
-          <div>
-            <motion.h3
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              viewport={{ once: true }}
-              className="text-2xl font-display font-medium text-foreground mb-8"
-            >
-              Connect & Follow
-            </motion.h3>
-            
-            <div className="space-y-6">
-              {signals.map((signal, i) => (
-                <motion.a
-                  key={signal.label}
-                  href={signal.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.5, delay: 0.2 + i * 0.1 }}
-                  viewport={{ once: true }}
-                  className="flex items-center gap-6 p-6 rounded-xl bg-card/30 border border-border/30 hover:bg-card/50 hover:border-primary/30 transition-all duration-300 group"
-                >
-                  <signal.icon className="w-6 h-6 text-muted-foreground group-hover:text-primary transition-colors" />
-                  <div className="flex-1">
-                    <div className="font-medium text-foreground group-hover:text-primary transition-colors">
-                      {signal.label}
-                    </div>
-                    <div className="text-sm text-muted-foreground">
-                      {signal.username}
-                    </div>
-                    <div className="text-xs text-primary font-mono mt-1">
-                      {signal.followers} followers
-                    </div>
-                  </div>
-                  <ExternalLink className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
-                </motion.a>
-              ))}
-            </div>
-            
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.5 }}
-              viewport={{ once: true }}
-              className="mt-12 p-8 rounded-2xl bg-primary/10 border border-primary/20"
-            >
-              <h4 className="font-display font-medium text-foreground mb-4">
-                Ready to collaborate?
-              </h4>
-              <p className="text-sm text-foreground/80 leading-relaxed mb-6">
-                I'm always excited to work on innovative projects, provide technical consulting, 
-                or discuss the future of technology. Whether you're a startup looking to scale 
-                or an enterprise seeking AI integration, let's explore how we can work together.
-              </p>
-              <div className="flex flex-wrap gap-3 text-xs text-primary">
-                <span className="px-3 py-1 bg-primary/20 rounded-full">AI/ML Projects</span>
-                <span className="px-3 py-1 bg-primary/20 rounded-full">System Architecture</span>
-                <span className="px-3 py-1 bg-primary/20 rounded-full">Technical Leadership</span>
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </div>
+        <p className="font-mono text-xs text-rajai-muted/40 tracking-widest">
+          © 2025 RAJAI.ORG — Raj Shah
+        </p>
+        <p className="font-mono text-xs text-rajai-muted/30 mt-2">
+          Designed & Built with Purpose
+        </p>
+      </motion.div>
     </section>
   );
 }
