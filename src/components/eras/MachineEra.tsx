@@ -1,5 +1,5 @@
-import { motion } from 'framer-motion';
-import { useState, useEffect } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { useState, useEffect, useRef } from 'react';
 
 const terminalLines = [
   { text: '> INITIALIZING RAJ.SYSTEM...', delay: 0 },
@@ -28,7 +28,20 @@ const concepts = [
 
 export default function MachineEra() {
   const [cursorVisible, setCursorVisible] = useState(true);
-  const [activeLines, setActiveLines] = useState<number[]>([]);
+  const containerRef = useRef<HTMLDivElement>(null);
+  
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"]
+  });
+  
+  // Parallax transforms
+  const terminalY = useTransform(scrollYProgress, [0, 1], [80, -80]);
+  const conceptsY = useTransform(scrollYProgress, [0, 1], [60, -60]);
+  const techY = useTransform(scrollYProgress, [0, 1], [50, -50]);
+  const codeY = useTransform(scrollYProgress, [0, 1], [40, -40]);
+  const gridY = useTransform(scrollYProgress, [0, 1], [30, -30]);
+  const punchCardY = useTransform(scrollYProgress, [0, 1], [100, -50]);
   
   useEffect(() => {
     const timer = setInterval(() => {
@@ -38,11 +51,15 @@ export default function MachineEra() {
   }, []);
 
   return (
-    <section className="relative min-h-[200vh] flex flex-col items-center justify-start overflow-hidden era-machine scanlines pt-24 pb-20">
-      {/* Animated grid background */}
-      <div 
+    <section 
+      ref={containerRef}
+      className="relative min-h-[200vh] flex flex-col items-center justify-start overflow-hidden era-machine scanlines pt-24 pb-20"
+    >
+      {/* Animated grid background with subtle parallax */}
+      <motion.div 
         className="absolute inset-0 opacity-[0.08]"
-        style={{
+        style={{ 
+          y: gridY,
           backgroundImage: `
             linear-gradient(hsl(var(--machine-cyan) / 0.4) 1px, transparent 1px),
             linear-gradient(90deg, hsl(var(--machine-cyan) / 0.4) 1px, transparent 1px)
@@ -51,13 +68,20 @@ export default function MachineEra() {
         }}
       />
       
-      {/* Glow orbs */}
-      <div className="absolute top-1/4 left-1/4 w-80 h-80 rounded-full bg-machine-cyan/5 blur-[100px]" />
-      <div className="absolute bottom-1/4 right-1/4 w-60 h-60 rounded-full bg-machine-green/5 blur-[80px]" />
+      {/* Glow orbs with parallax */}
+      <motion.div 
+        className="absolute top-1/4 left-1/4 w-80 h-80 rounded-full bg-machine-cyan/5 blur-[100px]"
+        style={{ y: useTransform(scrollYProgress, [0, 1], [-60, 60]) }}
+      />
+      <motion.div 
+        className="absolute bottom-1/4 right-1/4 w-60 h-60 rounded-full bg-machine-green/5 blur-[80px]"
+        style={{ y: useTransform(scrollYProgress, [0, 1], [60, -60]) }}
+      />
       
-      {/* Punch card decoration - left */}
+      {/* Punch card decoration with parallax */}
       <motion.div 
         className="absolute left-4 md:left-10 top-1/4 w-32 md:w-40 h-56 md:h-64 opacity-15"
+        style={{ y: punchCardY }}
         initial={{ opacity: 0, x: -50 }}
         whileInView={{ opacity: 0.15, x: 0 }}
         transition={{ duration: 1 }}
@@ -79,8 +103,11 @@ export default function MachineEra() {
         </div>
       </motion.div>
       
-      {/* Header */}
-      <div className="relative z-10 w-full max-w-4xl px-4 md:px-6 mb-16">
+      {/* Header with parallax */}
+      <motion.div 
+        className="relative z-10 w-full max-w-4xl px-4 md:px-6 mb-16"
+        style={{ y: terminalY }}
+      >
         <motion.p
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -98,12 +125,22 @@ export default function MachineEra() {
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
           className="bg-machine-black/90 border border-machine-cyan/25 rounded-xl overflow-hidden shadow-2xl"
+          whileHover={{ scale: 1.01 }}
         >
           {/* Terminal header */}
           <div className="flex items-center gap-2 px-4 py-3 bg-machine-cyan/5 border-b border-machine-cyan/15">
-            <div className="w-3 h-3 rounded-full bg-machine-amber/90" />
-            <div className="w-3 h-3 rounded-full bg-machine-green/80" />
-            <div className="w-3 h-3 rounded-full bg-machine-cyan/50" />
+            <motion.div 
+              className="w-3 h-3 rounded-full bg-machine-amber/90"
+              whileHover={{ scale: 1.2 }}
+            />
+            <motion.div 
+              className="w-3 h-3 rounded-full bg-machine-green/80"
+              whileHover={{ scale: 1.2 }}
+            />
+            <motion.div 
+              className="w-3 h-3 rounded-full bg-machine-cyan/50"
+              whileHover={{ scale: 1.2 }}
+            />
             <span className="ml-4 font-mono text-xs text-machine-cyan/50 tracking-wider">TERMINAL v1.0</span>
           </div>
           
@@ -149,10 +186,13 @@ export default function MachineEra() {
           Mastering the fundamentals—systems programming, computational thinking, 
           and the art of turning logic into reality.
         </motion.p>
-      </div>
+      </motion.div>
       
-      {/* Core Concepts Grid */}
-      <div className="relative z-10 w-full max-w-4xl px-4 md:px-6 mb-20">
+      {/* Core Concepts Grid with parallax */}
+      <motion.div 
+        className="relative z-10 w-full max-w-4xl px-4 md:px-6 mb-20"
+        style={{ y: conceptsY }}
+      >
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -168,17 +208,27 @@ export default function MachineEra() {
               transition={{ duration: 0.5, delay: i * 0.1 }}
               viewport={{ once: true }}
               className="bg-machine-cyan/5 border border-machine-cyan/20 rounded-xl p-4 text-center hover:border-machine-cyan/40 transition-colors"
+              whileHover={{ y: -4, scale: 1.02 }}
             >
-              <span className="text-2xl mb-2 block">{concept.icon}</span>
+              <motion.span 
+                className="text-2xl mb-2 block"
+                animate={{ rotate: [0, 5, -5, 0] }}
+                transition={{ duration: 4, repeat: Infinity, delay: i * 0.3 }}
+              >
+                {concept.icon}
+              </motion.span>
               <h4 className="font-mono text-sm text-machine-cyan font-medium">{concept.title}</h4>
               <p className="text-xs text-machine-cyan/50 mt-1">{concept.desc}</p>
             </motion.div>
           ))}
         </motion.div>
-      </div>
+      </motion.div>
       
-      {/* Tech Stack Bars */}
-      <div className="relative z-10 w-full max-w-3xl px-4 md:px-6 mb-20">
+      {/* Tech Stack Bars with parallax */}
+      <motion.div 
+        className="relative z-10 w-full max-w-3xl px-4 md:px-6 mb-20"
+        style={{ y: techY }}
+      >
         <motion.h3
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -197,6 +247,7 @@ export default function MachineEra() {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
               viewport={{ once: true }}
+              whileHover={{ x: 4 }}
             >
               <div className="flex justify-between items-center mb-1">
                 <span className="font-mono text-sm text-machine-cyan">{tech.name}</span>
@@ -214,17 +265,21 @@ export default function MachineEra() {
             </motion.div>
           ))}
         </div>
-      </div>
+      </motion.div>
       
-      {/* Code Philosophy */}
+      {/* Code Philosophy with parallax */}
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
         viewport={{ once: true }}
+        style={{ y: codeY }}
         className="relative z-10 max-w-2xl mx-auto px-6 text-center"
       >
-        <div className="bg-machine-cyan/5 border border-machine-cyan/20 rounded-xl p-8">
+        <motion.div 
+          className="bg-machine-cyan/5 border border-machine-cyan/20 rounded-xl p-8"
+          whileHover={{ scale: 1.01, borderColor: 'hsl(var(--machine-cyan) / 0.4)' }}
+        >
           <pre className="font-mono text-sm text-machine-cyan/80 text-left overflow-x-auto">
 {`function philosophy() {
   const approach = {
@@ -237,7 +292,7 @@ export default function MachineEra() {
   return buildSomethingGreat(approach);
 }`}
           </pre>
-        </div>
+        </motion.div>
       </motion.div>
     </section>
   );

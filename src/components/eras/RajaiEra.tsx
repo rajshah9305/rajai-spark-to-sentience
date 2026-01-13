@@ -1,26 +1,7 @@
-import { motion } from 'framer-motion';
-import { Github, Mail, Linkedin, ExternalLink, ArrowUpRight, MapPin, Calendar, Download } from 'lucide-react';
-
-const projects = [
-  {
-    title: 'AI-Powered Applications',
-    description: 'Building intelligent systems that leverage machine learning to solve complex problems',
-    tech: ['Python', 'TensorFlow', 'React'],
-    link: '#',
-  },
-  {
-    title: 'Full-Stack Platforms',
-    description: 'End-to-end web applications with modern architectures and seamless user experiences',
-    tech: ['TypeScript', 'Node.js', 'PostgreSQL'],
-    link: '#',
-  },
-  {
-    title: 'Open Source',
-    description: 'Contributing to the developer community through tools, libraries, and shared knowledge',
-    tech: ['GitHub', 'Documentation', 'Community'],
-    link: 'https://github.com/rajshah9305',
-  },
-];
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { Github, Mail, Linkedin, ArrowUpRight, MapPin, Calendar } from 'lucide-react';
+import { useRef } from 'react';
+import GitHubProjects from '@/components/GitHubProjects';
 
 const signals = [
   { icon: Github, label: 'GitHub', href: 'https://github.com/rajshah9305', username: 'rajshah9305' },
@@ -61,8 +42,28 @@ const services = [
 ];
 
 export default function RajaiEra() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"]
+  });
+  
+  // Parallax transforms for different sections
+  const heroY = useTransform(scrollYProgress, [0, 1], [100, -100]);
+  const aboutY = useTransform(scrollYProgress, [0, 1], [80, -60]);
+  const valuesY = useTransform(scrollYProgress, [0, 1], [60, -80]);
+  const servicesY = useTransform(scrollYProgress, [0, 1], [50, -50]);
+  const timelineY = useTransform(scrollYProgress, [0, 1], [40, -70]);
+  const projectsY = useTransform(scrollYProgress, [0, 1], [30, -30]);
+  const ctaY = useTransform(scrollYProgress, [0, 1], [20, -40]);
+  const glowY = useTransform(scrollYProgress, [0, 1], [150, -150]);
+
   return (
-    <section className="relative min-h-[300vh] flex flex-col items-center justify-start overflow-hidden era-rajai py-20 md:py-24">
+    <section 
+      ref={containerRef}
+      className="relative min-h-[300vh] flex flex-col items-center justify-start overflow-hidden era-rajai py-20 md:py-24"
+    >
       {/* Subtle animated grid */}
       <div 
         className="absolute inset-0 opacity-[0.025]"
@@ -75,20 +76,25 @@ export default function RajaiEra() {
         }}
       />
       
-      {/* Multi-layered accent glows */}
+      {/* Multi-layered accent glows with parallax */}
       <motion.div 
         className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] md:w-[900px] h-[300px] md:h-[450px] bg-rajai-accent/6 blur-[150px] rounded-full"
+        style={{ y: glowY }}
         animate={{ opacity: [0.06, 0.1, 0.06] }}
         transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
       />
       <motion.div 
         className="absolute bottom-1/4 right-1/4 w-[300px] md:w-[400px] h-[300px] md:h-[400px] bg-rajai-highlight/4 blur-[120px] rounded-full"
+        style={{ y: useTransform(scrollYProgress, [0, 1], [-100, 100]) }}
         animate={{ opacity: [0.04, 0.08, 0.04] }}
         transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
       />
       
-      {/* Hero Content */}
-      <div className="relative z-10 w-full max-w-6xl px-4 md:px-6 mb-20">
+      {/* Hero Content with parallax */}
+      <motion.div 
+        className="relative z-10 w-full max-w-6xl px-4 md:px-6 mb-20"
+        style={{ y: heroY }}
+      >
         <motion.p
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -107,7 +113,13 @@ export default function RajaiEra() {
           className="text-5xl md:text-7xl lg:text-8xl font-display font-light tracking-tight text-center mb-6"
         >
           <span className="text-foreground">Raj</span>
-          <span className="text-rajai-accent">ai</span>
+          <motion.span 
+            className="text-rajai-accent"
+            animate={{ opacity: [1, 0.7, 1] }}
+            transition={{ duration: 2, repeat: Infinity }}
+          >
+            ai
+          </motion.span>
         </motion.h2>
         
         <motion.p
@@ -138,23 +150,33 @@ export default function RajaiEra() {
           viewport={{ once: true }}
           className="flex flex-wrap justify-center gap-4 md:gap-8 text-sm font-mono text-rajai-muted"
         >
-          <span className="flex items-center gap-2">
+          <motion.span 
+            className="flex items-center gap-2"
+            whileHover={{ scale: 1.05, color: 'hsl(var(--rajai-accent))' }}
+          >
             <MapPin className="w-4 h-4" /> Global / Remote
-          </span>
-          <span className="flex items-center gap-2">
+          </motion.span>
+          <motion.span 
+            className="flex items-center gap-2"
+            whileHover={{ scale: 1.05, color: 'hsl(var(--rajai-accent))' }}
+          >
             <Calendar className="w-4 h-4" /> Available for Projects
-          </span>
+          </motion.span>
         </motion.div>
-      </div>
+      </motion.div>
       
-      {/* About Section */}
-      <div className="relative z-10 w-full max-w-4xl px-4 md:px-6 mb-20">
+      {/* About Section with parallax */}
+      <motion.div 
+        className="relative z-10 w-full max-w-4xl px-4 md:px-6 mb-20"
+        style={{ y: aboutY }}
+      >
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
           className="card-glass rounded-2xl p-8 md:p-10"
+          whileHover={{ scale: 1.01 }}
         >
           <h3 className="font-mono text-xs tracking-[0.3em] text-rajai-accent/70 uppercase mb-6">About</h3>
           <p className="text-lg text-foreground/90 leading-relaxed mb-6">
@@ -168,10 +190,13 @@ export default function RajaiEra() {
             I bring a unique blend of technical depth and strategic thinking.
           </p>
         </motion.div>
-      </div>
+      </motion.div>
       
-      {/* Values */}
-      <div className="relative z-10 w-full max-w-5xl px-4 md:px-6 mb-20">
+      {/* Values with parallax */}
+      <motion.div 
+        className="relative z-10 w-full max-w-5xl px-4 md:px-6 mb-20"
+        style={{ y: valuesY }}
+      >
         <motion.h3
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -191,17 +216,27 @@ export default function RajaiEra() {
               transition={{ duration: 0.5, delay: i * 0.1 }}
               viewport={{ once: true }}
               className="text-center p-6"
+              whileHover={{ y: -6 }}
             >
-              <span className="text-3xl mb-3 block">{value.icon}</span>
+              <motion.span 
+                className="text-3xl mb-3 block"
+                animate={{ rotate: [0, 5, -5, 0] }}
+                transition={{ duration: 4, repeat: Infinity, delay: i * 0.5 }}
+              >
+                {value.icon}
+              </motion.span>
               <h4 className="font-display font-medium text-foreground mb-1">{value.title}</h4>
               <p className="text-sm text-rajai-muted">{value.desc}</p>
             </motion.div>
           ))}
         </div>
-      </div>
+      </motion.div>
       
-      {/* Services */}
-      <div className="relative z-10 w-full max-w-5xl px-4 md:px-6 mb-20">
+      {/* Services with parallax */}
+      <motion.div 
+        className="relative z-10 w-full max-w-5xl px-4 md:px-6 mb-20"
+        style={{ y: servicesY }}
+      >
         <motion.h3
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -221,17 +256,26 @@ export default function RajaiEra() {
               transition={{ duration: 0.6, delay: i * 0.15 }}
               viewport={{ once: true }}
               className="card-glass rounded-xl p-6 text-center hover:border-rajai-accent/30 transition-all"
+              whileHover={{ y: -8, scale: 1.02 }}
             >
-              <span className="text-4xl mb-4 block">{service.icon}</span>
+              <motion.span 
+                className="text-4xl mb-4 block"
+                whileHover={{ scale: 1.2, rotate: 10 }}
+              >
+                {service.icon}
+              </motion.span>
               <h4 className="font-display text-lg font-medium text-foreground mb-2">{service.title}</h4>
               <p className="text-sm text-rajai-muted">{service.description}</p>
             </motion.div>
           ))}
         </div>
-      </div>
+      </motion.div>
       
-      {/* Timeline */}
-      <div className="relative z-10 w-full max-w-3xl px-4 md:px-6 mb-20">
+      {/* Timeline with parallax */}
+      <motion.div 
+        className="relative z-10 w-full max-w-3xl px-4 md:px-6 mb-20"
+        style={{ y: timelineY }}
+      >
         <motion.h3
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -262,9 +306,16 @@ export default function RajaiEra() {
                 <p className="text-sm text-rajai-muted">{item.desc}</p>
               </div>
               
-              <div className="absolute left-0 md:relative md:left-auto w-8 h-8 rounded-full bg-rajai-surface border-2 border-rajai-accent/50 flex items-center justify-center">
-                <div className="w-2 h-2 rounded-full bg-rajai-accent" />
-              </div>
+              <motion.div 
+                className="absolute left-0 md:relative md:left-auto w-8 h-8 rounded-full bg-rajai-surface border-2 border-rajai-accent/50 flex items-center justify-center"
+                whileHover={{ scale: 1.2, borderColor: 'hsl(var(--rajai-accent))' }}
+              >
+                <motion.div 
+                  className="w-2 h-2 rounded-full bg-rajai-accent"
+                  animate={{ scale: [1, 1.2, 1] }}
+                  transition={{ duration: 2, repeat: Infinity, delay: i * 0.3 }}
+                />
+              </motion.div>
               
               <div className="flex-1 md:hidden">
                 <span className="font-mono text-sm text-rajai-accent">{item.year}</span>
@@ -276,10 +327,13 @@ export default function RajaiEra() {
             </motion.div>
           ))}
         </div>
-      </div>
+      </motion.div>
       
-      {/* Projects Grid */}
-      <div className="relative z-10 w-full max-w-6xl px-4 md:px-6 mb-20">
+      {/* GitHub Projects Grid with parallax */}
+      <motion.div 
+        className="relative z-10 w-full max-w-6xl px-4 md:px-6 mb-20"
+        style={{ y: projectsY }}
+      >
         <motion.h3
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -287,66 +341,33 @@ export default function RajaiEra() {
           viewport={{ once: true }}
           className="font-mono text-xs tracking-[0.3em] text-rajai-accent/70 uppercase mb-10 text-center"
         >
-          Featured Work
+          GitHub Projects
         </motion.h3>
         
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          viewport={{ once: true }}
-          className="grid md:grid-cols-3 gap-4 md:gap-6"
-        >
-          {projects.map((project, i) => (
-            <motion.a
-              key={project.title}
-              href={project.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="card-glass rounded-xl p-5 md:p-6 group cursor-pointer relative overflow-hidden"
-              whileHover={{ y: -6 }}
-              transition={{ type: "spring", stiffness: 300, damping: 25 }}
-            >
-              {/* Hover gradient */}
-              <div className="absolute inset-0 bg-gradient-to-br from-rajai-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              
-              <div className="relative z-10">
-                <div className="flex items-start justify-between mb-4">
-                  <h3 className="text-base md:text-lg font-display font-medium text-foreground group-hover:text-rajai-accent transition-colors duration-300">
-                    {project.title}
-                  </h3>
-                  <ArrowUpRight className="w-4 h-4 text-rajai-muted group-hover:text-rajai-accent group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300" />
-                </div>
-                <p className="text-rajai-muted text-sm mb-5 leading-relaxed">
-                  {project.description}
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  {project.tech.map(tech => (
-                    <span 
-                      key={tech}
-                      className="px-2.5 py-1 text-xs font-mono bg-rajai-surface rounded-md text-rajai-muted border border-border/50"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </motion.a>
-          ))}
-        </motion.div>
-      </div>
+        <GitHubProjects />
+      </motion.div>
       
-      {/* CTA Section */}
-      <div className="relative z-10 w-full max-w-4xl px-4 md:px-6 mb-20">
+      {/* CTA Section with parallax */}
+      <motion.div 
+        className="relative z-10 w-full max-w-4xl px-4 md:px-6 mb-20"
+        style={{ y: ctaY }}
+      >
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
           className="card-glass rounded-2xl p-8 md:p-12 text-center"
+          whileHover={{ scale: 1.01 }}
         >
           <h3 className="text-2xl md:text-3xl font-display font-light text-foreground mb-4">
-            Let's build something <span className="text-rajai-accent font-medium">extraordinary</span>
+            Let's build something <motion.span 
+              className="text-rajai-accent font-medium"
+              animate={{ opacity: [1, 0.7, 1] }}
+              transition={{ duration: 2, repeat: Infinity }}
+            >
+              extraordinary
+            </motion.span>
           </h3>
           <p className="text-rajai-muted mb-8 max-w-xl mx-auto">
             Whether you have a project in mind or just want to explore possibilities, I'd love to hear from you.
@@ -354,14 +375,14 @@ export default function RajaiEra() {
           <motion.a
             href="mailto:hello@rajai.org"
             className="inline-flex items-center gap-2 px-8 py-4 bg-rajai-accent text-rajai-bg font-medium rounded-full hover:bg-rajai-accent-soft transition-colors"
-            whileHover={{ scale: 1.02 }}
+            whileHover={{ scale: 1.05, y: -2 }}
             whileTap={{ scale: 0.98 }}
           >
             <Mail className="w-5 h-5" />
             Get in Touch
           </motion.a>
         </motion.div>
-      </div>
+      </motion.div>
       
       {/* Signals / Contact */}
       <motion.div
@@ -376,15 +397,19 @@ export default function RajaiEra() {
         </p>
         
         <div className="flex flex-wrap justify-center gap-3 md:gap-4">
-          {signals.map((signal) => (
+          {signals.map((signal, i) => (
             <motion.a
               key={signal.label}
               href={signal.href}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2.5 md:gap-3 px-5 md:px-6 py-2.5 md:py-3 rounded-full border border-border hover:border-rajai-accent/50 bg-rajai-surface/60 backdrop-blur-sm transition-all duration-300 group"
-              whileHover={{ scale: 1.02, y: -2 }}
+              whileHover={{ scale: 1.05, y: -4 }}
               whileTap={{ scale: 0.98 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: i * 0.1 }}
+              viewport={{ once: true }}
             >
               <signal.icon className="w-4 h-4 md:w-5 md:h-5 text-rajai-muted group-hover:text-rajai-accent transition-colors duration-300" />
               <span className="font-mono text-xs md:text-sm text-foreground group-hover:text-rajai-accent transition-colors duration-300">
@@ -406,7 +431,13 @@ export default function RajaiEra() {
         <div className="mb-4">
           <span className="text-3xl font-display font-light">
             <span className="text-foreground">Raj</span>
-            <span className="text-rajai-accent">ai</span>
+            <motion.span 
+              className="text-rajai-accent"
+              animate={{ opacity: [1, 0.6, 1] }}
+              transition={{ duration: 3, repeat: Infinity }}
+            >
+              ai
+            </motion.span>
           </span>
         </div>
         <p className="font-mono text-xs text-rajai-muted/40 tracking-widest">

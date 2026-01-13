@@ -1,4 +1,5 @@
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { useRef } from 'react';
 import ParticleField from '../ParticleField';
 
 const milestones = [
@@ -15,26 +16,48 @@ const inspirations = [
 ];
 
 export default function SparkEra() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"]
+  });
+  
+  // Parallax transforms for different elements
+  const heroY = useTransform(scrollYProgress, [0, 1], [100, -100]);
+  const symbolsY = useTransform(scrollYProgress, [0, 1], [50, -150]);
+  const glowScale = useTransform(scrollYProgress, [0, 0.5, 1], [0.8, 1.2, 0.9]);
+  const timelineY = useTransform(scrollYProgress, [0, 1], [60, -60]);
+  const quoteY = useTransform(scrollYProgress, [0, 1], [40, -80]);
+
   return (
-    <section className="relative min-h-[200vh] flex flex-col items-center justify-start overflow-hidden era-spark pt-32 pb-20">
+    <section 
+      ref={containerRef}
+      className="relative min-h-[200vh] flex flex-col items-center justify-start overflow-hidden era-spark pt-32 pb-20"
+    >
       <ParticleField color="#facc15" />
       
-      {/* Multi-layered ambient glow */}
+      {/* Multi-layered ambient glow with parallax */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
         <motion.div 
           className="absolute w-[500px] h-[500px] rounded-full bg-spark-glow/15 blur-[100px]"
-          animate={{ scale: [1, 1.1, 1], opacity: [0.15, 0.25, 0.15] }}
+          style={{ scale: glowScale }}
+          animate={{ opacity: [0.15, 0.25, 0.15] }}
           transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
         />
         <motion.div 
           className="absolute w-[300px] h-[300px] rounded-full bg-spark-secondary/10 blur-[80px]"
-          animate={{ scale: [1.1, 1, 1.1], opacity: [0.1, 0.2, 0.1] }}
+          style={{ y: useTransform(scrollYProgress, [0, 1], [-50, 50]) }}
+          animate={{ opacity: [0.1, 0.2, 0.1] }}
           transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
         />
       </div>
       
-      {/* Floating symbols with better positioning */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      {/* Floating symbols with parallax */}
+      <motion.div 
+        className="absolute inset-0 overflow-hidden pointer-events-none"
+        style={{ y: symbolsY }}
+      >
         {['∑', '∫', 'π', '∞', 'Δ', 'λ', '∂', 'φ', 'Ω', '∇'].map((symbol, i) => (
           <motion.span
             key={i}
@@ -58,10 +81,13 @@ export default function SparkEra() {
             {symbol}
           </motion.span>
         ))}
-      </div>
+      </motion.div>
       
-      {/* Hero Content */}
-      <div className="relative z-10 text-center px-6 max-w-4xl">
+      {/* Hero Content with parallax */}
+      <motion.div 
+        className="relative z-10 text-center px-6 max-w-4xl"
+        style={{ y: heroY }}
+      >
         <motion.p
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -81,7 +107,13 @@ export default function SparkEra() {
         >
           Every vision begins
           <br />
-          <span className="text-amber-glow font-normal">with a spark</span>
+          <motion.span 
+            className="text-amber-glow font-normal"
+            animate={{ opacity: [1, 0.8, 1] }}
+            transition={{ duration: 3, repeat: Infinity }}
+          >
+            with a spark
+          </motion.span>
         </motion.h1>
         
         <motion.p
@@ -95,7 +127,7 @@ export default function SparkEra() {
           tracing the evolution of technology to architect what comes next.
         </motion.p>
         
-        {/* Inspiration badges */}
+        {/* Inspiration badges with stagger animation */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -107,21 +139,30 @@ export default function SparkEra() {
             <motion.div
               key={item.label}
               className="flex items-center gap-2 px-4 py-2 rounded-full bg-spark-glow/10 border border-spark-glow/20"
-              whileHover={{ scale: 1.05, borderColor: 'hsl(45 100% 60% / 0.5)' }}
+              whileHover={{ scale: 1.08, borderColor: 'hsl(45 100% 60% / 0.5)', y: -2 }}
               initial={{ opacity: 0, scale: 0.8 }}
               whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.7 + i * 0.1 }}
+              transition={{ delay: 0.7 + i * 0.1, type: "spring", stiffness: 300 }}
               viewport={{ once: true }}
             >
-              <span className="text-lg">{item.icon}</span>
+              <motion.span 
+                className="text-lg"
+                animate={{ rotate: [0, 5, -5, 0] }}
+                transition={{ duration: 4, repeat: Infinity, delay: i * 0.5 }}
+              >
+                {item.icon}
+              </motion.span>
               <span className="text-sm font-mono text-spark-glow/80">{item.label}</span>
             </motion.div>
           ))}
         </motion.div>
-      </div>
+      </motion.div>
       
-      {/* Timeline Section */}
-      <div className="relative z-10 w-full max-w-4xl px-6 mt-10">
+      {/* Timeline Section with parallax */}
+      <motion.div 
+        className="relative z-10 w-full max-w-4xl px-6 mt-10"
+        style={{ y: timelineY }}
+      >
         <motion.h3
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -147,11 +188,14 @@ export default function SparkEra() {
                 i % 2 === 0 ? 'flex-row' : 'flex-row-reverse'
               }`}
             >
-              <div className={`flex-1 ${i % 2 === 0 ? 'text-right' : 'text-left'}`}>
+              <motion.div 
+                className={`flex-1 ${i % 2 === 0 ? 'text-right' : 'text-left'}`}
+                whileHover={{ scale: 1.02 }}
+              >
                 <span className="font-mono text-sm text-spark-glow">{milestone.year}</span>
                 <h4 className="text-xl font-display font-medium text-foreground mt-1">{milestone.title}</h4>
                 <p className="text-sm text-muted-foreground mt-1">{milestone.description}</p>
-              </div>
+              </motion.div>
               
               {/* Center dot */}
               <div className="relative z-10 w-4 h-4 rounded-full bg-spark-glow shadow-[0_0_20px_hsl(45_100%_60%_/_0.5)]">
@@ -166,17 +210,24 @@ export default function SparkEra() {
             </motion.div>
           ))}
         </div>
-      </div>
+      </motion.div>
       
-      {/* Quote section */}
+      {/* Quote section with parallax */}
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 1 }}
         viewport={{ once: true }}
+        style={{ y: quoteY }}
         className="relative z-10 max-w-3xl mx-auto px-6 mt-20 text-center"
       >
-        <div className="text-5xl text-spark-glow/30 mb-4">"</div>
+        <motion.div 
+          className="text-5xl text-spark-glow/30 mb-4"
+          animate={{ scale: [1, 1.1, 1] }}
+          transition={{ duration: 3, repeat: Infinity }}
+        >
+          "
+        </motion.div>
         <p className="text-xl md:text-2xl font-light text-foreground/90 leading-relaxed italic">
           The best way to predict the future is to invent it.
         </p>

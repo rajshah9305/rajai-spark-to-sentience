@@ -1,4 +1,5 @@
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { useRef } from 'react';
 
 const skills = [
   { name: 'Full-Stack Development', icon: '⚡', description: 'End-to-end application architecture' },
@@ -38,13 +39,33 @@ const caseStudies = [
 ];
 
 export default function HumanEra() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"]
+  });
+  
+  // Parallax transforms
+  const heroY = useTransform(scrollYProgress, [0, 1], [100, -100]);
+  const principlesY = useTransform(scrollYProgress, [0, 1], [70, -70]);
+  const skillsY = useTransform(scrollYProgress, [0, 1], [50, -50]);
+  const casesY = useTransform(scrollYProgress, [0, 1], [40, -60]);
+  const windowsY = useTransform(scrollYProgress, [0, 1], [80, -40]);
+
   return (
-    <section className="relative min-h-[200vh] flex flex-col items-center justify-start overflow-hidden era-human pt-24 pb-20">
+    <section 
+      ref={containerRef}
+      className="relative min-h-[200vh] flex flex-col items-center justify-start overflow-hidden era-human pt-24 pb-20"
+    >
       {/* Soft gradient overlays */}
       <div className="absolute inset-0 bg-gradient-to-b from-human-cream via-human-warm/50 to-human-cream pointer-events-none" />
       
-      {/* Desktop metaphor elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      {/* Desktop metaphor elements with parallax */}
+      <motion.div 
+        className="absolute inset-0 overflow-hidden pointer-events-none"
+        style={{ y: windowsY }}
+      >
         <motion.div
           initial={{ opacity: 0, x: -80, rotate: -3 }}
           whileInView={{ opacity: 0.12, x: 0, rotate: -3 }}
@@ -82,10 +103,13 @@ export default function HumanEra() {
         >
           <div className="h-7 md:h-8 bg-gradient-to-r from-human-accent/15 to-transparent border-b border-human-text/15 rounded-t-xl" />
         </motion.div>
-      </div>
+      </motion.div>
       
-      {/* Header Content */}
-      <div className="relative z-10 text-center px-4 md:px-6 max-w-4xl mb-16">
+      {/* Header Content with parallax */}
+      <motion.div 
+        className="relative z-10 text-center px-4 md:px-6 max-w-4xl mb-16"
+        style={{ y: heroY }}
+      >
         <motion.p
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -119,7 +143,7 @@ export default function HumanEra() {
           bridge the gap between complex systems and human understanding.
         </motion.p>
         
-        {/* Skill areas */}
+        {/* Skill areas with enhanced hover */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -131,18 +155,27 @@ export default function HumanEra() {
             <motion.div
               key={skill.name}
               className="px-5 md:px-6 py-3 md:py-3.5 bg-white rounded-full shadow-lg border border-human-text/8 text-human-text font-medium flex items-center gap-2 md:gap-2.5"
-              whileHover={{ scale: 1.03, boxShadow: "0 10px 40px rgba(0,0,0,0.1)" }}
+              whileHover={{ scale: 1.05, y: -4, boxShadow: "0 15px 50px rgba(0,0,0,0.12)" }}
               transition={{ type: "spring", stiffness: 400, damping: 20 }}
             >
-              <span className="text-base md:text-lg">{skill.icon}</span>
+              <motion.span 
+                className="text-base md:text-lg"
+                animate={{ rotate: [0, 10, -10, 0] }}
+                transition={{ duration: 3, repeat: Infinity, delay: i * 0.4 }}
+              >
+                {skill.icon}
+              </motion.span>
               <span className="text-sm md:text-base">{skill.name}</span>
             </motion.div>
           ))}
         </motion.div>
-      </div>
+      </motion.div>
       
-      {/* Design Principles */}
-      <div className="relative z-10 w-full max-w-5xl px-4 md:px-6 mb-20">
+      {/* Design Principles with parallax */}
+      <motion.div 
+        className="relative z-10 w-full max-w-5xl px-4 md:px-6 mb-20"
+        style={{ y: principlesY }}
+      >
         <motion.h3
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -162,17 +195,27 @@ export default function HumanEra() {
               transition={{ duration: 0.5, delay: i * 0.1 }}
               viewport={{ once: true }}
               className="bg-white rounded-2xl p-6 shadow-lg border border-human-text/5 text-center hover:shadow-xl transition-shadow"
+              whileHover={{ y: -6, scale: 1.02 }}
             >
-              <span className="text-3xl text-human-accent block mb-3">{principle.icon}</span>
+              <motion.span 
+                className="text-3xl text-human-accent block mb-3"
+                animate={{ scale: [1, 1.1, 1] }}
+                transition={{ duration: 3, repeat: Infinity, delay: i * 0.3 }}
+              >
+                {principle.icon}
+              </motion.span>
               <h4 className="font-display font-medium text-human-text mb-2">{principle.title}</h4>
               <p className="text-sm text-human-text/60">{principle.desc}</p>
             </motion.div>
           ))}
         </div>
-      </div>
+      </motion.div>
       
-      {/* Skills Detail Grid */}
-      <div className="relative z-10 w-full max-w-5xl px-4 md:px-6 mb-20">
+      {/* Skills Detail Grid with parallax */}
+      <motion.div 
+        className="relative z-10 w-full max-w-5xl px-4 md:px-6 mb-20"
+        style={{ y: skillsY }}
+      >
         <motion.h3
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -192,8 +235,14 @@ export default function HumanEra() {
               transition={{ duration: 0.5, delay: i * 0.08 }}
               viewport={{ once: true }}
               className="bg-white/80 backdrop-blur-sm rounded-xl p-5 border border-human-text/10 hover:border-human-accent/30 transition-colors group"
+              whileHover={{ y: -4, scale: 1.02 }}
             >
-              <span className="text-2xl mb-3 block">{skill.icon}</span>
+              <motion.span 
+                className="text-2xl mb-3 block"
+                whileHover={{ scale: 1.2, rotate: 10 }}
+              >
+                {skill.icon}
+              </motion.span>
               <h4 className="font-display font-medium text-human-text group-hover:text-human-accent transition-colors">
                 {skill.name}
               </h4>
@@ -201,10 +250,13 @@ export default function HumanEra() {
             </motion.div>
           ))}
         </div>
-      </div>
+      </motion.div>
       
-      {/* Case Studies */}
-      <div className="relative z-10 w-full max-w-5xl px-4 md:px-6">
+      {/* Case Studies with parallax */}
+      <motion.div 
+        className="relative z-10 w-full max-w-5xl px-4 md:px-6"
+        style={{ y: casesY }}
+      >
         <motion.h3
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -224,9 +276,12 @@ export default function HumanEra() {
               transition={{ duration: 0.6, delay: i * 0.15 }}
               viewport={{ once: true }}
               className="bg-white rounded-2xl p-6 shadow-lg border border-human-text/5 hover:shadow-xl transition-all group"
+              whileHover={{ y: -8, scale: 1.02 }}
             >
-              <div className={`w-12 h-1 rounded-full bg-${study.color} mb-4`} 
+              <motion.div 
+                className="w-12 h-1 rounded-full mb-4"
                 style={{ backgroundColor: i === 0 ? 'hsl(220 85% 55%)' : i === 1 ? 'hsl(340 75% 55%)' : 'hsl(160 100% 45%)' }}
+                whileHover={{ width: 60 }}
               />
               <h4 className="font-display text-lg font-medium text-human-text mb-2">{study.title}</h4>
               <p className="text-sm text-human-text/60 mb-4">{study.description}</p>
@@ -240,7 +295,7 @@ export default function HumanEra() {
             </motion.div>
           ))}
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }

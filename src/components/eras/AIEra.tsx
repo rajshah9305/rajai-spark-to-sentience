@@ -1,30 +1,5 @@
-import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
-import { useEffect, useRef } from 'react';
-
-function NeuralNode({ x, y, delay, size = 'md' }: { x: number; y: number; delay: number; size?: 'sm' | 'md' | 'lg' }) {
-  const sizeClasses = {
-    sm: 'w-2 h-2',
-    md: 'w-3 h-3',
-    lg: 'w-4 h-4',
-  };
-  
-  return (
-    <motion.div
-      className={`absolute ${sizeClasses[size]} rounded-full bg-ai-neural`}
-      style={{ left: `${x}%`, top: `${y}%` }}
-      initial={{ scale: 0, opacity: 0 }}
-      whileInView={{ scale: 1, opacity: 1 }}
-      transition={{ duration: 0.6, delay }}
-      viewport={{ once: true }}
-    >
-      <motion.div
-        className="absolute inset-0 rounded-full bg-ai-neural"
-        animate={{ scale: [1, 2.5, 1], opacity: [0.6, 0, 0.6] }}
-        transition={{ duration: 3, repeat: Infinity, delay: delay * 2 }}
-      />
-    </motion.div>
-  );
-}
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { useRef } from 'react';
 
 const focusAreas = [
   { name: 'Machine Learning', icon: '🧠', desc: 'Predictive models & pattern recognition' },
@@ -65,101 +40,51 @@ const capabilities = [
 
 export default function AIEra() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const mouseX = useMotionValue(0.5);
-  const mouseY = useMotionValue(0.5);
   
-  const springConfig = { stiffness: 30, damping: 25 };
-  const springX = useSpring(mouseX, springConfig);
-  const springY = useSpring(mouseY, springConfig);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"]
+  });
   
-  const x = useTransform(springX, [0, 1], [-25, 25]);
-  const y = useTransform(springY, [0, 1], [-25, 25]);
-  
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      if (!containerRef.current) return;
-      const rect = containerRef.current.getBoundingClientRect();
-      mouseX.set((e.clientX - rect.left) / rect.width);
-      mouseY.set((e.clientY - rect.top) / rect.height);
-    };
-    
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, [mouseX, mouseY]);
-
-  const nodes = [
-    { x: 18, y: 28, size: 'lg' as const }, { x: 32, y: 18, size: 'md' as const }, { x: 48, y: 32, size: 'lg' as const },
-    { x: 62, y: 22, size: 'md' as const }, { x: 78, y: 38, size: 'lg' as const }, { x: 22, y: 52, size: 'md' as const },
-    { x: 42, y: 58, size: 'lg' as const }, { x: 58, y: 48, size: 'md' as const }, { x: 72, y: 62, size: 'lg' as const },
-    { x: 38, y: 72, size: 'md' as const }, { x: 52, y: 78, size: 'lg' as const }, { x: 68, y: 72, size: 'md' as const },
-    { x: 28, y: 68, size: 'sm' as const }, { x: 82, y: 52, size: 'sm' as const },
-  ];
+  // Parallax transforms
+  const headerY = useTransform(scrollYProgress, [0, 1], [80, -80]);
+  const statsY = useTransform(scrollYProgress, [0, 1], [50, -50]);
+  const areasY = useTransform(scrollYProgress, [0, 1], [60, -40]);
+  const projectsY = useTransform(scrollYProgress, [0, 1], [40, -60]);
+  const quoteY = useTransform(scrollYProgress, [0, 1], [30, -30]);
+  const orbY = useTransform(scrollYProgress, [0, 1], [100, -100]);
+  const orbScale = useTransform(scrollYProgress, [0, 0.5, 1], [0.8, 1.1, 0.9]);
 
   return (
     <section 
       ref={containerRef}
       className="relative min-h-[250vh] flex flex-col items-center justify-start overflow-hidden era-ai pt-24 pb-20"
     >
-      {/* Neural network visualization */}
-      <motion.div 
-        className="absolute inset-0 pointer-events-none"
-        style={{ x, y }}
-      >
-        {/* Connection lines */}
-        <svg className="absolute inset-0 w-full h-full opacity-25">
-          {nodes.map((node, i) => 
-            nodes.slice(i + 1).map((target, j) => {
-              const distance = Math.sqrt(
-                Math.pow(node.x - target.x, 2) + Math.pow(node.y - target.y, 2)
-              );
-              if (distance < 28) {
-                return (
-                  <motion.line
-                    key={`${i}-${j}`}
-                    x1={`${node.x}%`}
-                    y1={`${node.y}%`}
-                    x2={`${target.x}%`}
-                    y2={`${target.y}%`}
-                    stroke="url(#neural-gradient)"
-                    strokeWidth="1.5"
-                    initial={{ pathLength: 0, opacity: 0 }}
-                    whileInView={{ pathLength: 1, opacity: 0.6 }}
-                    transition={{ duration: 1.2, delay: i * 0.08 }}
-                    viewport={{ once: true }}
-                  />
-                );
-              }
-              return null;
-            })
-          )}
-          <defs>
-            <linearGradient id="neural-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="hsl(200, 100%, 55%)" />
-              <stop offset="100%" stopColor="hsl(320, 85%, 60%)" />
-            </linearGradient>
-          </defs>
-        </svg>
-        
-        {/* Neural nodes */}
-        {nodes.map((node, i) => (
-          <NeuralNode key={i} x={node.x} y={node.y} delay={i * 0.06} size={node.size} />
-        ))}
-      </motion.div>
-      
-      {/* Gradient orbs */}
+      {/* Floating gradient orbs with parallax */}
       <motion.div 
         className="absolute top-1/4 left-1/4 w-80 md:w-96 h-80 md:h-96 rounded-full bg-ai-neural/12 blur-[120px]"
-        animate={{ scale: [1, 1.1, 1], opacity: [0.12, 0.18, 0.12] }}
+        style={{ y: orbY, scale: orbScale }}
+        animate={{ opacity: [0.12, 0.18, 0.12] }}
         transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
       />
       <motion.div 
         className="absolute bottom-1/4 right-1/4 w-64 md:w-80 h-64 md:h-80 rounded-full bg-ai-synapse/10 blur-[100px]"
-        animate={{ scale: [1.1, 1, 1.1], opacity: [0.1, 0.15, 0.1] }}
+        style={{ y: useTransform(scrollYProgress, [0, 1], [-80, 80]) }}
+        animate={{ opacity: [0.1, 0.15, 0.1] }}
         transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
       />
+      <motion.div 
+        className="absolute top-1/2 right-1/3 w-48 md:w-64 h-48 md:h-64 rounded-full bg-ai-glow/8 blur-[80px]"
+        style={{ y: useTransform(scrollYProgress, [0, 1], [60, -120]) }}
+        animate={{ opacity: [0.08, 0.12, 0.08] }}
+        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+      />
       
-      {/* Header Content */}
-      <div className="relative z-10 text-center px-4 md:px-6 max-w-4xl mb-16">
+      {/* Header Content with parallax */}
+      <motion.div 
+        className="relative z-10 text-center px-4 md:px-6 max-w-4xl mb-16"
+        style={{ y: headerY }}
+      >
         <motion.p
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -201,7 +126,7 @@ export default function AIEra() {
           viewport={{ once: true }}
           className="flex flex-wrap justify-center gap-2.5 md:gap-3"
         >
-          {focusAreas.slice(0, 4).map((area, i) => (
+          {focusAreas.slice(0, 4).map((area) => (
             <motion.span
               key={area.name}
               className="px-4 md:px-5 py-2 md:py-2.5 rounded-full border border-ai-neural/30 bg-ai-neural/5 text-ai-neural font-mono text-xs md:text-sm backdrop-blur-sm"
@@ -216,10 +141,13 @@ export default function AIEra() {
             </motion.span>
           ))}
         </motion.div>
-      </div>
+      </motion.div>
       
-      {/* Capabilities Stats */}
-      <div className="relative z-10 w-full max-w-4xl px-4 md:px-6 mb-20">
+      {/* Capabilities Stats with parallax */}
+      <motion.div 
+        className="relative z-10 w-full max-w-4xl px-4 md:px-6 mb-20"
+        style={{ y: statsY }}
+      >
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
           {capabilities.map((cap, i) => (
             <motion.div
@@ -230,15 +158,24 @@ export default function AIEra() {
               viewport={{ once: true }}
               className="text-center"
             >
-              <div className="text-3xl md:text-4xl font-display font-bold text-ai-neural mb-2">{cap.stat}</div>
+              <motion.div 
+                className="text-3xl md:text-4xl font-display font-bold text-ai-neural mb-2"
+                whileHover={{ scale: 1.1 }}
+                transition={{ type: "spring", stiffness: 400 }}
+              >
+                {cap.stat}
+              </motion.div>
               <div className="text-sm text-muted-foreground font-mono">{cap.label}</div>
             </motion.div>
           ))}
         </div>
-      </div>
+      </motion.div>
       
-      {/* Focus Areas Detail */}
-      <div className="relative z-10 w-full max-w-5xl px-4 md:px-6 mb-20">
+      {/* Focus Areas Detail with parallax */}
+      <motion.div 
+        className="relative z-10 w-full max-w-5xl px-4 md:px-6 mb-20"
+        style={{ y: areasY }}
+      >
         <motion.h3
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -253,13 +190,20 @@ export default function AIEra() {
           {focusAreas.map((area, i) => (
             <motion.div
               key={area.name}
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              whileInView={{ opacity: 1, scale: 1, y: 0 }}
               transition={{ duration: 0.5, delay: i * 0.08 }}
               viewport={{ once: true }}
               className="bg-ai-neural/5 border border-ai-neural/20 rounded-xl p-5 hover:border-ai-neural/40 transition-all group"
+              whileHover={{ y: -4, scale: 1.02 }}
             >
-              <span className="text-2xl mb-3 block">{area.icon}</span>
+              <motion.span 
+                className="text-2xl mb-3 block"
+                animate={{ rotate: [0, 5, -5, 0] }}
+                transition={{ duration: 4, repeat: Infinity, delay: i * 0.3 }}
+              >
+                {area.icon}
+              </motion.span>
               <h4 className="font-display font-medium text-foreground group-hover:text-ai-neural transition-colors">
                 {area.name}
               </h4>
@@ -267,10 +211,13 @@ export default function AIEra() {
             </motion.div>
           ))}
         </div>
-      </div>
+      </motion.div>
       
-      {/* AI Projects */}
-      <div className="relative z-10 w-full max-w-5xl px-4 md:px-6 mb-20">
+      {/* AI Projects with parallax */}
+      <motion.div 
+        className="relative z-10 w-full max-w-5xl px-4 md:px-6 mb-20"
+        style={{ y: projectsY }}
+      >
         <motion.h3
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -290,8 +237,15 @@ export default function AIEra() {
               transition={{ duration: 0.6, delay: i * 0.15 }}
               viewport={{ once: true }}
               className="card-glass rounded-xl p-6 hover:border-ai-neural/40 transition-all group"
+              whileHover={{ y: -8, scale: 1.02 }}
             >
-              <span className="text-3xl mb-4 block">{project.icon}</span>
+              <motion.span 
+                className="text-3xl mb-4 block"
+                whileHover={{ scale: 1.2, rotate: 10 }}
+                transition={{ type: "spring", stiffness: 400 }}
+              >
+                {project.icon}
+              </motion.span>
               <h4 className="font-display text-lg font-medium text-foreground group-hover:text-ai-neural transition-colors mb-2">
                 {project.title}
               </h4>
@@ -306,17 +260,24 @@ export default function AIEra() {
             </motion.div>
           ))}
         </div>
-      </div>
+      </motion.div>
       
-      {/* AI Philosophy Quote */}
+      {/* AI Philosophy Quote with parallax */}
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 1 }}
         viewport={{ once: true }}
+        style={{ y: quoteY }}
         className="relative z-10 max-w-3xl mx-auto px-6 text-center"
       >
-        <div className="text-5xl text-ai-neural/30 mb-4">"</div>
+        <motion.div 
+          className="text-5xl text-ai-neural/30 mb-4"
+          animate={{ scale: [1, 1.1, 1] }}
+          transition={{ duration: 3, repeat: Infinity }}
+        >
+          "
+        </motion.div>
         <p className="text-xl md:text-2xl font-light text-foreground/90 leading-relaxed italic">
           AI is not about replacing human intelligence, but amplifying it.
         </p>
