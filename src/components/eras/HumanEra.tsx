@@ -2,12 +2,12 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
 
 const skills = [
-  { name: 'Full-Stack Development', icon: '⚡', description: 'End-to-end application architecture' },
-  { name: 'UI/UX Design', icon: '✨', description: 'Intuitive user experiences' },
-  { name: 'System Architecture', icon: '🔧', description: 'Scalable infrastructure design' },
-  { name: 'API Development', icon: '🔗', description: 'RESTful & GraphQL services' },
-  { name: 'Mobile Development', icon: '📱', description: 'Cross-platform applications' },
-  { name: 'Performance Optimization', icon: '⚡', description: 'Speed & efficiency focused' },
+  { name: 'UI/UX Design', icon: '🎨', description: 'Creating intuitive interfaces' },
+  { name: 'React Ecosystem', icon: '⚛️', description: 'Modern frontend architecture' },
+  { name: 'Product Thinking', icon: '💡', description: 'User-centric solutions' },
+  { name: 'Responsive Design', icon: '📱', description: 'Cross-device experiences' },
+  { name: 'Motion Design', icon: '✨', description: 'Delightful interactions' },
+  { name: 'Accessibility', icon: '♿', description: 'Inclusive experiences' },
 ];
 
 const designPrinciples = [
@@ -20,22 +20,29 @@ const designPrinciples = [
 const caseStudies = [
   {
     title: 'E-Commerce Platform',
-    description: 'Redesigned checkout flow reducing cart abandonment by 40%',
-    metrics: ['40% ↓ abandonment', '2.5s load time', '98% satisfaction'],
-    color: 'human-accent',
+    impact: '+45% conversion rate',
+    description: 'Redesigned checkout flow reducing friction and cart abandonment',
+    tags: ['UX Research', 'A/B Testing', 'React'],
   },
   {
-    title: 'Dashboard Analytics',
-    description: 'Complex data visualization made simple and actionable',
-    metrics: ['50+ data points', 'Real-time updates', 'Mobile-first'],
-    color: 'human-secondary',
+    title: 'SaaS Dashboard',
+    impact: '-60% support tickets',
+    description: 'Intuitive analytics interface with self-service features',
+    tags: ['Data Viz', 'Design System', 'TypeScript'],
   },
   {
-    title: 'Mobile Application',
-    description: 'Native-feeling cross-platform experience',
-    metrics: ['4.8★ rating', '100K+ downloads', '60fps animations'],
-    color: 'machine-green',
+    title: 'Mobile App',
+    impact: '4.8★ rating',
+    description: 'Consumer app with focus on speed and delightful micro-interactions',
+    tags: ['React Native', 'Motion', 'Accessibility'],
   },
+];
+
+const impactStats = [
+  { value: '10M+', label: 'Users impacted' },
+  { value: '45%', label: 'Avg. conversion lift' },
+  { value: '4.8★', label: 'User satisfaction' },
+  { value: '200+', label: 'Interfaces designed' },
 ];
 
 export default function HumanEra() {
@@ -56,12 +63,20 @@ export default function HumanEra() {
   return (
     <section 
       ref={containerRef}
-      className="relative min-h-[200vh] flex flex-col items-center justify-start overflow-hidden era-human pt-24 pb-20"
+      className="relative min-h-[280vh] flex flex-col items-center justify-start overflow-hidden era-human pt-24 pb-20"
     >
       {/* Soft gradient overlays */}
-      <div className="absolute inset-0 bg-gradient-to-b from-human-cream via-human-warm/50 to-human-cream pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-b from-human-cream via-human-warm to-human-cream" />
+      <motion.div 
+        className="absolute top-0 left-1/4 w-[400px] h-[400px] bg-human-accent/5 rounded-full blur-[120px]"
+        style={{ y: useTransform(scrollYProgress, [0, 1], [50, -50]) }}
+      />
+      <motion.div 
+        className="absolute bottom-1/4 right-1/4 w-[300px] h-[300px] bg-human-secondary/5 rounded-full blur-[100px]"
+        style={{ y: useTransform(scrollYProgress, [0, 1], [-30, 70]) }}
+      />
       
-      {/* Desktop metaphor elements with parallax */}
+      {/* Floating windows with parallax - Desktop metaphor */}
       <motion.div 
         className="absolute inset-0 overflow-hidden pointer-events-none"
         style={{ y: windowsY }}
@@ -81,6 +96,7 @@ export default function HumanEra() {
           <div className="p-3 space-y-2">
             <div className="h-2 bg-human-text/10 rounded w-3/4" />
             <div className="h-2 bg-human-text/10 rounded w-1/2" />
+            <div className="h-2 bg-human-text/10 rounded w-2/3" />
           </div>
         </motion.div>
         
@@ -91,7 +107,11 @@ export default function HumanEra() {
           viewport={{ once: true }}
           className="absolute right-[8%] md:right-[15%] top-[20%] w-48 md:w-64 h-32 md:h-40 border-2 border-human-text/30 rounded-xl bg-white/90 shadow-xl transform"
         >
-          <div className="h-6 md:h-7 bg-human-warm border-b border-human-text/15 rounded-t-xl" />
+          <div className="h-6 md:h-7 bg-human-warm border-b border-human-text/15 rounded-t-xl flex items-center px-3 gap-1.5">
+            <div className="w-2 h-2 rounded-full bg-human-accent/50" />
+            <div className="w-2 h-2 rounded-full bg-human-accent/30" />
+            <div className="w-2 h-2 rounded-full bg-human-accent/20" />
+          </div>
         </motion.div>
         
         <motion.div
@@ -105,9 +125,9 @@ export default function HumanEra() {
         </motion.div>
       </motion.div>
       
-      {/* Header Content with parallax */}
+      {/* Hero Content with parallax */}
       <motion.div 
-        className="relative z-10 text-center px-4 md:px-6 max-w-4xl mb-16"
+        className="relative z-10 text-center px-4 md:px-6 max-w-4xl mb-20"
         style={{ y: heroY }}
       >
         <motion.p
@@ -115,9 +135,9 @@ export default function HumanEra() {
           whileInView={{ opacity: 1 }}
           transition={{ duration: 1 }}
           viewport={{ once: true }}
-          className="font-mono text-xs md:text-sm tracking-[0.4em] text-human-accent uppercase mb-10"
+          className="font-mono text-xs md:text-sm tracking-[0.4em] text-human-accent/70 uppercase mb-10"
         >
-          Act III — The Human Era
+          Act III — The Craft
         </motion.p>
         
         <motion.h2
@@ -127,9 +147,14 @@ export default function HumanEra() {
           viewport={{ once: true }}
           className="text-4xl md:text-6xl lg:text-7xl font-display font-light tracking-tight text-human-text mb-8 leading-tight"
         >
-          Crafting experiences
+          Designing for
           <br />
-          <span className="text-human-accent font-normal">people love</span>
+          <motion.span 
+            className="text-human-accent font-normal"
+            whileHover={{ scale: 1.02 }}
+          >
+            humans first
+          </motion.span>
         </motion.h2>
         
         <motion.p
@@ -137,41 +162,69 @@ export default function HumanEra() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3 }}
           viewport={{ once: true }}
-          className="text-base md:text-lg text-human-text/70 font-light max-w-2xl mx-auto mb-14 leading-relaxed"
+          className="text-base md:text-lg text-human-text/60 font-light max-w-2xl mx-auto mb-14 leading-relaxed"
         >
-          Technology should feel intuitive. Raj focuses on creating interfaces that 
-          bridge the gap between complex systems and human understanding.
+          Technology is only as valuable as the experiences it enables. 
+          Building interfaces that people love to use, one thoughtful detail at a time.
         </motion.p>
         
-        {/* Skill areas with enhanced hover */}
+        {/* Design principles badges */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.45 }}
           viewport={{ once: true }}
-          className="flex flex-wrap justify-center gap-3 md:gap-4"
+          className="flex flex-wrap justify-center gap-2.5 md:gap-3"
         >
-          {skills.slice(0, 3).map((skill, i) => (
-            <motion.div
-              key={skill.name}
-              className="px-5 md:px-6 py-3 md:py-3.5 bg-white rounded-full shadow-lg border border-human-text/8 text-human-text font-medium flex items-center gap-2 md:gap-2.5"
-              whileHover={{ scale: 1.05, y: -4, boxShadow: "0 15px 50px rgba(0,0,0,0.12)" }}
+          {designPrinciples.map((principle, i) => (
+            <motion.span
+              key={principle.title}
+              className="px-4 md:px-5 py-2 md:py-2.5 rounded-full border border-human-accent/30 bg-human-accent/5 text-human-accent font-mono text-xs md:text-sm cursor-pointer"
+              whileHover={{ 
+                scale: 1.08, 
+                borderColor: 'hsl(var(--human-accent))',
+                backgroundColor: 'hsl(var(--human-accent) / 0.15)',
+                boxShadow: '0 4px 20px hsl(var(--human-accent) / 0.2)',
+              }}
+              whileTap={{ scale: 0.95 }}
               transition={{ type: "spring", stiffness: 400, damping: 20 }}
             >
-              <motion.span 
-                className="text-base md:text-lg"
-                animate={{ rotate: [0, 10, -10, 0] }}
-                transition={{ duration: 3, repeat: Infinity, delay: i * 0.4 }}
-              >
-                {skill.icon}
-              </motion.span>
-              <span className="text-sm md:text-base">{skill.name}</span>
-            </motion.div>
+              <span className="mr-2">{principle.icon}</span>
+              {principle.title}
+            </motion.span>
           ))}
         </motion.div>
       </motion.div>
       
-      {/* Design Principles with parallax */}
+      {/* Impact Stats */}
+      <motion.div
+        className="relative z-10 w-full max-w-4xl px-4 md:px-6 mb-20"
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
+      >
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          {impactStats.map((stat, i) => (
+            <motion.div
+              key={stat.label}
+              className="text-center p-4 bg-white/60 backdrop-blur-sm rounded-xl border border-human-text/10"
+              whileHover={{ y: -4, boxShadow: '0 10px 30px rgba(0,0,0,0.08)' }}
+              transition={{ type: "spring", stiffness: 400 }}
+            >
+              <motion.div 
+                className="text-2xl md:text-3xl font-display font-bold text-human-accent mb-2"
+                whileHover={{ scale: 1.1 }}
+              >
+                {stat.value}
+              </motion.div>
+              <div className="text-xs text-human-text/50 font-mono">{stat.label}</div>
+            </motion.div>
+          ))}
+        </div>
+      </motion.div>
+      
+      {/* Design Principles Detail with parallax */}
       <motion.div 
         className="relative z-10 w-full max-w-5xl px-4 md:px-6 mb-20"
         style={{ y: principlesY }}
@@ -186,7 +239,7 @@ export default function HumanEra() {
           Design Philosophy
         </motion.h3>
         
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {designPrinciples.map((principle, i) => (
             <motion.div
               key={principle.title}
@@ -194,24 +247,25 @@ export default function HumanEra() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
               viewport={{ once: true }}
-              className="bg-white rounded-2xl p-6 shadow-lg border border-human-text/5 text-center hover:shadow-xl transition-shadow"
-              whileHover={{ y: -6, scale: 1.02 }}
+              className="bg-white/80 backdrop-blur-sm rounded-xl p-6 text-center border border-human-text/10 hover:border-human-accent/30 transition-all group cursor-pointer"
+              whileHover={{ y: -6, boxShadow: '0 15px 40px rgba(0,0,0,0.1)' }}
             >
               <motion.span 
-                className="text-3xl text-human-accent block mb-3"
-                animate={{ scale: [1, 1.1, 1] }}
-                transition={{ duration: 3, repeat: Infinity, delay: i * 0.3 }}
+                className="text-4xl mb-4 block text-human-accent/80 font-light"
+                whileHover={{ scale: 1.2, rotate: 10 }}
               >
                 {principle.icon}
               </motion.span>
-              <h4 className="font-display font-medium text-human-text mb-2">{principle.title}</h4>
-              <p className="text-sm text-human-text/60">{principle.desc}</p>
+              <h4 className="font-display font-medium text-human-text group-hover:text-human-accent transition-colors">
+                {principle.title}
+              </h4>
+              <p className="text-sm text-human-text/50 mt-2">{principle.desc}</p>
             </motion.div>
           ))}
         </div>
       </motion.div>
       
-      {/* Skills Detail Grid with parallax */}
+      {/* Skills Grid with parallax */}
       <motion.div 
         className="relative z-10 w-full max-w-5xl px-4 md:px-6 mb-20"
         style={{ y: skillsY }}
@@ -234,12 +288,13 @@ export default function HumanEra() {
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: i * 0.08 }}
               viewport={{ once: true }}
-              className="bg-white/80 backdrop-blur-sm rounded-xl p-5 border border-human-text/10 hover:border-human-accent/30 transition-colors group"
+              className="bg-white/80 backdrop-blur-sm rounded-xl p-5 border border-human-text/10 hover:border-human-accent/30 transition-colors group cursor-pointer"
               whileHover={{ y: -4, scale: 1.02 }}
             >
               <motion.span 
                 className="text-2xl mb-3 block"
-                whileHover={{ scale: 1.2, rotate: 10 }}
+                whileHover={{ scale: 1.3, rotate: 10 }}
+                transition={{ type: "spring", stiffness: 400 }}
               >
                 {skill.icon}
               </motion.span>
@@ -264,7 +319,7 @@ export default function HumanEra() {
           viewport={{ once: true }}
           className="font-mono text-xs tracking-[0.3em] text-human-accent/70 uppercase mb-10 text-center"
         >
-          Impact Highlights
+          Impact Stories
         </motion.h3>
         
         <div className="grid md:grid-cols-3 gap-6">
@@ -275,20 +330,23 @@ export default function HumanEra() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: i * 0.15 }}
               viewport={{ once: true }}
-              className="bg-white rounded-2xl p-6 shadow-lg border border-human-text/5 hover:shadow-xl transition-all group"
-              whileHover={{ y: -8, scale: 1.02 }}
+              className="bg-white/90 rounded-xl p-6 border border-human-text/10 hover:border-human-accent/30 transition-all group cursor-pointer"
+              whileHover={{ y: -8, boxShadow: '0 20px 50px rgba(0,0,0,0.1)' }}
             >
-              <motion.div 
-                className="w-12 h-1 rounded-full mb-4"
-                style={{ backgroundColor: i === 0 ? 'hsl(220 85% 55%)' : i === 1 ? 'hsl(340 75% 55%)' : 'hsl(160 100% 45%)' }}
-                whileHover={{ width: 60 }}
-              />
-              <h4 className="font-display text-lg font-medium text-human-text mb-2">{study.title}</h4>
+              <motion.span 
+                className="inline-block px-3 py-1 bg-human-accent/10 text-human-accent text-sm font-mono rounded-full mb-4"
+                whileHover={{ scale: 1.05 }}
+              >
+                {study.impact}
+              </motion.span>
+              <h4 className="font-display text-lg font-medium text-human-text group-hover:text-human-accent transition-colors mb-2">
+                {study.title}
+              </h4>
               <p className="text-sm text-human-text/60 mb-4">{study.description}</p>
-              <div className="flex flex-wrap gap-2">
-                {study.metrics.map((metric) => (
-                  <span key={metric} className="text-xs font-mono px-2 py-1 bg-human-warm rounded-md text-human-text/70">
-                    {metric}
+              <div className="flex flex-wrap gap-1.5">
+                {study.tags.map((tag) => (
+                  <span key={tag} className="text-xs font-mono px-2 py-1 bg-human-warm rounded text-human-text/60">
+                    {tag}
                   </span>
                 ))}
               </div>
