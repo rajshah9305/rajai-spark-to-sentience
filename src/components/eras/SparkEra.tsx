@@ -1,18 +1,28 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
-import ParticleField from '../ParticleField';
+import ParticleField from '@/components/ParticleField';
 
 const milestones = [
-  { year: '2015', title: 'First Line of Code', description: 'The journey began with curiosity' },
-  { year: '2017', title: 'Computer Science', description: 'Formal foundations laid' },
-  { year: '2019', title: 'First Project', description: 'From theory to practice' },
+  { year: '1995', title: 'The First Spark', description: 'A curious mind begins exploring the world of technology' },
+  { year: '2005', title: 'Digital Awakening', description: 'First lines of code written, igniting a lifelong passion' },
+  { year: '2010', title: 'The Builder Emerges', description: 'From consumer to creator, building digital experiences' },
+  { year: '2015', title: 'Professional Foundation', description: 'Formal education meets practical application' },
 ];
 
 const inspirations = [
-  { icon: '🔬', label: 'Science' },
-  { icon: '🧮', label: 'Mathematics' },
-  { icon: '🎨', label: 'Design' },
-  { icon: '🚀', label: 'Innovation' },
+  { icon: '🔬', label: 'Science', desc: 'Understanding the universe' },
+  { icon: '🧮', label: 'Mathematics', desc: 'The language of patterns' },
+  { icon: '🎨', label: 'Design', desc: 'Beauty in functionality' },
+  { icon: '🚀', label: 'Innovation', desc: 'Pushing boundaries' },
+  { icon: '📚', label: 'Philosophy', desc: 'Questioning everything' },
+  { icon: '🌌', label: 'Cosmos', desc: 'Infinite possibilities' },
+];
+
+const curiosityStats = [
+  { value: '1000+', label: 'Books read' },
+  { value: '∞', label: 'Questions asked' },
+  { value: '15+', label: 'Years learning' },
+  { value: '42', label: 'The answer' },
 ];
 
 export default function SparkEra() {
@@ -29,11 +39,12 @@ export default function SparkEra() {
   const glowScale = useTransform(scrollYProgress, [0, 0.5, 1], [0.8, 1.2, 0.9]);
   const timelineY = useTransform(scrollYProgress, [0, 1], [60, -60]);
   const quoteY = useTransform(scrollYProgress, [0, 1], [40, -80]);
+  const inspirationsY = useTransform(scrollYProgress, [0, 1], [70, -50]);
 
   return (
     <section 
       ref={containerRef}
-      className="relative min-h-[200vh] flex flex-col items-center justify-start overflow-hidden era-spark pt-32 pb-20"
+      className="relative min-h-[250vh] flex flex-col items-center justify-start overflow-hidden era-spark pt-32 pb-20"
     >
       <ParticleField color="#facc15" />
       
@@ -51,20 +62,26 @@ export default function SparkEra() {
           animate={{ opacity: [0.1, 0.2, 0.1] }}
           transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
         />
+        <motion.div 
+          className="absolute w-[400px] h-[200px] rounded-full bg-spark-pulse/8 blur-[60px]"
+          style={{ y: useTransform(scrollYProgress, [0, 1], [30, -70]) }}
+          animate={{ opacity: [0.08, 0.15, 0.08] }}
+          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+        />
       </div>
       
-      {/* Floating symbols with parallax */}
+      {/* Floating mathematical symbols with parallax */}
       <motion.div 
-        className="absolute inset-0 overflow-hidden pointer-events-none"
+        className="absolute inset-0 pointer-events-none"
         style={{ y: symbolsY }}
       >
-        {['∑', '∫', 'π', '∞', 'Δ', 'λ', '∂', 'φ', 'Ω', '∇'].map((symbol, i) => (
+        {['∑', '∫', 'π', '∞', 'Δ', 'λ', '∂', 'φ', 'Ω', '∇', 'ε', '√'].map((symbol, i) => (
           <motion.span
             key={i}
             className="absolute text-spark-glow/15 text-3xl md:text-5xl font-light select-none"
             style={{
-              left: `${8 + (i * 9)}%`,
-              top: `${15 + (i % 4) * 22}%`,
+              left: `${5 + (i * 8)}%`,
+              top: `${12 + (i % 5) * 18}%`,
             }}
             animate={{
               y: [0, -25, 0],
@@ -85,82 +102,153 @@ export default function SparkEra() {
       
       {/* Hero Content with parallax */}
       <motion.div 
-        className="relative z-10 text-center px-6 max-w-4xl"
+        className="relative z-10 text-center px-4 md:px-6 max-w-4xl"
         style={{ y: heroY }}
       >
         <motion.p
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
           transition={{ duration: 1 }}
           viewport={{ once: true }}
           className="font-mono text-xs md:text-sm tracking-[0.4em] text-spark-glow/70 uppercase mb-10"
         >
-          Act I — The Spark
+          Act I — The Origin
         </motion.p>
         
-        <motion.h1
+        <motion.h2
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.2 }}
+          transition={{ duration: 0.8, delay: 0.15 }}
           viewport={{ once: true }}
           className="text-4xl md:text-6xl lg:text-7xl font-display font-light tracking-tight text-foreground mb-8 leading-tight"
         >
-          Every vision begins
+          Every journey begins
           <br />
           <motion.span 
             className="text-amber-glow font-normal"
-            animate={{ opacity: [1, 0.8, 1] }}
+            animate={{ textShadow: ['0 0 20px hsl(45 100% 60% / 0.5)', '0 0 40px hsl(45 100% 60% / 0.7)', '0 0 20px hsl(45 100% 60% / 0.5)'] }}
             transition={{ duration: 3, repeat: Infinity }}
           >
             with a spark
           </motion.span>
-        </motion.h1>
+        </motion.h2>
         
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.4 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
           viewport={{ once: true }}
-          className="text-base md:text-lg text-muted-foreground font-light max-w-2xl mx-auto leading-relaxed mb-16"
+          className="text-base md:text-lg text-muted-foreground font-light max-w-2xl mx-auto mb-14 leading-relaxed"
         >
-          From curiosity to creation. This is the journey of Raj Shah—
-          tracing the evolution of technology to architect what comes next.
+          From early curiosity to boundless exploration, this is where the story begins—
+          a relentless drive to understand, create, and transform ideas into reality.
         </motion.p>
         
-        {/* Inspiration badges with stagger animation */}
+        {/* Inspiration badges with enhanced animations */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.45 }}
           viewport={{ once: true }}
-          className="flex flex-wrap justify-center gap-3 md:gap-4 mb-20"
+          className="flex flex-wrap justify-center gap-2.5 md:gap-3"
         >
-          {inspirations.map((item, i) => (
-            <motion.div
+          {inspirations.slice(0, 4).map((item, i) => (
+            <motion.span
               key={item.label}
-              className="flex items-center gap-2 px-4 py-2 rounded-full bg-spark-glow/10 border border-spark-glow/20"
-              whileHover={{ scale: 1.08, borderColor: 'hsl(45 100% 60% / 0.5)', y: -2 }}
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.7 + i * 0.1, type: "spring", stiffness: 300 }}
+              className="px-4 md:px-5 py-2 md:py-2.5 rounded-full border border-spark-glow/30 bg-spark-glow/5 text-spark-glow font-mono text-xs md:text-sm backdrop-blur-sm cursor-pointer"
+              whileHover={{ 
+                scale: 1.08, 
+                borderColor: 'hsl(45, 100%, 60%)',
+                backgroundColor: 'hsl(45, 100%, 60%, 0.15)',
+                boxShadow: '0 0 30px hsl(45 100% 60% / 0.3)',
+              }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ type: "spring", stiffness: 400, damping: 20 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              <motion.span 
-                className="text-lg"
-                animate={{ rotate: [0, 5, -5, 0] }}
-                transition={{ duration: 4, repeat: Infinity, delay: i * 0.5 }}
-              >
-                {item.icon}
-              </motion.span>
-              <span className="text-sm font-mono text-spark-glow/80">{item.label}</span>
-            </motion.div>
+              <span className="mr-2">{item.icon}</span>
+              {item.label}
+            </motion.span>
           ))}
         </motion.div>
       </motion.div>
       
-      {/* Timeline Section with parallax */}
+      {/* Curiosity Stats */}
+      <motion.div
+        className="relative z-10 w-full max-w-4xl px-4 md:px-6 mt-20 mb-16"
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
+      >
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          {curiosityStats.map((stat, i) => (
+            <motion.div
+              key={stat.label}
+              className="text-center"
+              whileHover={{ y: -4 }}
+              transition={{ type: "spring", stiffness: 400 }}
+            >
+              <motion.div 
+                className="text-3xl md:text-4xl font-display font-bold text-spark-glow mb-2"
+                whileHover={{ scale: 1.1 }}
+              >
+                {stat.value}
+              </motion.div>
+              <div className="text-sm text-muted-foreground font-mono">{stat.label}</div>
+            </motion.div>
+          ))}
+        </div>
+      </motion.div>
+      
+      {/* Inspirations Grid with parallax */}
       <motion.div 
-        className="relative z-10 w-full max-w-4xl px-6 mt-10"
+        className="relative z-10 w-full max-w-5xl px-4 md:px-6 mb-20"
+        style={{ y: inspirationsY }}
+      >
+        <motion.h3
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="font-mono text-xs tracking-[0.3em] text-spark-glow/50 uppercase mb-10 text-center"
+        >
+          Sources of Wonder
+        </motion.h3>
+        
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+          {inspirations.map((item, i) => (
+            <motion.div
+              key={item.label}
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              whileInView={{ opacity: 1, scale: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: i * 0.08 }}
+              viewport={{ once: true }}
+              className="bg-spark-glow/5 border border-spark-glow/20 rounded-xl p-5 hover:border-spark-glow/40 transition-all group cursor-pointer"
+              whileHover={{ y: -6, scale: 1.02, boxShadow: '0 10px 40px hsl(45 100% 60% / 0.15)' }}
+            >
+              <motion.span 
+                className="text-2xl mb-3 block"
+                animate={{ rotate: [0, 5, -5, 0] }}
+                transition={{ duration: 4, repeat: Infinity, delay: i * 0.3 }}
+                whileHover={{ scale: 1.3, rotate: 15 }}
+              >
+                {item.icon}
+              </motion.span>
+              <h4 className="font-display font-medium text-foreground group-hover:text-spark-glow transition-colors">
+                {item.label}
+              </h4>
+              <p className="text-sm text-muted-foreground mt-1">{item.desc}</p>
+            </motion.div>
+          ))}
+        </div>
+      </motion.div>
+      
+      {/* Timeline with parallax */}
+      <motion.div 
+        className="relative z-10 w-full max-w-3xl px-4 md:px-6 mb-20"
         style={{ y: timelineY }}
       >
         <motion.h3
@@ -168,7 +256,7 @@ export default function SparkEra() {
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-center font-mono text-xs tracking-[0.3em] text-spark-glow/50 uppercase mb-12"
+          className="font-mono text-xs tracking-[0.3em] text-spark-glow/50 uppercase mb-10 text-center"
         >
           The Beginning
         </motion.h3>
@@ -192,19 +280,27 @@ export default function SparkEra() {
                 className={`flex-1 ${i % 2 === 0 ? 'text-right' : 'text-left'}`}
                 whileHover={{ scale: 1.02 }}
               >
-                <span className="font-mono text-sm text-spark-glow">{milestone.year}</span>
+                <motion.span 
+                  className="font-mono text-sm text-spark-glow"
+                  whileHover={{ scale: 1.1 }}
+                >
+                  {milestone.year}
+                </motion.span>
                 <h4 className="text-xl font-display font-medium text-foreground mt-1">{milestone.title}</h4>
                 <p className="text-sm text-muted-foreground mt-1">{milestone.description}</p>
               </motion.div>
               
               {/* Center dot */}
-              <div className="relative z-10 w-4 h-4 rounded-full bg-spark-glow shadow-[0_0_20px_hsl(45_100%_60%_/_0.5)]">
+              <motion.div 
+                className="relative z-10 w-4 h-4 rounded-full bg-spark-glow shadow-[0_0_20px_hsl(45_100%_60%_/_0.5)]"
+                whileHover={{ scale: 1.5 }}
+              >
                 <motion.div
                   className="absolute inset-0 rounded-full bg-spark-glow"
                   animate={{ scale: [1, 1.5, 1], opacity: [1, 0, 1] }}
                   transition={{ duration: 2, repeat: Infinity, delay: i * 0.3 }}
                 />
-              </div>
+              </motion.div>
               
               <div className="flex-1" />
             </motion.div>
@@ -212,41 +308,36 @@ export default function SparkEra() {
         </div>
       </motion.div>
       
-      {/* Quote section with parallax */}
+      {/* Quote with parallax */}
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 1 }}
         viewport={{ once: true }}
         style={{ y: quoteY }}
-        className="relative z-10 max-w-3xl mx-auto px-6 mt-20 text-center"
+        className="relative z-10 max-w-3xl mx-auto px-6 text-center"
       >
         <motion.div 
           className="text-5xl text-spark-glow/30 mb-4"
-          animate={{ scale: [1, 1.1, 1] }}
-          transition={{ duration: 3, repeat: Infinity }}
+          animate={{ scale: [1, 1.1, 1], rotate: [0, 3, 0] }}
+          transition={{ duration: 4, repeat: Infinity }}
         >
           "
         </motion.div>
         <p className="text-xl md:text-2xl font-light text-foreground/90 leading-relaxed italic">
-          The best way to predict the future is to invent it.
+          The spark of curiosity is the most precious gift we're born with.
+          <br />
+          <span className="text-spark-glow">Never let it fade.</span>
         </p>
-        <p className="mt-4 text-sm text-muted-foreground font-mono">— Alan Kay</p>
-      </motion.div>
-      
-      {/* Scroll indicator */}
-      <motion.div
-        className="absolute bottom-10 left-1/2 -translate-x-1/2"
-        animate={{ y: [0, 8, 0] }}
-        transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
-      >
-        <div className="w-6 h-10 rounded-full border border-spark-glow/40 flex items-start justify-center p-2">
-          <motion.div
-            className="w-1.5 h-2.5 rounded-full bg-spark-glow"
-            animate={{ y: [0, 10, 0], opacity: [1, 0.5, 1] }}
-            transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
-          />
-        </div>
+        <motion.p 
+          className="mt-6 text-sm text-muted-foreground font-mono"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ delay: 0.5 }}
+          viewport={{ once: true }}
+        >
+          — Origin Philosophy
+        </motion.p>
       </motion.div>
     </section>
   );
