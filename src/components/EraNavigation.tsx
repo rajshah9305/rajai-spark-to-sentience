@@ -7,18 +7,24 @@ interface EraNavigationProps {
   onEraClick: (index: number) => void;
 }
 
+// 4-Act Story Structure icons and colors
 const eraIcons: Record<string, string> = {
   Spark: '✦',
   Machine: '⚙',
-  Human: '◐',
   AI: '◈',
   Rajai: '◆',
+};
+
+const eraLabels: Record<string, string> = {
+  Spark: 'The Spark',
+  Machine: 'The Machine',
+  AI: 'The Mind',
+  Rajai: 'The Architect',
 };
 
 const eraColors: Record<string, string> = {
   Spark: 'from-spark-glow to-spark-pulse',
   Machine: 'from-machine-cyan to-machine-green',
-  Human: 'from-human-accent to-human-secondary',
   AI: 'from-ai-neural to-ai-synapse',
   Rajai: 'from-rajai-accent to-rajai-highlight',
 };
@@ -50,7 +56,7 @@ export default function EraNavigation({ currentEra, eras, onEraClick }: EraNavig
                 opacity: currentEra === index ? 1 : 0 
               }}
             >
-              {era}
+              {eraLabels[era] || era}
             </motion.span>
             
             <div className="relative">
@@ -124,7 +130,7 @@ export default function EraNavigation({ currentEra, eras, onEraClick }: EraNavig
                   exit={{ opacity: 0, width: 0 }}
                   className="ml-1.5 text-xs font-mono text-primary whitespace-nowrap"
                 >
-                  {era}
+                  {eraLabels[era] || era}
                 </motion.span>
               )}
               
@@ -149,7 +155,7 @@ export default function EraNavigation({ currentEra, eras, onEraClick }: EraNavig
         className="fixed top-6 left-1/2 -translate-x-1/2 z-40 pointer-events-none"
       >
         <span className="font-mono text-xs tracking-[0.3em] text-muted-foreground/60 uppercase">
-          Act {['I', 'II', 'III', 'IV', 'V'][currentEra]} — {eras[currentEra]}
+          Act {['I', 'II', 'III', 'IV'][currentEra]} — {eraLabels[eras[currentEra]] || eras[currentEra]}
         </span>
       </motion.div>
     </>

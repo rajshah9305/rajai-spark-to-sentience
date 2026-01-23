@@ -1,39 +1,37 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef, useState, useEffect } from 'react';
 
+// Act II: The Machine - The birth of computing
 const terminalLines = [
-  { text: '> INITIALIZING RAJ.SYSTEM...', delay: 0 },
-  { text: '> LOADING FOUNDATION: COMPUTER SCIENCE', delay: 0.3 },
-  { text: '> PROCESSING: ALGORITHMS & DATA STRUCTURES', delay: 0.6 },
-  { text: '> COMPILING: SYSTEMS ARCHITECTURE', delay: 0.9 },
-  { text: '> STATUS: FOUNDATION COMPLETE', delay: 1.2 },
-  { text: '> WHERE CODE MEETS CURIOSITY', delay: 1.5, highlight: true },
+  { text: '> INITIALIZING COMPUTATION.HISTORY...', delay: 0 },
+  { text: '> LOADING: VACUUM TUBES → TRANSISTORS → SILICON', delay: 0.3 },
+  { text: '> PROCESSING: FROM ENIAC TO PERSONAL COMPUTERS', delay: 0.6 },
+  { text: '> COMPILING: THE DIGITAL REVOLUTION', delay: 0.9 },
+  { text: '> STATUS: MACHINES AWAKENING', delay: 1.2 },
+  { text: '> THE AGE OF COMPUTING HAS BEGUN', delay: 1.5, highlight: true },
 ];
 
-const coreConcepts = [
-  { name: 'Algorithms', icon: '🔀', desc: 'Problem-solving patterns' },
-  { name: 'Data Structures', icon: '📊', desc: 'Organized information' },
-  { name: 'Systems Design', icon: '🏗️', desc: 'Scalable architecture' },
-  { name: 'Networking', icon: '🌐', desc: 'Connected systems' },
-  { name: 'Databases', icon: '💾', desc: 'Persistent storage' },
-  { name: 'Security', icon: '🔐', desc: 'Protected systems' },
+const computingMilestones = [
+  { name: 'ENIAC', icon: '🔌', desc: 'First electronic computer (1945)', year: '1945' },
+  { name: 'Transistor', icon: '⚡', desc: 'The building block of modern electronics', year: '1947' },
+  { name: 'Integrated Circuit', icon: '🔲', desc: 'Thousands of transistors on a chip', year: '1958' },
+  { name: 'Microprocessor', icon: '💻', desc: 'Computer on a chip - Intel 4004', year: '1971' },
+  { name: 'Personal Computer', icon: '🖥️', desc: 'Computing for everyone', year: '1981' },
+  { name: 'Internet', icon: '🌐', desc: 'The world connected', year: '1991' },
 ];
 
-const techStack = [
-  { name: 'TypeScript / JavaScript', level: 95 },
-  { name: 'React / Next.js', level: 92 },
-  { name: 'Python', level: 88 },
-  { name: 'Node.js', level: 90 },
-  { name: 'PostgreSQL / MongoDB', level: 85 },
-  { name: 'AWS / GCP', level: 82 },
-  { name: 'Docker / K8s', level: 78 },
+const computingPrinciples = [
+  { concept: 'Binary', desc: '0s and 1s - the language of machines' },
+  { concept: 'Algorithms', desc: 'Step-by-step instructions for solving problems' },
+  { concept: 'Memory', desc: 'Storage that remembers so we don\'t have to' },
+  { concept: 'Loops', desc: 'Repetition that makes automation possible' },
 ];
 
-const achievements = [
-  { value: '50K+', label: 'Lines of code' },
-  { value: '100+', label: 'Projects built' },
-  { value: '99.9%', label: 'Uptime achieved' },
-  { value: '<100ms', label: 'Response time' },
+const machineStats = [
+  { value: '10⁹', label: 'Transistors per chip' },
+  { value: '5 GHz', label: 'Modern CPU speed' },
+  { value: '10¹⁸', label: 'Operations/second' },
+  { value: '∞', label: 'Possibilities' },
 ];
 
 export default function MachineEra() {
@@ -180,7 +178,7 @@ export default function MachineEra() {
         className="relative z-10 text-center px-4 md:px-6 max-w-4xl mb-20"
       >
         <h2 className="text-4xl md:text-6xl lg:text-7xl font-display font-light tracking-tight mb-8">
-          <span className="text-foreground">Learning the</span>
+          <span className="text-foreground">From vacuum tubes</span>
           <br />
           <motion.span 
             className="text-phosphor font-normal"
@@ -193,16 +191,16 @@ export default function MachineEra() {
             }}
             transition={{ duration: 2, repeat: Infinity }}
           >
-            language of machines
+            to silicon dreams
           </motion.span>
         </h2>
         <p className="text-base md:text-lg text-muted-foreground font-light max-w-2xl mx-auto leading-relaxed">
-          Mastering the fundamentals of computer science, algorithms, and system design—
-          the building blocks that power every great innovation.
+          The machine era transformed abstract mathematics into physical reality—
+          circuits that compute, memory that persists, systems that never forget.
         </p>
       </motion.div>
       
-      {/* Achievement Stats */}
+      {/* Machine Stats */}
       <motion.div
         className="relative z-10 w-full max-w-4xl px-4 md:px-6 mb-20"
         initial={{ opacity: 0, y: 30 }}
@@ -211,7 +209,7 @@ export default function MachineEra() {
         viewport={{ once: true }}
       >
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-          {achievements.map((stat, i) => (
+          {machineStats.map((stat, i) => (
             <motion.div
               key={stat.label}
               className="text-center p-4 border border-machine-cyan/20 rounded-xl bg-machine-cyan/5"
@@ -230,7 +228,7 @@ export default function MachineEra() {
         </div>
       </motion.div>
       
-      {/* Core Concepts Grid with parallax */}
+      {/* Computing Milestones with parallax */}
       <motion.div 
         className="relative z-10 w-full max-w-5xl px-4 md:px-6 mb-20"
         style={{ y: conceptsY }}
@@ -242,13 +240,13 @@ export default function MachineEra() {
           viewport={{ once: true }}
           className="font-mono text-xs tracking-[0.3em] text-machine-cyan/50 uppercase mb-10 text-center"
         >
-          Core Concepts
+          Milestones of the Machine Age
         </motion.h3>
         
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-          {coreConcepts.map((concept, i) => (
+          {computingMilestones.map((milestone, i) => (
             <motion.div
-              key={concept.name}
+              key={milestone.name}
               initial={{ opacity: 0, scale: 0.95, y: 20 }}
               whileInView={{ opacity: 1, scale: 1, y: 0 }}
               transition={{ duration: 0.5, delay: i * 0.08 }}
@@ -260,23 +258,26 @@ export default function MachineEra() {
                 boxShadow: '0 10px 40px hsl(var(--machine-cyan) / 0.15)' 
               }}
             >
-              <motion.span 
-                className="text-2xl mb-3 block"
-                whileHover={{ scale: 1.3, rotate: 10 }}
-                transition={{ type: "spring", stiffness: 400 }}
-              >
-                {concept.icon}
-              </motion.span>
+              <div className="flex items-center justify-between mb-3">
+                <motion.span 
+                  className="text-2xl"
+                  whileHover={{ scale: 1.3, rotate: 10 }}
+                  transition={{ type: "spring", stiffness: 400 }}
+                >
+                  {milestone.icon}
+                </motion.span>
+                <span className="font-mono text-xs text-machine-cyan/60">{milestone.year}</span>
+              </div>
               <h4 className="font-mono text-sm font-medium text-foreground group-hover:text-machine-cyan transition-colors">
-                {concept.name}
+                {milestone.name}
               </h4>
-              <p className="text-xs text-muted-foreground mt-1">{concept.desc}</p>
+              <p className="text-xs text-muted-foreground mt-1">{milestone.desc}</p>
             </motion.div>
           ))}
         </div>
       </motion.div>
       
-      {/* Technical Proficiency with parallax */}
+      {/* Computing Principles with parallax */}
       <motion.div 
         className="relative z-10 w-full max-w-3xl px-4 md:px-6 mb-20"
         style={{ y: techY }}
@@ -288,33 +289,22 @@ export default function MachineEra() {
           viewport={{ once: true }}
           className="font-mono text-xs tracking-[0.3em] text-machine-cyan/50 uppercase mb-8 text-center"
         >
-          Technical Proficiency
+          Fundamental Principles
         </motion.h3>
         
-        <div className="space-y-4">
-          {techStack.map((tech, i) => (
+        <div className="grid grid-cols-2 gap-4">
+          {computingPrinciples.map((principle, i) => (
             <motion.div
-              key={tech.name}
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              key={principle.concept}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
               viewport={{ once: true }}
-              whileHover={{ x: 4 }}
-              className="group"
+              className="p-5 bg-machine-cyan/5 border border-machine-cyan/20 rounded-xl hover:border-machine-cyan/40 transition-all"
+              whileHover={{ y: -4 }}
             >
-              <div className="flex justify-between items-center mb-1">
-                <span className="font-mono text-sm text-machine-cyan group-hover:text-foreground transition-colors">{tech.name}</span>
-                <span className="font-mono text-xs text-machine-cyan/50">{tech.level}%</span>
-              </div>
-              <div className="h-2 bg-machine-cyan/10 rounded-full overflow-hidden">
-                <motion.div
-                  className="h-full bg-gradient-to-r from-machine-cyan to-machine-green rounded-full"
-                  initial={{ width: 0 }}
-                  whileInView={{ width: `${tech.level}%` }}
-                  transition={{ duration: 1, delay: i * 0.1 + 0.3, ease: "easeOut" }}
-                  viewport={{ once: true }}
-                />
-              </div>
+              <h4 className="font-mono text-lg font-bold text-machine-cyan mb-2">{principle.concept}</h4>
+              <p className="text-sm text-muted-foreground">{principle.desc}</p>
             </motion.div>
           ))}
         </div>

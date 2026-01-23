@@ -2,27 +2,26 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
 import ParticleField from '@/components/ParticleField';
 
-const milestones = [
-  { year: '1995', title: 'The First Spark', description: 'A curious mind begins exploring the world of technology' },
-  { year: '2005', title: 'Digital Awakening', description: 'First lines of code written, igniting a lifelong passion' },
-  { year: '2010', title: 'The Builder Emerges', description: 'From consumer to creator, building digital experiences' },
-  { year: '2015', title: 'Professional Foundation', description: 'Formal education meets practical application' },
+// Act I: The Spark - The birth of ideas and curiosity
+const originConcepts = [
+  { icon: '💡', label: 'Idea', desc: 'The first flash of insight' },
+  { icon: '❓', label: 'Curiosity', desc: 'The drive to understand' },
+  { icon: '🔥', label: 'Passion', desc: 'The fuel that sustains' },
+  { icon: '🌱', label: 'Growth', desc: 'The path of evolution' },
 ];
 
-const inspirations = [
-  { icon: '🔬', label: 'Science', desc: 'Understanding the universe' },
-  { icon: '🧮', label: 'Mathematics', desc: 'The language of patterns' },
-  { icon: '🎨', label: 'Design', desc: 'Beauty in functionality' },
-  { icon: '🚀', label: 'Innovation', desc: 'Pushing boundaries' },
-  { icon: '📚', label: 'Philosophy', desc: 'Questioning everything' },
-  { icon: '🌌', label: 'Cosmos', desc: 'Infinite possibilities' },
+const philosophicalQuestions = [
+  'What if we could think in code?',
+  'What lies beyond human cognition?',
+  'Can machines dream?',
+  'Where does creativity begin?',
 ];
 
-const curiosityStats = [
-  { value: '1000+', label: 'Books read' },
-  { value: '∞', label: 'Questions asked' },
-  { value: '15+', label: 'Years learning' },
-  { value: '42', label: 'The answer' },
+const evolutionTimeline = [
+  { era: 'Ancient Logic', year: '~300 BC', event: 'Aristotle formalizes logical reasoning' },
+  { era: 'Mathematical Thought', year: '1600s', event: 'Leibniz dreams of a universal calculating machine' },
+  { era: 'Boolean Algebra', year: '1847', event: 'George Boole creates the language of logic' },
+  { era: 'Turing Machine', year: '1936', event: 'Alan Turing conceives the universal computer' },
 ];
 
 export default function SparkEra() {
@@ -112,7 +111,7 @@ export default function SparkEra() {
           viewport={{ once: true }}
           className="font-mono text-xs md:text-sm tracking-[0.4em] text-spark-glow/70 uppercase mb-10"
         >
-          Act I — The Origin
+          Act I — The Spark
         </motion.p>
         
         <motion.h2
@@ -122,14 +121,14 @@ export default function SparkEra() {
           viewport={{ once: true }}
           className="text-4xl md:text-6xl lg:text-7xl font-display font-light tracking-tight text-foreground mb-8 leading-tight"
         >
-          Every journey begins
+          In the beginning,
           <br />
           <motion.span 
             className="text-amber-glow font-normal"
             animate={{ textShadow: ['0 0 20px hsl(45 100% 60% / 0.5)', '0 0 40px hsl(45 100% 60% / 0.7)', '0 0 20px hsl(45 100% 60% / 0.5)'] }}
             transition={{ duration: 3, repeat: Infinity }}
           >
-            with a spark
+            there was an idea
           </motion.span>
         </motion.h2>
         
@@ -140,11 +139,11 @@ export default function SparkEra() {
           viewport={{ once: true }}
           className="text-base md:text-lg text-muted-foreground font-light max-w-2xl mx-auto mb-14 leading-relaxed"
         >
-          From early curiosity to boundless exploration, this is where the story begins—
-          a relentless drive to understand, create, and transform ideas into reality.
+          Before circuits and silicon, before algorithms and AI—there was pure thought. 
+          The eternal human desire to extend the mind, to capture lightning in logic.
         </motion.p>
         
-        {/* Inspiration badges with enhanced animations */}
+        {/* Origin concepts badges */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -152,7 +151,7 @@ export default function SparkEra() {
           viewport={{ once: true }}
           className="flex flex-wrap justify-center gap-2.5 md:gap-3"
         >
-          {inspirations.slice(0, 4).map((item, i) => (
+          {originConcepts.map((item, i) => (
             <motion.span
               key={item.label}
               className="px-4 md:px-5 py-2 md:py-2.5 rounded-full border border-spark-glow/30 bg-spark-glow/5 text-spark-glow font-mono text-xs md:text-sm backdrop-blur-sm cursor-pointer"
@@ -175,7 +174,7 @@ export default function SparkEra() {
         </motion.div>
       </motion.div>
       
-      {/* Curiosity Stats */}
+      {/* Philosophical Questions - Floating thoughts */}
       <motion.div
         className="relative z-10 w-full max-w-4xl px-4 md:px-6 mt-20 mb-16"
         initial={{ opacity: 0, y: 30 }}
@@ -183,29 +182,35 @@ export default function SparkEra() {
         transition={{ duration: 0.8 }}
         viewport={{ once: true }}
       >
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-          {curiosityStats.map((stat, i) => (
+        <motion.h3
+          className="font-mono text-xs tracking-[0.3em] text-spark-glow/50 uppercase mb-8 text-center"
+        >
+          The Questions That Started It All
+        </motion.h3>
+        <div className="flex flex-wrap justify-center gap-4">
+          {philosophicalQuestions.map((question, i) => (
             <motion.div
-              key={stat.label}
-              className="text-center"
-              whileHover={{ y: -4 }}
-              transition={{ type: "spring", stiffness: 400 }}
+              key={question}
+              className="px-6 py-3 bg-spark-glow/5 border border-spark-glow/20 rounded-full text-spark-glow/80 font-light italic"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.15 }}
+              whileHover={{ 
+                scale: 1.05, 
+                borderColor: 'hsl(45, 100%, 60%)',
+                boxShadow: '0 0 30px hsl(45 100% 60% / 0.2)',
+              }}
             >
-              <motion.div 
-                className="text-3xl md:text-4xl font-display font-bold text-spark-glow mb-2"
-                whileHover={{ scale: 1.1 }}
-              >
-                {stat.value}
-              </motion.div>
-              <div className="text-sm text-muted-foreground font-mono">{stat.label}</div>
+              "{question}"
             </motion.div>
           ))}
         </div>
       </motion.div>
       
-      {/* Inspirations Grid with parallax */}
+      {/* Evolution Timeline with parallax */}
       <motion.div 
-        className="relative z-10 w-full max-w-5xl px-4 md:px-6 mb-20"
+        className="relative z-10 w-full max-w-4xl px-4 md:px-6 mb-20"
         style={{ y: inspirationsY }}
       >
         <motion.h3
@@ -215,40 +220,41 @@ export default function SparkEra() {
           viewport={{ once: true }}
           className="font-mono text-xs tracking-[0.3em] text-spark-glow/50 uppercase mb-10 text-center"
         >
-          Sources of Wonder
+          The Evolution of Thought
         </motion.h3>
         
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-          {inspirations.map((item, i) => (
+        <div className="space-y-6">
+          {evolutionTimeline.map((item, i) => (
             <motion.div
-              key={item.label}
-              initial={{ opacity: 0, scale: 0.95, y: 20 }}
-              whileInView={{ opacity: 1, scale: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: i * 0.08 }}
+              key={item.era}
+              initial={{ opacity: 0, x: i % 2 === 0 ? -30 : 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: i * 0.1 }}
               viewport={{ once: true }}
-              className="bg-spark-glow/5 border border-spark-glow/20 rounded-xl p-5 hover:border-spark-glow/40 transition-all group cursor-pointer"
-              whileHover={{ y: -6, scale: 1.02, boxShadow: '0 10px 40px hsl(45 100% 60% / 0.15)' }}
+              className="flex items-center gap-6 group"
+              whileHover={{ x: 8 }}
             >
-              <motion.span 
-                className="text-2xl mb-3 block"
-                animate={{ rotate: [0, 5, -5, 0] }}
-                transition={{ duration: 4, repeat: Infinity, delay: i * 0.3 }}
-                whileHover={{ scale: 1.3, rotate: 15 }}
-              >
-                {item.icon}
-              </motion.span>
-              <h4 className="font-display font-medium text-foreground group-hover:text-spark-glow transition-colors">
-                {item.label}
-              </h4>
-              <p className="text-sm text-muted-foreground mt-1">{item.desc}</p>
+              <div className="w-24 text-right">
+                <span className="font-mono text-sm text-spark-glow">{item.year}</span>
+              </div>
+              <motion.div 
+                className="w-3 h-3 rounded-full bg-spark-glow shadow-[0_0_15px_hsl(45_100%_60%_/_0.5)]"
+                whileHover={{ scale: 1.5 }}
+              />
+              <div className="flex-1 p-4 bg-spark-glow/5 border border-spark-glow/20 rounded-lg group-hover:border-spark-glow/40 transition-colors">
+                <h4 className="font-display font-medium text-foreground group-hover:text-spark-glow transition-colors">
+                  {item.era}
+                </h4>
+                <p className="text-sm text-muted-foreground">{item.event}</p>
+              </div>
             </motion.div>
           ))}
         </div>
       </motion.div>
       
-      {/* Timeline with parallax */}
+      {/* Origin Concepts Grid with parallax */}
       <motion.div 
-        className="relative z-10 w-full max-w-3xl px-4 md:px-6 mb-20"
+        className="relative z-10 w-full max-w-5xl px-4 md:px-6 mb-20"
         style={{ y: timelineY }}
       >
         <motion.h3
@@ -258,51 +264,35 @@ export default function SparkEra() {
           viewport={{ once: true }}
           className="font-mono text-xs tracking-[0.3em] text-spark-glow/50 uppercase mb-10 text-center"
         >
-          The Beginning
+          The Elements of Creation
         </motion.h3>
         
-        <div className="relative">
-          {/* Timeline line */}
-          <div className="absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-spark-glow/30 via-spark-glow/20 to-transparent" />
-          
-          {milestones.map((milestone, i) => (
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          {originConcepts.map((concept, i) => (
             <motion.div
-              key={milestone.year}
-              initial={{ opacity: 0, x: i % 2 === 0 ? -50 : 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: i * 0.2 }}
+              key={concept.label}
+              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              whileInView={{ opacity: 1, scale: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: i * 0.1 }}
               viewport={{ once: true }}
-              className={`relative flex items-center gap-6 mb-12 ${
-                i % 2 === 0 ? 'flex-row' : 'flex-row-reverse'
-              }`}
+              className="text-center p-6 bg-spark-glow/5 border border-spark-glow/20 rounded-xl hover:border-spark-glow/40 transition-all group cursor-pointer"
+              whileHover={{ y: -8, scale: 1.05, boxShadow: '0 15px 50px hsl(45 100% 60% / 0.2)' }}
             >
-              <motion.div 
-                className={`flex-1 ${i % 2 === 0 ? 'text-right' : 'text-left'}`}
-                whileHover={{ scale: 1.02 }}
+              <motion.span 
+                className="text-4xl mb-4 block"
+                animate={{ 
+                  scale: [1, 1.1, 1],
+                  rotate: [0, 5, -5, 0]
+                }}
+                transition={{ duration: 4, repeat: Infinity, delay: i * 0.5 }}
+                whileHover={{ scale: 1.3 }}
               >
-                <motion.span 
-                  className="font-mono text-sm text-spark-glow"
-                  whileHover={{ scale: 1.1 }}
-                >
-                  {milestone.year}
-                </motion.span>
-                <h4 className="text-xl font-display font-medium text-foreground mt-1">{milestone.title}</h4>
-                <p className="text-sm text-muted-foreground mt-1">{milestone.description}</p>
-              </motion.div>
-              
-              {/* Center dot */}
-              <motion.div 
-                className="relative z-10 w-4 h-4 rounded-full bg-spark-glow shadow-[0_0_20px_hsl(45_100%_60%_/_0.5)]"
-                whileHover={{ scale: 1.5 }}
-              >
-                <motion.div
-                  className="absolute inset-0 rounded-full bg-spark-glow"
-                  animate={{ scale: [1, 1.5, 1], opacity: [1, 0, 1] }}
-                  transition={{ duration: 2, repeat: Infinity, delay: i * 0.3 }}
-                />
-              </motion.div>
-              
-              <div className="flex-1" />
+                {concept.icon}
+              </motion.span>
+              <h4 className="font-display font-medium text-foreground group-hover:text-spark-glow transition-colors text-lg">
+                {concept.label}
+              </h4>
+              <p className="text-sm text-muted-foreground mt-2">{concept.desc}</p>
             </motion.div>
           ))}
         </div>

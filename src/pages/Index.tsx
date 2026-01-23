@@ -4,12 +4,19 @@ import BootSequence from '@/components/BootSequence';
 import EraNavigation from '@/components/EraNavigation';
 import SparkEra from '@/components/eras/SparkEra';
 import MachineEra from '@/components/eras/MachineEra';
-import HumanEra from '@/components/eras/HumanEra';
 import AIEra from '@/components/eras/AIEra';
 import RajaiEra from '@/components/eras/RajaiEra';
+import StoryTransition from '@/components/StoryTransition';
 import Footer from '@/components/Footer';
 
-const ERAS = ['Spark', 'Machine', 'Human', 'AI', 'Rajai'];
+// 4-Act Story Structure: From idea to architect
+const ERAS = ['Spark', 'Machine', 'AI', 'Rajai'];
+
+const STORY_TRANSITIONS = [
+  { from: 'The Spark', to: 'The Machine', text: 'From abstract thought emerged the desire to compute...' },
+  { from: 'The Machine', to: 'The Mind', text: 'From silicon and circuits, intelligence began to emerge...' },
+  { from: 'The Mind', to: 'The Architect', text: 'And from this convergence, a builder was forged...' },
+];
 
 export default function Index() {
   const [showBoot, setShowBoot] = useState(true);
@@ -21,10 +28,11 @@ export default function Index() {
     if (showBoot) return;
     
     const unsubscribe = scrollYProgress.on('change', (latest) => {
-      const eraIndex = Math.min(
-        Math.floor(latest * ERAS.length),
-        ERAS.length - 1
-      );
+      // Account for transitions between eras (7 total sections)
+      const totalSections = ERAS.length + STORY_TRANSITIONS.length;
+      const sectionIndex = Math.floor(latest * totalSections);
+      // Map section to era (0,1 -> 0, 2,3 -> 1, 4,5 -> 2, 6 -> 3)
+      const eraIndex = Math.min(Math.floor(sectionIndex / 2), ERAS.length - 1);
       setCurrentEra(eraIndex);
     });
     
@@ -32,8 +40,9 @@ export default function Index() {
   }, [scrollYProgress, showBoot]);
   
   const handleEraClick = useCallback((index: number) => {
-    const sections = document.querySelectorAll('section');
-    sections[index]?.scrollIntoView({ behavior: 'smooth' });
+    const sections = document.querySelectorAll('section, .story-transition');
+    const targetSection = index * 2; // Account for transitions
+    sections[targetSection]?.scrollIntoView({ behavior: 'smooth' });
   }, []);
   
   const handleBootComplete = useCallback(() => {
@@ -62,22 +71,49 @@ export default function Index() {
         ref={containerRef} 
         className={`relative bg-background ${showBoot ? 'opacity-0' : 'opacity-100'} transition-opacity duration-500`}
       >
+        {/* Progress bar */}
         <motion.div 
-          className="fixed top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-primary via-ai-neural to-ai-synapse z-50 origin-left"
+          className="fixed top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-spark-glow via-ai-neural to-primary z-50 origin-left"
           style={{ scaleX }}
         />
         
+        {/* Era navigation */}
         <EraNavigation 
           currentEra={currentEra} 
           eras={ERAS} 
           onEraClick={handleEraClick}
         />
         
+        {/* Story content with transitions */}
         <div className="scroll-snap-container">
+          {/* Act I: The Spark */}
           <SparkEra />
+          <StoryTransition 
+            fromEra={STORY_TRANSITIONS[0].from}
+            toEra={STORY_TRANSITIONS[0].to}
+            transitionText={STORY_TRANSITIONS[0].text}
+            className="story-transition bg-gradient-to-b from-spark-glow/5 via-machine-cyan/5 to-machine-cyan/10"
+          />
+          
+          {/* Act II: The Machine */}
           <MachineEra />
-          <HumanEra />
+          <StoryTransition 
+            fromEra={STORY_TRANSITIONS[1].from}
+            toEra={STORY_TRANSITIONS[1].to}
+            transitionText={STORY_TRANSITIONS[1].text}
+            className="story-transition bg-gradient-to-b from-machine-cyan/5 via-ai-neural/5 to-ai-neural/10"
+          />
+          
+          {/* Act III: The Mind (AI) */}
           <AIEra />
+          <StoryTransition 
+            fromEra={STORY_TRANSITIONS[2].from}
+            toEra={STORY_TRANSITIONS[2].to}
+            transitionText={STORY_TRANSITIONS[2].text}
+            className="story-transition bg-gradient-to-b from-ai-neural/5 via-primary/5 to-primary/10"
+          />
+          
+          {/* Act IV: The Architect (Raj Shah) */}
           <RajaiEra />
         </div>
         

@@ -2,51 +2,35 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
 import { Brain, Cpu, Network, Sparkles, Bot, LineChart } from 'lucide-react';
 
-const focusAreas = [
-  { name: 'Machine Learning', icon: Brain, desc: 'Predictive models & pattern recognition' },
-  { name: 'Neural Networks', icon: Network, desc: 'Deep learning architectures' },
-  { name: 'NLP & LLMs', icon: Sparkles, desc: 'Language understanding & generation' },
-  { name: 'Computer Vision', icon: Cpu, desc: 'Image & video analysis' },
-  { name: 'Automation', icon: Bot, desc: 'Intelligent workflow systems' },
-  { name: 'MLOps', icon: LineChart, desc: 'Production ML pipelines' },
+// Act III: The Mind - The emergence of artificial intelligence
+const aiMilestones = [
+  { name: 'Turing Test', icon: Brain, desc: 'Can machines think? (1950)', year: '1950' },
+  { name: 'Perceptron', icon: Network, desc: 'First neural network model', year: '1957' },
+  { name: 'Expert Systems', icon: Cpu, desc: 'Knowledge-based AI boom', year: '1980s' },
+  { name: 'Deep Blue', icon: Bot, desc: 'AI defeats chess champion', year: '1997' },
+  { name: 'Deep Learning', icon: Sparkles, desc: 'Neural networks renaissance', year: '2012' },
+  { name: 'GPT Era', icon: LineChart, desc: 'Language models transform AI', year: '2020s' },
 ];
 
-const aiProjects = [
-  {
-    title: 'Intelligent Document Analysis',
-    description: 'AI-powered system that extracts, classifies, and summarizes complex documents with 95%+ accuracy',
-    tech: ['GPT-4', 'LangChain', 'Vector DB'],
-    icon: '📄',
-    impact: '10x faster processing',
-  },
-  {
-    title: 'Predictive Analytics Engine',
-    description: 'Real-time forecasting system processing millions of data points for actionable business insights',
-    tech: ['TensorFlow', 'Time Series', 'Python'],
-    icon: '📊',
-    impact: '30% cost reduction',
-  },
-  {
-    title: 'Conversational AI Assistant',
-    description: 'Context-aware chatbot with multi-turn dialogue and domain-specific knowledge integration',
-    tech: ['RAG', 'Embeddings', 'Fine-tuning'],
-    icon: '🤖',
-    impact: '85% resolution rate',
-  },
+const aiCapabilities = [
+  { icon: '🧠', label: 'Reasoning', desc: 'Logic and problem-solving beyond brute force' },
+  { icon: '👁️', label: 'Perception', desc: 'Seeing and understanding the visual world' },
+  { icon: '💬', label: 'Language', desc: 'Understanding and generating human language' },
+  { icon: '🎨', label: 'Creativity', desc: 'Generating art, music, and novel ideas' },
 ];
 
-const capabilities = [
-  { stat: '10M+', label: 'Data points processed', icon: '📊' },
-  { stat: '95%+', label: 'Model accuracy', icon: '🎯' },
-  { stat: '100x', label: 'Faster than manual', icon: '⚡' },
-  { stat: '24/7', label: 'Autonomous operation', icon: '🔄' },
+const aiStats = [
+  { value: '175B', label: 'Parameters in GPT-3' },
+  { value: '1T+', label: 'Training tokens' },
+  { value: '∞', label: 'Potential applications' },
+  { value: 'NOW', label: 'The AI moment' },
 ];
 
-const aiPhilosophy = [
-  { principle: 'Human-Centered', desc: 'AI should amplify human capabilities, not replace them' },
-  { principle: 'Ethical First', desc: 'Build responsible AI with transparency and fairness' },
-  { principle: 'Production Ready', desc: 'From prototype to production with reliability' },
-  { principle: 'Continuous Learning', desc: 'Systems that adapt and improve over time' },
+const aiQuestions = [
+  'What does it mean to think?',
+  'Can silicon learn like neurons?',
+  'Where is the line between tool and mind?',
+  'What comes after artificial general intelligence?',
 ];
 
 export default function AIEra() {
@@ -102,7 +86,7 @@ export default function AIEra() {
           viewport={{ once: true }}
           className="font-mono text-xs md:text-sm tracking-[0.4em] text-ai-neural/70 uppercase mb-10"
         >
-          Act IV — The Thinking Machine
+          Act III — The Mind
         </motion.p>
         
         <motion.h2
@@ -112,7 +96,7 @@ export default function AIEra() {
           viewport={{ once: true }}
           className="text-4xl md:text-6xl lg:text-7xl font-display font-light tracking-tight text-foreground mb-8 leading-tight"
         >
-          Building systems
+          And then machines
           <br />
           <motion.span 
             className="text-neural-glow font-normal"
@@ -125,7 +109,7 @@ export default function AIEra() {
             }}
             transition={{ duration: 3, repeat: Infinity }}
           >
-            that think
+            began to think
           </motion.span>
         </motion.h2>
         
@@ -136,11 +120,11 @@ export default function AIEra() {
           viewport={{ once: true }}
           className="text-base md:text-lg text-muted-foreground font-light max-w-2xl mx-auto mb-14 leading-relaxed"
         >
-          Raj works at the intersection of AI and engineering—creating intelligent 
-          systems that learn, adapt, and solve real-world problems at scale.
+          The emergence of artificial intelligence marks humanity's boldest attempt—
+          to create minds from mathematics, consciousness from computation.
         </motion.p>
         
-        {/* AI focus areas badges */}
+        {/* AI capabilities badges */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -148,9 +132,9 @@ export default function AIEra() {
           viewport={{ once: true }}
           className="flex flex-wrap justify-center gap-2.5 md:gap-3"
         >
-          {focusAreas.slice(0, 4).map((area, i) => (
+          {aiCapabilities.map((cap, i) => (
             <motion.span
-              key={area.name}
+              key={cap.label}
               className="px-4 md:px-5 py-2 md:py-2.5 rounded-full border border-ai-neural/30 bg-ai-neural/5 text-ai-neural font-mono text-xs md:text-sm backdrop-blur-sm flex items-center gap-2"
               whileHover={{ 
                 scale: 1.05, 
@@ -159,22 +143,22 @@ export default function AIEra() {
               }}
               transition={{ type: "spring", stiffness: 400, damping: 20 }}
             >
-              <area.icon className="w-3.5 h-3.5" />
-              {area.name}
+              <span>{cap.icon}</span>
+              {cap.label}
             </motion.span>
           ))}
         </motion.div>
       </motion.div>
       
-      {/* Capabilities Stats */}
+      {/* AI Stats */}
       <motion.div 
         className="relative z-10 w-full max-w-4xl px-4 md:px-6 mb-24"
         style={{ y: statsY }}
       >
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
-          {capabilities.map((cap, i) => (
+          {aiStats.map((stat, i) => (
             <motion.div
-              key={cap.label}
+              key={stat.label}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
@@ -182,21 +166,20 @@ export default function AIEra() {
               className="text-center p-5 rounded-xl bg-ai-neural/5 border border-ai-neural/20"
               whileHover={{ y: -4, borderColor: 'hsl(var(--ai-neural) / 0.4)' }}
             >
-              <span className="text-2xl mb-2 block">{cap.icon}</span>
               <motion.div 
                 className="text-2xl md:text-3xl font-display font-bold text-ai-neural mb-1"
                 whileHover={{ scale: 1.1 }}
                 transition={{ type: "spring", stiffness: 400 }}
               >
-                {cap.stat}
+                {stat.value}
               </motion.div>
-              <div className="text-xs text-muted-foreground font-mono">{cap.label}</div>
+              <div className="text-xs text-muted-foreground font-mono">{stat.label}</div>
             </motion.div>
           ))}
         </div>
       </motion.div>
       
-      {/* Focus Areas Detail */}
+      {/* AI Milestones */}
       <motion.div 
         className="relative z-10 w-full max-w-5xl px-4 md:px-6 mb-24"
         style={{ y: areasY }}
@@ -208,13 +191,13 @@ export default function AIEra() {
           viewport={{ once: true }}
           className="font-mono text-xs tracking-[0.3em] text-ai-neural/50 uppercase mb-10 text-center"
         >
-          AI Expertise
+          The Path to Intelligence
         </motion.h3>
         
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-          {focusAreas.map((area, i) => (
+          {aiMilestones.map((milestone, i) => (
             <motion.div
-              key={area.name}
+              key={milestone.name}
               initial={{ opacity: 0, scale: 0.95, y: 20 }}
               whileInView={{ opacity: 1, scale: 1, y: 0 }}
               transition={{ duration: 0.5, delay: i * 0.08 }}
@@ -222,22 +205,25 @@ export default function AIEra() {
               className="bg-ai-neural/5 border border-ai-neural/20 rounded-xl p-5 hover:border-ai-neural/40 transition-all group"
               whileHover={{ y: -4, scale: 1.02 }}
             >
-              <motion.div 
-                className="w-10 h-10 rounded-lg bg-ai-neural/10 flex items-center justify-center mb-3"
-                whileHover={{ scale: 1.1, rotate: 5 }}
-              >
-                <area.icon className="w-5 h-5 text-ai-neural" />
-              </motion.div>
+              <div className="flex items-center justify-between mb-3">
+                <motion.div 
+                  className="w-10 h-10 rounded-lg bg-ai-neural/10 flex items-center justify-center"
+                  whileHover={{ scale: 1.1, rotate: 5 }}
+                >
+                  <milestone.icon className="w-5 h-5 text-ai-neural" />
+                </motion.div>
+                <span className="font-mono text-xs text-ai-neural/60">{milestone.year}</span>
+              </div>
               <h4 className="font-display font-medium text-foreground group-hover:text-ai-neural transition-colors">
-                {area.name}
+                {milestone.name}
               </h4>
-              <p className="text-sm text-muted-foreground mt-1">{area.desc}</p>
+              <p className="text-sm text-muted-foreground mt-1">{milestone.desc}</p>
             </motion.div>
           ))}
         </div>
       </motion.div>
       
-      {/* AI Philosophy */}
+      {/* AI Capabilities Detail */}
       <motion.div 
         className="relative z-10 w-full max-w-4xl px-4 md:px-6 mb-24"
         initial={{ opacity: 0 }}
@@ -246,29 +232,31 @@ export default function AIEra() {
         viewport={{ once: true }}
       >
         <h3 className="font-mono text-xs tracking-[0.3em] text-ai-neural/50 uppercase mb-10 text-center">
-          AI Philosophy
+          What AI Can Do
         </h3>
         
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          {aiPhilosophy.map((item, i) => (
+          {aiCapabilities.map((cap, i) => (
             <motion.div
-              key={item.principle}
+              key={cap.label}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
               viewport={{ once: true }}
-              className="text-center p-4"
+              className="text-center p-5 bg-ai-neural/5 border border-ai-neural/20 rounded-xl hover:border-ai-neural/40 transition-all"
+              whileHover={{ y: -4 }}
             >
-              <h4 className="font-display font-medium text-ai-neural mb-1">{item.principle}</h4>
-              <p className="text-xs text-muted-foreground">{item.desc}</p>
+              <span className="text-3xl mb-3 block">{cap.icon}</span>
+              <h4 className="font-display font-medium text-ai-neural mb-1">{cap.label}</h4>
+              <p className="text-xs text-muted-foreground">{cap.desc}</p>
             </motion.div>
           ))}
         </div>
       </motion.div>
       
-      {/* AI Projects */}
+      {/* AI Questions */}
       <motion.div 
-        className="relative z-10 w-full max-w-5xl px-4 md:px-6 mb-24"
+        className="relative z-10 w-full max-w-4xl px-4 md:px-6 mb-24"
         style={{ y: projectsY }}
       >
         <motion.h3
@@ -278,43 +266,25 @@ export default function AIEra() {
           viewport={{ once: true }}
           className="font-mono text-xs tracking-[0.3em] text-ai-neural/50 uppercase mb-10 text-center"
         >
-          AI Projects
+          The Questions We're Still Asking
         </motion.h3>
         
-        <div className="grid md:grid-cols-3 gap-6">
-          {aiProjects.map((project, i) => (
+        <div className="flex flex-wrap justify-center gap-4">
+          {aiQuestions.map((question, i) => (
             <motion.div
-              key={project.title}
-              initial={{ opacity: 0, y: 30 }}
+              key={question}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: i * 0.15 }}
+              transition={{ duration: 0.5, delay: i * 0.1 }}
               viewport={{ once: true }}
-              className="card-glass rounded-xl p-6 hover:border-ai-neural/40 transition-all group"
-              whileHover={{ y: -8, scale: 1.02 }}
+              className="px-6 py-3 bg-ai-neural/5 border border-ai-neural/20 rounded-full text-ai-neural/80 font-light italic"
+              whileHover={{ 
+                scale: 1.05, 
+                borderColor: 'hsl(var(--ai-neural))',
+                boxShadow: '0 0 30px hsl(var(--ai-neural) / 0.2)',
+              }}
             >
-              <div className="flex items-start justify-between mb-4">
-                <motion.span 
-                  className="text-3xl"
-                  whileHover={{ scale: 1.2, rotate: 10 }}
-                  transition={{ type: "spring", stiffness: 400 }}
-                >
-                  {project.icon}
-                </motion.span>
-                <span className="text-xs font-mono px-2 py-1 bg-ai-synapse/10 rounded text-ai-synapse">
-                  {project.impact}
-                </span>
-              </div>
-              <h4 className="font-display text-lg font-medium text-foreground group-hover:text-ai-neural transition-colors mb-2">
-                {project.title}
-              </h4>
-              <p className="text-sm text-muted-foreground mb-4">{project.description}</p>
-              <div className="flex flex-wrap gap-2">
-                {project.tech.map((tech) => (
-                  <span key={tech} className="text-xs font-mono px-2 py-1 bg-ai-neural/10 rounded-md text-ai-neural/80 border border-ai-neural/20">
-                    {tech}
-                  </span>
-                ))}
-              </div>
+              "{question}"
             </motion.div>
           ))}
         </div>
