@@ -8,12 +8,12 @@ const socialLinks = [
   { icon: Mail, label: 'Email', href: 'mailto:hello@rajai.org' },
 ];
 
+// Updated for 4-act story structure
 const quickLinks = [
-  { label: 'The Spark', era: 0 },
-  { label: 'The Machine', era: 1 },
-  { label: 'The Human Era', era: 2 },
-  { label: 'The AI Era', era: 3 },
-  { label: 'Rajai', era: 4 },
+  { label: 'The Spark', era: 0, desc: 'Where ideas begin' },
+  { label: 'The Machine', era: 1, desc: 'Computing revolution' },
+  { label: 'The Mind', era: 2, desc: 'AI emergence' },
+  { label: 'The Architect', era: 3, desc: 'Raj Shah' },
 ];
 
 interface FooterProps {

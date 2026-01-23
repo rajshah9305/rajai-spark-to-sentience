@@ -110,7 +110,7 @@ export default function RajaiEra() {
           viewport={{ once: true }}
           className="font-mono text-xs md:text-sm tracking-[0.4em] text-rajai-accent/70 uppercase mb-10 text-center"
         >
-          Act V — The Architect
+          Act IV — The Architect
         </motion.p>
         
         <motion.h2
