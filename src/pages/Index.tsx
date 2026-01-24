@@ -71,9 +71,9 @@ export default function Index() {
         ref={containerRef} 
         className={`relative bg-background ${showBoot ? 'opacity-0' : 'opacity-100'} transition-opacity duration-500`}
       >
-        {/* Progress bar */}
+        {/* Progress bar - warm gradient */}
         <motion.div 
-          className="fixed top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-spark-glow via-ai-neural to-primary z-50 origin-left"
+          className="fixed top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-spark-glow via-machine-green via-ai-neural to-rajai-accent z-50 origin-left"
           style={{ scaleX }}
         />
         
@@ -92,7 +92,7 @@ export default function Index() {
             fromEra={STORY_TRANSITIONS[0].from}
             toEra={STORY_TRANSITIONS[0].to}
             transitionText={STORY_TRANSITIONS[0].text}
-            className="story-transition bg-gradient-to-b from-spark-glow/5 via-machine-cyan/5 to-machine-cyan/10"
+            className="story-transition bg-gradient-to-b from-spark-glow/5 via-machine-green/5 to-machine-green/10"
           />
           
           {/* Act II: The Machine */}
@@ -101,7 +101,7 @@ export default function Index() {
             fromEra={STORY_TRANSITIONS[1].from}
             toEra={STORY_TRANSITIONS[1].to}
             transitionText={STORY_TRANSITIONS[1].text}
-            className="story-transition bg-gradient-to-b from-machine-cyan/5 via-ai-neural/5 to-ai-neural/10"
+            className="story-transition bg-gradient-to-b from-machine-green/5 via-ai-neural/5 to-ai-neural/10"
           />
           
           {/* Act III: The Mind (AI) */}

@@ -1,15 +1,16 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
 import { Brain, Cpu, Network, Sparkles, Bot, LineChart } from 'lucide-react';
+import InteractiveTimeline from '@/components/InteractiveTimeline';
 
 // Act III: The Mind - The emergence of artificial intelligence
 const aiMilestones = [
-  { name: 'Turing Test', icon: Brain, desc: 'Can machines think? (1950)', year: '1950' },
-  { name: 'Perceptron', icon: Network, desc: 'First neural network model', year: '1957' },
-  { name: 'Expert Systems', icon: Cpu, desc: 'Knowledge-based AI boom', year: '1980s' },
-  { name: 'Deep Blue', icon: Bot, desc: 'AI defeats chess champion', year: '1997' },
-  { name: 'Deep Learning', icon: Sparkles, desc: 'Neural networks renaissance', year: '2012' },
-  { name: 'GPT Era', icon: LineChart, desc: 'Language models transform AI', year: '2020s' },
+  { year: '1950', title: 'Turing Test', description: 'Alan Turing poses the question: Can machines think? His test becomes the benchmark for machine intelligence.', era: 'ai' as const, icon: '🧠' },
+  { year: '1957', title: 'Perceptron', description: 'Frank Rosenblatt creates the first neural network model, inspired by biological neurons.', era: 'ai' as const, icon: '🔗' },
+  { year: '1980s', title: 'Expert Systems', description: 'Rule-based AI systems boom in industries, encoding human expertise into machines.', era: 'ai' as const, icon: '📚' },
+  { year: '1997', title: 'Deep Blue', description: 'IBM\'s chess computer defeats world champion Garry Kasparov, proving machines can master strategy.', era: 'ai' as const, icon: '♟️' },
+  { year: '2012', title: 'Deep Learning', description: 'AlexNet wins ImageNet, igniting the deep learning revolution that transforms AI.', era: 'ai' as const, icon: '🎯' },
+  { year: '2020s', title: 'GPT Era', description: 'Large language models emerge, capable of human-like text generation and reasoning.', era: 'ai' as const, icon: '💬' },
 ];
 
 const aiCapabilities = [
@@ -54,7 +55,7 @@ export default function AIEra() {
       ref={containerRef}
       className="relative min-h-[280vh] flex flex-col items-center justify-start overflow-hidden era-ai pt-24 pb-20"
     >
-      {/* Floating gradient orbs */}
+      {/* Floating gradient orbs - teal/amber warm tones */}
       <motion.div 
         className="absolute top-1/4 left-1/4 w-80 md:w-96 h-80 md:h-96 rounded-full bg-ai-neural/15 blur-[120px]"
         style={{ y: orbY, scale: orbScale }}
@@ -179,7 +180,7 @@ export default function AIEra() {
         </div>
       </motion.div>
       
-      {/* AI Milestones */}
+      {/* AI Milestones - Interactive Timeline */}
       <motion.div 
         className="relative z-10 w-full max-w-5xl px-4 md:px-6 mb-24"
         style={{ y: areasY }}
@@ -194,33 +195,7 @@ export default function AIEra() {
           The Path to Intelligence
         </motion.h3>
         
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-          {aiMilestones.map((milestone, i) => (
-            <motion.div
-              key={milestone.name}
-              initial={{ opacity: 0, scale: 0.95, y: 20 }}
-              whileInView={{ opacity: 1, scale: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: i * 0.08 }}
-              viewport={{ once: true }}
-              className="bg-ai-neural/5 border border-ai-neural/20 rounded-xl p-5 hover:border-ai-neural/40 transition-all group"
-              whileHover={{ y: -4, scale: 1.02 }}
-            >
-              <div className="flex items-center justify-between mb-3">
-                <motion.div 
-                  className="w-10 h-10 rounded-lg bg-ai-neural/10 flex items-center justify-center"
-                  whileHover={{ scale: 1.1, rotate: 5 }}
-                >
-                  <milestone.icon className="w-5 h-5 text-ai-neural" />
-                </motion.div>
-                <span className="font-mono text-xs text-ai-neural/60">{milestone.year}</span>
-              </div>
-              <h4 className="font-display font-medium text-foreground group-hover:text-ai-neural transition-colors">
-                {milestone.name}
-              </h4>
-              <p className="text-sm text-muted-foreground mt-1">{milestone.desc}</p>
-            </motion.div>
-          ))}
-        </div>
+        <InteractiveTimeline events={aiMilestones} variant="horizontal" />
       </motion.div>
       
       {/* AI Capabilities Detail */}
