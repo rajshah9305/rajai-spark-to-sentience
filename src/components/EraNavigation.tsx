@@ -23,8 +23,8 @@ const eraLabels: Record<string, string> = {
 };
 
 const eraColors: Record<string, string> = {
-  Spark: 'from-spark-glow to-spark-pulse',
-  Machine: 'from-machine-cyan to-machine-green',
+  Spark: 'from-spark-glow to-spark-secondary',
+  Machine: 'from-machine-green to-machine-phosphor',
   AI: 'from-ai-neural to-ai-synapse',
   Rajai: 'from-rajai-accent to-rajai-highlight',
 };

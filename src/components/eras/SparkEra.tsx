@@ -1,6 +1,7 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import ParticleField from '@/components/ParticleField';
+import InteractiveTimeline from '@/components/InteractiveTimeline';
 
 // Act I: The Spark - The birth of ideas and curiosity
 const originConcepts = [
@@ -18,10 +19,10 @@ const philosophicalQuestions = [
 ];
 
 const evolutionTimeline = [
-  { era: 'Ancient Logic', year: '~300 BC', event: 'Aristotle formalizes logical reasoning' },
-  { era: 'Mathematical Thought', year: '1600s', event: 'Leibniz dreams of a universal calculating machine' },
-  { era: 'Boolean Algebra', year: '1847', event: 'George Boole creates the language of logic' },
-  { era: 'Turing Machine', year: '1936', event: 'Alan Turing conceives the universal computer' },
+  { year: '~300 BC', title: 'Ancient Logic', description: 'Aristotle formalizes logical reasoning, creating the foundation for all computational thought', era: 'spark' as const, icon: '📜' },
+  { year: '1600s', title: 'Mathematical Dreams', description: 'Leibniz envisions a universal calculating machine that could mechanize thought itself', era: 'spark' as const, icon: '🔢' },
+  { year: '1847', title: 'Boolean Algebra', description: 'George Boole creates the language of logic that will power every digital device', era: 'spark' as const, icon: '⚡' },
+  { year: '1936', title: 'Turing Machine', description: 'Alan Turing conceives the theoretical foundation for all modern computers', era: 'spark' as const, icon: '🧠' },
 ];
 
 export default function SparkEra() {
@@ -208,9 +209,9 @@ export default function SparkEra() {
         </div>
       </motion.div>
       
-      {/* Evolution Timeline with parallax */}
+      {/* Interactive Timeline with parallax */}
       <motion.div 
-        className="relative z-10 w-full max-w-4xl px-4 md:px-6 mb-20"
+        className="relative z-10 w-full max-w-5xl px-4 md:px-6 mb-20"
         style={{ y: inspirationsY }}
       >
         <motion.h3
@@ -223,33 +224,7 @@ export default function SparkEra() {
           The Evolution of Thought
         </motion.h3>
         
-        <div className="space-y-6">
-          {evolutionTimeline.map((item, i) => (
-            <motion.div
-              key={item.era}
-              initial={{ opacity: 0, x: i % 2 === 0 ? -30 : 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: i * 0.1 }}
-              viewport={{ once: true }}
-              className="flex items-center gap-6 group"
-              whileHover={{ x: 8 }}
-            >
-              <div className="w-24 text-right">
-                <span className="font-mono text-sm text-spark-glow">{item.year}</span>
-              </div>
-              <motion.div 
-                className="w-3 h-3 rounded-full bg-spark-glow shadow-[0_0_15px_hsl(45_100%_60%_/_0.5)]"
-                whileHover={{ scale: 1.5 }}
-              />
-              <div className="flex-1 p-4 bg-spark-glow/5 border border-spark-glow/20 rounded-lg group-hover:border-spark-glow/40 transition-colors">
-                <h4 className="font-display font-medium text-foreground group-hover:text-spark-glow transition-colors">
-                  {item.era}
-                </h4>
-                <p className="text-sm text-muted-foreground">{item.event}</p>
-              </div>
-            </motion.div>
-          ))}
-        </div>
+        <InteractiveTimeline events={evolutionTimeline} variant="vertical" />
       </motion.div>
       
       {/* Origin Concepts Grid with parallax */}

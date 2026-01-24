@@ -61,7 +61,7 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
-        // Era-specific colors - refined palette
+        // Era-specific colors - Warm palette (no purple/blue)
         spark: {
           void: "hsl(var(--spark-void))",
           glow: "hsl(var(--spark-glow))",
@@ -74,13 +74,6 @@ export default {
           green: "hsl(var(--machine-green))",
           phosphor: "hsl(var(--machine-phosphor))",
           cyan: "hsl(var(--machine-cyan))",
-        },
-        human: {
-          cream: "hsl(var(--human-cream))",
-          warm: "hsl(var(--human-warm))",
-          text: "hsl(var(--human-text))",
-          accent: "hsl(var(--human-accent))",
-          secondary: "hsl(var(--human-secondary))",
         },
         ai: {
           deep: "hsl(var(--ai-deep))",

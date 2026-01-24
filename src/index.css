@@ -6,69 +6,62 @@
 
 @layer base {
   :root {
-    /* Era I: The Spark - Deep cosmic with golden ignition */
-    --spark-void: 230 30% 3%;
+    /* Era I: The Spark - Warm ember glow with golden ignition */
+    --spark-void: 30 25% 4%;
     --spark-glow: 45 100% 60%;
     --spark-pulse: 35 100% 70%;
-    --spark-secondary: 280 60% 60%;
+    --spark-secondary: 25 90% 55%;
     
-    /* Era II: The Machine - Retro terminal with cyan phosphor */
-    --machine-black: 200 30% 4%;
+    /* Era II: The Machine - Retro terminal with emerald phosphor */
+    --machine-black: 150 20% 4%;
     --machine-amber: 45 100% 55%;
-    --machine-green: 160 100% 45%;
-    --machine-phosphor: 170 100% 55%;
-    --machine-cyan: 185 100% 50%;
+    --machine-green: 155 85% 45%;
+    --machine-phosphor: 160 90% 50%;
+    --machine-cyan: 165 80% 45%;
     
-    /* Era III: Human Era - Soft, accessible warmth */
-    --human-cream: 45 40% 97%;
-    --human-warm: 40 35% 92%;
-    --human-text: 230 25% 18%;
-    --human-accent: 220 85% 55%;
-    --human-secondary: 340 75% 55%;
+    /* Era III: AI Era - Teal neural networks */
+    --ai-deep: 170 30% 5%;
+    --ai-neural: 170 75% 50%;
+    --ai-synapse: 35 90% 55%;
+    --ai-glow: 165 80% 55%;
+    --ai-electric: 45 100% 65%;
     
-    /* Era IV: AI Era - Electric neural networks */
-    --ai-deep: 240 40% 6%;
-    --ai-neural: 200 100% 55%;
-    --ai-synapse: 320 85% 60%;
-    --ai-glow: 190 100% 65%;
-    --ai-electric: 260 100% 70%;
-    
-    /* Era V: Rajai - Premium synthesis of all eras */
-    --rajai-bg: 235 35% 5%;
-    --rajai-surface: 235 25% 10%;
-    --rajai-text: 0 0% 96%;
-    --rajai-muted: 230 15% 55%;
+    /* Era IV: Rajai - Premium warm synthesis */
+    --rajai-bg: 35 20% 5%;
+    --rajai-surface: 35 18% 10%;
+    --rajai-text: 40 20% 96%;
+    --rajai-muted: 35 15% 55%;
     --rajai-accent: 45 100% 60%;
     --rajai-accent-soft: 45 85% 75%;
-    --rajai-highlight: 200 100% 55%;
+    --rajai-highlight: 165 80% 50%;
     
-    /* Core Design System */
-    --background: 235 30% 4%;
-    --foreground: 0 0% 96%;
+    /* Core Design System - Warm palette */
+    --background: 30 20% 4%;
+    --foreground: 40 15% 96%;
     
-    --card: 235 25% 9%;
-    --card-foreground: 0 0% 96%;
+    --card: 30 18% 9%;
+    --card-foreground: 40 15% 96%;
     
-    --popover: 235 25% 9%;
-    --popover-foreground: 0 0% 96%;
+    --popover: 30 18% 9%;
+    --popover-foreground: 40 15% 96%;
     
     --primary: 45 100% 60%;
-    --primary-foreground: 235 30% 5%;
+    --primary-foreground: 30 20% 5%;
     
-    --secondary: 235 25% 15%;
-    --secondary-foreground: 0 0% 96%;
+    --secondary: 30 15% 15%;
+    --secondary-foreground: 40 15% 96%;
     
-    --muted: 235 20% 18%;
-    --muted-foreground: 230 15% 55%;
+    --muted: 30 12% 18%;
+    --muted-foreground: 35 15% 55%;
     
-    --accent: 200 100% 55%;
-    --accent-foreground: 235 30% 5%;
+    --accent: 165 75% 50%;
+    --accent-foreground: 30 20% 5%;
     
     --destructive: 0 85% 60%;
     --destructive-foreground: 0 0% 98%;
     
-    --border: 235 25% 18%;
-    --input: 235 25% 18%;
+    --border: 30 15% 18%;
+    --input: 30 15% 18%;
     --ring: 45 100% 60%;
     
     --radius: 0.75rem;
@@ -77,27 +70,26 @@
     --font-display: 'Space Grotesk', sans-serif;
     --font-mono: 'JetBrains Mono', monospace;
     
-    /* Enhanced Gradients */
-    --gradient-spark: radial-gradient(ellipse at 50% 50%, hsl(45 100% 60% / 0.12) 0%, hsl(280 60% 60% / 0.05) 40%, transparent 70%);
-    --gradient-machine: linear-gradient(180deg, hsl(200 30% 4%) 0%, hsl(170 100% 45% / 0.08) 100%);
-    --gradient-human: linear-gradient(180deg, hsl(45 40% 97%) 0%, hsl(40 35% 94%) 100%);
-    --gradient-neural: radial-gradient(ellipse at 30% 40%, hsl(200 100% 55% / 0.15) 0%, transparent 50%), radial-gradient(ellipse at 70% 60%, hsl(320 85% 60% / 0.1) 0%, transparent 50%);
-    --gradient-rajai: linear-gradient(160deg, hsl(235 35% 5%) 0%, hsl(235 30% 8%) 50%, hsl(235 25% 6%) 100%);
+    /* Enhanced Gradients - Warm tones */
+    --gradient-spark: radial-gradient(ellipse at 50% 50%, hsl(45 100% 60% / 0.12) 0%, hsl(25 90% 55% / 0.05) 40%, transparent 70%);
+    --gradient-machine: linear-gradient(180deg, hsl(150 20% 4%) 0%, hsl(155 85% 45% / 0.08) 100%);
+    --gradient-neural: radial-gradient(ellipse at 30% 40%, hsl(170 75% 50% / 0.12) 0%, transparent 50%), radial-gradient(ellipse at 70% 60%, hsl(35 90% 55% / 0.08) 0%, transparent 50%);
+    --gradient-rajai: linear-gradient(160deg, hsl(35 20% 5%) 0%, hsl(35 18% 8%) 50%, hsl(35 15% 6%) 100%);
     
-    /* Enhanced Shadows */
-    --shadow-spark: 0 0 80px hsl(45 100% 60% / 0.25), 0 0 120px hsl(280 60% 60% / 0.1);
-    --shadow-neural: 0 0 100px hsl(200 100% 55% / 0.2), 0 0 60px hsl(320 85% 60% / 0.1);
+    /* Enhanced Shadows - Warm tones */
+    --shadow-spark: 0 0 80px hsl(45 100% 60% / 0.25), 0 0 120px hsl(25 90% 55% / 0.1);
+    --shadow-neural: 0 0 100px hsl(170 75% 50% / 0.2), 0 0 60px hsl(35 90% 55% / 0.1);
     --shadow-card: 0 8px 40px hsl(0 0% 0% / 0.4), 0 2px 10px hsl(0 0% 0% / 0.2);
     --shadow-glow: 0 0 60px hsl(45 100% 60% / 0.3);
     
     /* Sidebar */
-    --sidebar-background: 235 35% 5%;
-    --sidebar-foreground: 0 0% 96%;
+    --sidebar-background: 30 20% 5%;
+    --sidebar-foreground: 40 15% 96%;
     --sidebar-primary: 45 100% 60%;
-    --sidebar-primary-foreground: 235 30% 5%;
-    --sidebar-accent: 235 25% 15%;
-    --sidebar-accent-foreground: 0 0% 96%;
-    --sidebar-border: 235 25% 18%;
+    --sidebar-primary-foreground: 30 20% 5%;
+    --sidebar-accent: 30 15% 15%;
+    --sidebar-accent-foreground: 40 15% 96%;
+    --sidebar-border: 30 15% 18%;
     --sidebar-ring: 45 100% 60%;
   }
 }
@@ -134,12 +126,6 @@
     background-image: var(--gradient-machine);
   }
   
-  .era-human {
-    background: hsl(var(--human-cream));
-    background-image: var(--gradient-human);
-    color: hsl(var(--human-text));
-  }
-  
   .era-ai {
     background: hsl(var(--ai-deep));
     background-image: var(--gradient-neural);
@@ -159,12 +145,12 @@
     font-family: var(--font-mono);
   }
   
-  /* Enhanced text glow effects */
+  /* Enhanced text glow effects - Warm tones */
   .text-phosphor {
-    color: hsl(var(--machine-cyan));
-    text-shadow: 0 0 8px hsl(var(--machine-cyan) / 0.6),
-                 0 0 25px hsl(var(--machine-cyan) / 0.4),
-                 0 0 50px hsl(var(--machine-cyan) / 0.2);
+    color: hsl(var(--machine-green));
+    text-shadow: 0 0 8px hsl(var(--machine-green) / 0.6),
+                 0 0 25px hsl(var(--machine-green) / 0.4),
+                 0 0 50px hsl(var(--machine-green) / 0.2);
   }
   
   .text-amber-glow {
@@ -192,12 +178,16 @@
     box-shadow: var(--shadow-spark);
   }
   
-  .glow-neural {
-    box-shadow: var(--shadow-neural);
+  .glow-emerald {
+    box-shadow: 0 0 40px hsl(var(--machine-green) / 0.3);
   }
   
-  .glow-cyan {
-    box-shadow: 0 0 40px hsl(var(--machine-cyan) / 0.3);
+  .glow-teal {
+    box-shadow: 0 0 40px hsl(var(--ai-neural) / 0.3);
+  }
+  
+  .glow-neural {
+    box-shadow: var(--shadow-neural);
   }
   
   /* Enhanced scanline effect */
