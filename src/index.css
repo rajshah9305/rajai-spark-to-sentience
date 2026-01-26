@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Playfair+Display:wght@400;500;600&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,46 +6,64 @@
 
 @layer base {
   :root {
-    /* Era I: The Spark - Warm ember glow with golden ignition */
-    --spark-void: 30 25% 4%;
-    --spark-glow: 45 100% 60%;
-    --spark-pulse: 35 100% 70%;
-    --spark-secondary: 25 90% 55%;
+    /* ══════════════════════════════════════════════════════════════════
+       ERA I: THE SPARK — Warm ember glow with deep burnt orange/amber
+       Design: Organic, flowing, philosophical
+    ══════════════════════════════════════════════════════════════════ */
+    --spark-void: 20 30% 3%;
+    --spark-glow: 35 100% 55%;
+    --spark-pulse: 25 95% 50%;
+    --spark-ember: 15 90% 45%;
+    --spark-flame: 30 100% 60%;
+    --spark-smoke: 25 20% 20%;
     
-    /* Era II: The Machine - Retro terminal with emerald phosphor */
-    --machine-black: 150 20% 4%;
-    --machine-amber: 45 100% 55%;
-    --machine-green: 155 85% 45%;
-    --machine-phosphor: 160 90% 50%;
-    --machine-cyan: 165 80% 45%;
+    /* ══════════════════════════════════════════════════════════════════
+       ERA II: THE MACHINE — Retro phosphor green terminal
+       Design: Angular, structured, mechanical
+    ══════════════════════════════════════════════════════════════════ */
+    --machine-black: 120 15% 3%;
+    --machine-phosphor: 120 100% 45%;
+    --machine-dim: 120 60% 25%;
+    --machine-bright: 120 100% 55%;
+    --machine-amber: 45 100% 50%;
+    --machine-grid: 120 40% 15%;
     
-    /* Era III: AI Era - Teal neural networks */
-    --ai-deep: 170 30% 5%;
-    --ai-neural: 170 75% 50%;
-    --ai-synapse: 35 90% 55%;
-    --ai-glow: 165 80% 55%;
-    --ai-electric: 45 100% 65%;
+    /* ══════════════════════════════════════════════════════════════════
+       ERA III: THE MIND — Cool teal/cyan neural patterns
+       Design: Fluid, intelligent, futuristic
+    ══════════════════════════════════════════════════════════════════ */
+    --ai-void: 190 40% 4%;
+    --ai-neural: 175 80% 45%;
+    --ai-synapse: 185 90% 50%;
+    --ai-pulse: 170 75% 55%;
+    --ai-glow: 180 85% 60%;
+    --ai-dark: 190 50% 8%;
     
-    /* Era IV: Rajai - Premium warm synthesis */
-    --rajai-bg: 35 20% 5%;
-    --rajai-surface: 35 18% 10%;
-    --rajai-text: 40 20% 96%;
-    --rajai-muted: 35 15% 55%;
-    --rajai-accent: 45 100% 60%;
-    --rajai-accent-soft: 45 85% 75%;
-    --rajai-highlight: 165 80% 50%;
+    /* ══════════════════════════════════════════════════════════════════
+       ERA IV: THE ARCHITECT — Premium gold/cream sophisticated
+       Design: Refined, professional, authoritative
+    ══════════════════════════════════════════════════════════════════ */
+    --rajai-bg: 40 15% 5%;
+    --rajai-surface: 40 12% 10%;
+    --rajai-gold: 45 90% 55%;
+    --rajai-cream: 45 30% 90%;
+    --rajai-muted: 40 15% 50%;
+    --rajai-highlight: 50 100% 65%;
+    --rajai-warm: 35 25% 15%;
     
-    /* Core Design System - Warm palette */
-    --background: 30 20% 4%;
+    /* ══════════════════════════════════════════════════════════════════
+       CORE DESIGN SYSTEM
+    ══════════════════════════════════════════════════════════════════ */
+    --background: 25 25% 4%;
     --foreground: 40 15% 96%;
     
-    --card: 30 18% 9%;
+    --card: 30 18% 8%;
     --card-foreground: 40 15% 96%;
     
-    --popover: 30 18% 9%;
+    --popover: 30 18% 8%;
     --popover-foreground: 40 15% 96%;
     
-    --primary: 45 100% 60%;
+    --primary: 35 100% 55%;
     --primary-foreground: 30 20% 5%;
     
     --secondary: 30 15% 15%;
@@ -54,7 +72,7 @@
     --muted: 30 12% 18%;
     --muted-foreground: 35 15% 55%;
     
-    --accent: 165 75% 50%;
+    --accent: 175 75% 50%;
     --accent-foreground: 30 20% 5%;
     
     --destructive: 0 85% 60%;
@@ -62,35 +80,67 @@
     
     --border: 30 15% 18%;
     --input: 30 15% 18%;
-    --ring: 45 100% 60%;
+    --ring: 35 100% 55%;
     
     --radius: 0.75rem;
     
     /* Typography */
     --font-display: 'Space Grotesk', sans-serif;
     --font-mono: 'JetBrains Mono', monospace;
+    --font-serif: 'Playfair Display', serif;
     
-    /* Enhanced Gradients - Warm tones */
-    --gradient-spark: radial-gradient(ellipse at 50% 50%, hsl(45 100% 60% / 0.12) 0%, hsl(25 90% 55% / 0.05) 40%, transparent 70%);
-    --gradient-machine: linear-gradient(180deg, hsl(150 20% 4%) 0%, hsl(155 85% 45% / 0.08) 100%);
-    --gradient-neural: radial-gradient(ellipse at 30% 40%, hsl(170 75% 50% / 0.12) 0%, transparent 50%), radial-gradient(ellipse at 70% 60%, hsl(35 90% 55% / 0.08) 0%, transparent 50%);
-    --gradient-rajai: linear-gradient(160deg, hsl(35 20% 5%) 0%, hsl(35 18% 8%) 50%, hsl(35 15% 6%) 100%);
+    /* ══════════════════════════════════════════════════════════════════
+       ERA-SPECIFIC GRADIENTS
+    ══════════════════════════════════════════════════════════════════ */
+    --gradient-spark: radial-gradient(ellipse 80% 60% at 50% 40%, 
+      hsl(35 100% 55% / 0.15) 0%, 
+      hsl(15 90% 45% / 0.08) 40%, 
+      transparent 70%);
     
-    /* Enhanced Shadows - Warm tones */
-    --shadow-spark: 0 0 80px hsl(45 100% 60% / 0.25), 0 0 120px hsl(25 90% 55% / 0.1);
-    --shadow-neural: 0 0 100px hsl(170 75% 50% / 0.2), 0 0 60px hsl(35 90% 55% / 0.1);
-    --shadow-card: 0 8px 40px hsl(0 0% 0% / 0.4), 0 2px 10px hsl(0 0% 0% / 0.2);
-    --shadow-glow: 0 0 60px hsl(45 100% 60% / 0.3);
+    --gradient-machine: linear-gradient(180deg, 
+      hsl(120 15% 3%) 0%, 
+      hsl(120 40% 15% / 0.1) 50%, 
+      hsl(120 15% 3%) 100%);
+    
+    --gradient-ai: radial-gradient(ellipse 60% 50% at 30% 30%, 
+      hsl(175 80% 45% / 0.12) 0%, 
+      transparent 50%), 
+      radial-gradient(ellipse 50% 40% at 70% 70%, 
+      hsl(185 90% 50% / 0.08) 0%, 
+      transparent 50%);
+    
+    --gradient-rajai: linear-gradient(160deg, 
+      hsl(40 15% 5%) 0%, 
+      hsl(40 12% 8%) 50%, 
+      hsl(40 15% 5%) 100%);
+    
+    /* ══════════════════════════════════════════════════════════════════
+       ERA-SPECIFIC SHADOWS
+    ══════════════════════════════════════════════════════════════════ */
+    --shadow-spark: 0 0 80px hsl(35 100% 55% / 0.3), 
+                    0 0 160px hsl(15 90% 45% / 0.15);
+    
+    --shadow-machine: 0 0 60px hsl(120 100% 45% / 0.2), 
+                      0 0 120px hsl(120 100% 55% / 0.1);
+    
+    --shadow-ai: 0 0 100px hsl(175 80% 45% / 0.25), 
+                 0 0 200px hsl(185 90% 50% / 0.1);
+    
+    --shadow-rajai: 0 0 80px hsl(45 90% 55% / 0.15), 
+                    0 0 40px hsl(40 15% 5% / 0.8);
+    
+    --shadow-card: 0 8px 40px hsl(0 0% 0% / 0.4), 
+                   0 2px 10px hsl(0 0% 0% / 0.2);
     
     /* Sidebar */
     --sidebar-background: 30 20% 5%;
     --sidebar-foreground: 40 15% 96%;
-    --sidebar-primary: 45 100% 60%;
+    --sidebar-primary: 35 100% 55%;
     --sidebar-primary-foreground: 30 20% 5%;
     --sidebar-accent: 30 15% 15%;
     --sidebar-accent-foreground: 40 15% 96%;
     --sidebar-border: 30 15% 18%;
-    --sidebar-ring: 45 100% 60%;
+    --sidebar-ring: 35 100% 55%;
   }
 }
 
@@ -115,82 +165,107 @@
 }
 
 @layer components {
-  /* Era-specific backgrounds */
+  /* ══════════════════════════════════════════════════════════════════
+     ERA I: SPARK — Warm, organic, flowing
+  ══════════════════════════════════════════════════════════════════ */
   .era-spark {
     background: hsl(var(--spark-void));
     background-image: var(--gradient-spark);
   }
   
+  .spark-glow {
+    color: hsl(var(--spark-glow));
+    text-shadow: 
+      0 0 10px hsl(var(--spark-glow) / 0.8),
+      0 0 30px hsl(var(--spark-glow) / 0.5),
+      0 0 60px hsl(var(--spark-ember) / 0.3);
+  }
+  
+  .spark-card {
+    background: linear-gradient(135deg, 
+      hsl(var(--spark-smoke) / 0.6) 0%, 
+      hsl(var(--spark-void) / 0.8) 100%);
+    border: 1px solid hsl(var(--spark-glow) / 0.2);
+    border-radius: 1.5rem;
+    backdrop-filter: blur(20px);
+  }
+  
+  .spark-card:hover {
+    border-color: hsl(var(--spark-glow) / 0.5);
+    box-shadow: var(--shadow-spark);
+  }
+  
+  .spark-badge {
+    background: hsl(var(--spark-glow) / 0.1);
+    border: 1px solid hsl(var(--spark-glow) / 0.3);
+    color: hsl(var(--spark-flame));
+    border-radius: 9999px;
+  }
+  
+  .spark-badge:hover {
+    background: hsl(var(--spark-glow) / 0.2);
+    border-color: hsl(var(--spark-glow));
+    box-shadow: 0 0 30px hsl(var(--spark-glow) / 0.4);
+  }
+
+  /* ══════════════════════════════════════════════════════════════════
+     ERA II: MACHINE — Angular, mechanical, retro terminal
+  ══════════════════════════════════════════════════════════════════ */
   .era-machine {
     background: hsl(var(--machine-black));
     background-image: var(--gradient-machine);
   }
   
-  .era-ai {
-    background: hsl(var(--ai-deep));
-    background-image: var(--gradient-neural);
+  .machine-glow {
+    color: hsl(var(--machine-phosphor));
+    text-shadow: 
+      0 0 8px hsl(var(--machine-phosphor) / 0.9),
+      0 0 25px hsl(var(--machine-phosphor) / 0.6),
+      0 0 50px hsl(var(--machine-phosphor) / 0.3);
+    animation: phosphor-flicker 0.1s infinite;
   }
   
-  .era-rajai {
-    background: hsl(var(--rajai-bg));
-    background-image: var(--gradient-rajai);
+  @keyframes phosphor-flicker {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.97; }
+    75% { opacity: 0.99; }
   }
   
-  /* Typography classes */
-  .font-display {
-    font-family: var(--font-display);
+  .machine-card {
+    background: hsl(var(--machine-black));
+    border: 1px solid hsl(var(--machine-phosphor) / 0.3);
+    border-radius: 0.5rem;
+    position: relative;
   }
   
-  .font-mono {
+  .machine-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, 
+      transparent, 
+      hsl(var(--machine-phosphor) / 0.8), 
+      transparent);
+  }
+  
+  .machine-card:hover {
+    border-color: hsl(var(--machine-phosphor) / 0.6);
+    box-shadow: var(--shadow-machine);
+  }
+  
+  .machine-badge {
+    background: hsl(var(--machine-phosphor) / 0.08);
+    border: 1px solid hsl(var(--machine-phosphor) / 0.4);
+    color: hsl(var(--machine-phosphor));
+    border-radius: 0.25rem;
     font-family: var(--font-mono);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
   }
   
-  /* Enhanced text glow effects - Warm tones */
-  .text-phosphor {
-    color: hsl(var(--machine-green));
-    text-shadow: 0 0 8px hsl(var(--machine-green) / 0.6),
-                 0 0 25px hsl(var(--machine-green) / 0.4),
-                 0 0 50px hsl(var(--machine-green) / 0.2);
-  }
-  
-  .text-amber-glow {
-    color: hsl(var(--spark-glow));
-    text-shadow: 0 0 8px hsl(var(--spark-glow) / 0.6),
-                 0 0 30px hsl(var(--spark-glow) / 0.4),
-                 0 0 60px hsl(var(--spark-glow) / 0.2);
-  }
-  
-  .text-neural-glow {
-    color: hsl(var(--ai-neural));
-    text-shadow: 0 0 10px hsl(var(--ai-neural) / 0.7),
-                 0 0 35px hsl(var(--ai-neural) / 0.4),
-                 0 0 70px hsl(var(--ai-neural) / 0.2);
-  }
-  
-  .text-synapse-glow {
-    color: hsl(var(--ai-synapse));
-    text-shadow: 0 0 10px hsl(var(--ai-synapse) / 0.6),
-                 0 0 30px hsl(var(--ai-synapse) / 0.3);
-  }
-  
-  /* Glowing elements */
-  .glow-amber {
-    box-shadow: var(--shadow-spark);
-  }
-  
-  .glow-emerald {
-    box-shadow: 0 0 40px hsl(var(--machine-green) / 0.3);
-  }
-  
-  .glow-teal {
-    box-shadow: 0 0 40px hsl(var(--ai-neural) / 0.3);
-  }
-  
-  .glow-neural {
-    box-shadow: var(--shadow-neural);
-  }
-  
-  /* Enhanced scanline effect */
   .scanlines::after {
     content: '';
     position: absolute;
@@ -199,14 +274,192 @@
       0deg,
       transparent,
       transparent 2px,
-      hsl(0 0% 0% / 0.04) 2px,
-      hsl(0 0% 0% / 0.04) 4px
+      hsl(0 0% 0% / 0.08) 2px,
+      hsl(0 0% 0% / 0.08) 4px
     );
     pointer-events: none;
     z-index: 1;
   }
   
-  /* Enhanced card styles */
+  .crt-curve {
+    border-radius: 1rem;
+    box-shadow: 
+      inset 0 0 60px hsl(var(--machine-phosphor) / 0.05),
+      inset 0 0 100px hsl(0 0% 0% / 0.3);
+  }
+
+  /* ══════════════════════════════════════════════════════════════════
+     ERA III: AI — Fluid, futuristic, neural patterns
+  ══════════════════════════════════════════════════════════════════ */
+  .era-ai {
+    background: hsl(var(--ai-void));
+    background-image: var(--gradient-ai);
+  }
+  
+  .ai-glow {
+    color: hsl(var(--ai-neural));
+    text-shadow: 
+      0 0 12px hsl(var(--ai-neural) / 0.9),
+      0 0 40px hsl(var(--ai-synapse) / 0.5),
+      0 0 80px hsl(var(--ai-glow) / 0.3);
+  }
+  
+  .ai-card {
+    background: linear-gradient(145deg, 
+      hsl(var(--ai-dark) / 0.8) 0%, 
+      hsl(var(--ai-void) / 0.6) 100%);
+    border: 1px solid hsl(var(--ai-neural) / 0.2);
+    border-radius: 1rem;
+    backdrop-filter: blur(24px);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .ai-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(
+      circle at center,
+      hsl(var(--ai-neural) / 0.03) 0%,
+      transparent 50%
+    );
+    animation: ai-pulse 8s ease-in-out infinite;
+  }
+  
+  @keyframes ai-pulse {
+    0%, 100% { transform: translate(-25%, -25%) scale(1); opacity: 0.5; }
+    50% { transform: translate(-25%, -25%) scale(1.5); opacity: 1; }
+  }
+  
+  .ai-card:hover {
+    border-color: hsl(var(--ai-neural) / 0.5);
+    box-shadow: var(--shadow-ai);
+  }
+  
+  .ai-badge {
+    background: linear-gradient(135deg, 
+      hsl(var(--ai-neural) / 0.1) 0%, 
+      hsl(var(--ai-synapse) / 0.1) 100%);
+    border: 1px solid hsl(var(--ai-neural) / 0.3);
+    color: hsl(var(--ai-glow));
+    border-radius: 9999px;
+  }
+  
+  .ai-badge:hover {
+    background: linear-gradient(135deg, 
+      hsl(var(--ai-neural) / 0.2) 0%, 
+      hsl(var(--ai-synapse) / 0.2) 100%);
+    border-color: hsl(var(--ai-neural));
+    box-shadow: 0 0 30px hsl(var(--ai-neural) / 0.3);
+  }
+  
+  .neural-line {
+    background: linear-gradient(90deg, 
+      transparent 0%, 
+      hsl(var(--ai-neural) / 0.6) 50%, 
+      transparent 100%);
+    height: 1px;
+  }
+
+  /* ══════════════════════════════════════════════════════════════════
+     ERA IV: RAJAI — Premium, sophisticated, authoritative
+  ══════════════════════════════════════════════════════════════════ */
+  .era-rajai {
+    background: hsl(var(--rajai-bg));
+    background-image: var(--gradient-rajai);
+  }
+  
+  .rajai-glow {
+    color: hsl(var(--rajai-gold));
+    text-shadow: 
+      0 0 8px hsl(var(--rajai-gold) / 0.6),
+      0 0 20px hsl(var(--rajai-highlight) / 0.3);
+  }
+  
+  .rajai-card {
+    background: linear-gradient(165deg, 
+      hsl(var(--rajai-surface)) 0%, 
+      hsl(var(--rajai-warm)) 100%);
+    border: 1px solid hsl(var(--rajai-gold) / 0.15);
+    border-radius: 1rem;
+    backdrop-filter: blur(30px);
+    position: relative;
+  }
+  
+  .rajai-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(135deg, 
+      hsl(var(--rajai-gold) / 0.3) 0%, 
+      transparent 50%, 
+      hsl(var(--rajai-gold) / 0.1) 100%);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+  
+  .rajai-card:hover::before {
+    opacity: 1;
+  }
+  
+  .rajai-card:hover {
+    border-color: hsl(var(--rajai-gold) / 0.3);
+    box-shadow: var(--shadow-rajai);
+  }
+  
+  .rajai-badge {
+    background: hsl(var(--rajai-gold) / 0.1);
+    border: 1px solid hsl(var(--rajai-gold) / 0.25);
+    color: hsl(var(--rajai-gold));
+    border-radius: 0.5rem;
+    font-weight: 500;
+  }
+  
+  .rajai-badge:hover {
+    background: hsl(var(--rajai-gold) / 0.15);
+    border-color: hsl(var(--rajai-gold) / 0.5);
+  }
+  
+  .gold-shimmer {
+    background: linear-gradient(
+      90deg,
+      hsl(var(--rajai-gold) / 0) 0%,
+      hsl(var(--rajai-gold) / 0.3) 50%,
+      hsl(var(--rajai-gold) / 0) 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 3s linear infinite;
+  }
+  
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+
+  /* ══════════════════════════════════════════════════════════════════
+     SHARED COMPONENTS
+  ══════════════════════════════════════════════════════════════════ */
+  .font-display {
+    font-family: var(--font-display);
+  }
+  
+  .font-mono {
+    font-family: var(--font-mono);
+  }
+  
+  .font-serif {
+    font-family: var(--font-serif);
+  }
+  
   .card-glass {
     background: hsl(var(--card) / 0.7);
     backdrop-filter: blur(24px);
@@ -216,10 +469,8 @@
   
   .card-glass:hover {
     border-color: hsl(var(--primary) / 0.3);
-    box-shadow: var(--shadow-card), 0 0 30px hsl(var(--primary) / 0.1);
   }
   
-  /* Link underline animation */
   .link-animate {
     position: relative;
   }
@@ -241,33 +492,9 @@
     transform: scaleX(1);
     transform-origin: left;
   }
-  
-  /* Animated border gradient */
-  .border-gradient {
-    position: relative;
-  }
-  
-  .border-gradient::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    padding: 1px;
-    background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent)), hsl(var(--ai-synapse)));
-    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
-  
-  .border-gradient:hover::before {
-    opacity: 1;
-  }
 }
 
 @layer utilities {
-  /* Hide scrollbar but keep functionality */
   .scrollbar-hide {
     -ms-overflow-style: none;
     scrollbar-width: none;
@@ -277,17 +504,14 @@
     display: none;
   }
   
-  /* Text balance */
   .text-balance {
     text-wrap: balance;
   }
   
-  /* Smooth backdrop */
   .backdrop-blur-smooth {
     backdrop-filter: blur(20px) saturate(180%);
   }
   
-  /* Scroll snap container */
   .scroll-snap-container {
     scroll-snap-type: y proximity;
   }
@@ -297,52 +521,22 @@
     scroll-snap-stop: normal;
   }
   
-  /* Micro-interaction utilities */
+  /* Micro-interactions */
   .hover-lift {
     @apply transition-all duration-300 ease-out;
   }
   
   .hover-lift:hover {
-    @apply -translate-y-1 shadow-lg;
+    @apply -translate-y-1;
   }
   
-  .hover-glow {
-    @apply transition-all duration-300;
-  }
-  
-  .hover-glow:hover {
-    box-shadow: 0 0 30px hsl(var(--primary) / 0.3);
-  }
-  
-  /* Magnetic button effect base */
-  .magnetic-btn {
-    @apply relative transition-transform duration-200 ease-out;
-  }
-  
-  /* Smooth entrance animations */
-  .animate-in {
-    animation: fadeSlideIn 0.6s ease-out forwards;
-  }
-  
-  @keyframes fadeSlideIn {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  
-  /* Stagger delay utilities */
+  /* Stagger animations */
   .stagger-1 { animation-delay: 0.1s; }
   .stagger-2 { animation-delay: 0.2s; }
   .stagger-3 { animation-delay: 0.3s; }
   .stagger-4 { animation-delay: 0.4s; }
   .stagger-5 { animation-delay: 0.5s; }
   
-  /* Floating animation */
   .animate-float {
     animation: float 6s ease-in-out infinite;
   }
@@ -350,19 +544,5 @@
   @keyframes float {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-20px); }
-  }
-  
-  /* Pulse glow */
-  .animate-pulse-glow {
-    animation: pulseGlow 3s ease-in-out infinite;
-  }
-  
-  @keyframes pulseGlow {
-    0%, 100% { 
-      box-shadow: 0 0 20px hsl(var(--primary) / 0.2);
-    }
-    50% { 
-      box-shadow: 0 0 40px hsl(var(--primary) / 0.4);
-    }
   }
 }

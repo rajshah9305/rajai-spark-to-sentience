@@ -71,9 +71,9 @@ export default function Index() {
         ref={containerRef} 
         className={`relative bg-background ${showBoot ? 'opacity-0' : 'opacity-100'} transition-opacity duration-500`}
       >
-        {/* Progress bar - warm gradient */}
+        {/* Progress bar - distinct era colors */}
         <motion.div 
-          className="fixed top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-spark-glow via-machine-green via-ai-neural to-rajai-accent z-50 origin-left"
+          className="fixed top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-spark-glow via-machine-phosphor via-ai-neural to-rajai-gold z-50 origin-left"
           style={{ scaleX }}
         />
         
@@ -92,7 +92,7 @@ export default function Index() {
             fromEra={STORY_TRANSITIONS[0].from}
             toEra={STORY_TRANSITIONS[0].to}
             transitionText={STORY_TRANSITIONS[0].text}
-            className="story-transition bg-gradient-to-b from-spark-glow/5 via-machine-green/5 to-machine-green/10"
+            className="story-transition bg-gradient-to-b from-spark-ember/5 via-transparent to-machine-phosphor/8"
           />
           
           {/* Act II: The Machine */}
@@ -101,7 +101,7 @@ export default function Index() {
             fromEra={STORY_TRANSITIONS[1].from}
             toEra={STORY_TRANSITIONS[1].to}
             transitionText={STORY_TRANSITIONS[1].text}
-            className="story-transition bg-gradient-to-b from-machine-green/5 via-ai-neural/5 to-ai-neural/10"
+            className="story-transition bg-gradient-to-b from-machine-dim/5 via-transparent to-ai-neural/8"
           />
           
           {/* Act III: The Mind (AI) */}
@@ -110,7 +110,7 @@ export default function Index() {
             fromEra={STORY_TRANSITIONS[2].from}
             toEra={STORY_TRANSITIONS[2].to}
             transitionText={STORY_TRANSITIONS[2].text}
-            className="story-transition bg-gradient-to-b from-ai-neural/5 via-primary/5 to-primary/10"
+            className="story-transition bg-gradient-to-b from-ai-synapse/5 via-transparent to-rajai-gold/8"
           />
           
           {/* Act IV: The Architect (Raj Shah) */}
