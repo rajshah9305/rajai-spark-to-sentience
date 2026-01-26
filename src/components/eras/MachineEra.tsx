@@ -4,12 +4,13 @@ import InteractiveTimeline from '@/components/InteractiveTimeline';
 
 // Act II: The Machine - The birth of computing
 const terminalLines = [
-  { text: '> INITIALIZING COMPUTATION.HISTORY...', delay: 0 },
-  { text: '> LOADING: VACUUM TUBES → TRANSISTORS → SILICON', delay: 0.3 },
-  { text: '> PROCESSING: FROM ENIAC TO PERSONAL COMPUTERS', delay: 0.6 },
-  { text: '> COMPILING: THE DIGITAL REVOLUTION', delay: 0.9 },
-  { text: '> STATUS: MACHINES AWAKENING', delay: 1.2 },
-  { text: '> THE AGE OF COMPUTING HAS BEGUN', delay: 1.5, highlight: true },
+  { text: '> BOOT SEQUENCE INITIALIZED...', delay: 0 },
+  { text: '> LOADING COMPUTATION.HISTORY', delay: 0.2 },
+  { text: '> MODULES: VACUUM_TUBES → TRANSISTORS → SILICON', delay: 0.4 },
+  { text: '> TIMELINE: ENIAC [1945] → MICROPROCESSOR [1971]', delay: 0.6 },
+  { text: '> PARSING: THE.DIGITAL.REVOLUTION', delay: 0.8 },
+  { text: '> STATUS: MACHINES_ONLINE', delay: 1.0, highlight: true },
+  { text: '> READY_', delay: 1.2, cursor: true },
 ];
 
 const computingMilestones = [
@@ -22,17 +23,17 @@ const computingMilestones = [
 ];
 
 const computingPrinciples = [
-  { concept: 'Binary', desc: '0s and 1s - the language of machines' },
-  { concept: 'Algorithms', desc: 'Step-by-step instructions for solving problems' },
-  { concept: 'Memory', desc: 'Storage that remembers so we don\'t have to' },
-  { concept: 'Loops', desc: 'Repetition that makes automation possible' },
+  { concept: 'BINARY', desc: '0s and 1s — the language of machines', code: '01001000 01001001' },
+  { concept: 'LOGIC', desc: 'AND, OR, NOT — the gates of reason', code: 'IF x AND y THEN z' },
+  { concept: 'MEMORY', desc: 'Storage that persists beyond power', code: 'MOV AX, [0x1000]' },
+  { concept: 'LOOPS', desc: 'Iteration makes automation possible', code: 'FOR i=0 TO ∞' },
 ];
 
 const machineStats = [
-  { value: '10⁹', label: 'Transistors per chip' },
-  { value: '5 GHz', label: 'Modern CPU speed' },
-  { value: '10¹⁸', label: 'Operations/second' },
-  { value: '∞', label: 'Possibilities' },
+  { value: '10⁹', label: 'TRANSISTORS/CHIP', suffix: '+' },
+  { value: '5.0', label: 'GHz CLOCK SPEED', suffix: '' },
+  { value: '10¹⁸', label: 'FLOPS POSSIBLE', suffix: '' },
+  { value: '∞', label: 'POSSIBILITIES', suffix: '' },
 ];
 
 export default function MachineEra() {
@@ -44,71 +45,66 @@ export default function MachineEra() {
     offset: ["start end", "end start"]
   });
   
-  // Parallax transforms
-  const terminalY = useTransform(scrollYProgress, [0, 1], [80, -80]);
-  const conceptsY = useTransform(scrollYProgress, [0, 1], [60, -60]);
-  const techY = useTransform(scrollYProgress, [0, 1], [50, -50]);
-  const codeY = useTransform(scrollYProgress, [0, 1], [40, -70]);
-  const gridY = useTransform(scrollYProgress, [0, 1], [0, -50]);
-  const punchCardY = useTransform(scrollYProgress, [0, 1], [100, -50]);
+  // Angular, structured parallax
+  const terminalY = useTransform(scrollYProgress, [0, 1], [60, -60]);
+  const gridY = useTransform(scrollYProgress, [0, 1], [0, -30]);
+  const statsY = useTransform(scrollYProgress, [0, 1], [40, -40]);
+  const principlesY = useTransform(scrollYProgress, [0, 1], [50, -50]);
+  const codeY = useTransform(scrollYProgress, [0, 1], [30, -60]);
   
   useEffect(() => {
     const timer = setInterval(() => {
       setCursorVisible(v => !v);
-    }, 600);
+    }, 530);
     return () => clearInterval(timer);
   }, []);
 
   return (
     <section 
       ref={containerRef}
-      className="relative min-h-[280vh] flex flex-col items-center justify-start overflow-hidden era-machine scanlines pt-24 pb-20"
+      className="relative min-h-[280vh] flex flex-col items-center justify-start overflow-hidden era-machine pt-24 pb-20"
     >
-      {/* Animated grid background with subtle parallax */}
+      {/* Grid background with scanlines */}
       <motion.div 
-        className="absolute inset-0 opacity-[0.08]"
+        className="absolute inset-0 opacity-[0.06]"
         style={{ 
           y: gridY,
           backgroundImage: `
-            linear-gradient(hsl(var(--machine-green) / 0.4) 1px, transparent 1px),
-            linear-gradient(90deg, hsl(var(--machine-green) / 0.4) 1px, transparent 1px)
+            linear-gradient(hsl(var(--machine-phosphor) / 0.5) 1px, transparent 1px),
+            linear-gradient(90deg, hsl(var(--machine-phosphor) / 0.5) 1px, transparent 1px)
           `,
-          backgroundSize: '60px 60px',
+          backgroundSize: '50px 50px',
         }}
       />
       
-      {/* Glow orbs with parallax */}
+      {/* Scan line effect */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <motion.div 
+          className="absolute left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-machine-phosphor/30 to-transparent"
+          animate={{ 
+            y: ['-100vh', '200vh'],
+          }}
+          transition={{ 
+            duration: 4, 
+            repeat: Infinity, 
+            ease: "linear",
+          }}
+        />
+      </div>
+      
+      {/* Phosphor glow spots */}
       <motion.div 
-        className="absolute top-1/4 left-1/4 w-64 md:w-80 h-64 md:h-80 rounded-full bg-machine-green/8 blur-[100px]"
-        style={{ y: useTransform(scrollYProgress, [0, 1], [50, -100]) }}
-        animate={{ opacity: [0.08, 0.12, 0.08] }}
-        transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute top-1/4 left-1/3 w-64 md:w-80 h-64 md:h-80 rounded-full bg-machine-phosphor/5 blur-[100px]"
+        animate={{ opacity: [0.05, 0.1, 0.05] }}
+        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
       />
       <motion.div 
-        className="absolute bottom-1/3 right-1/4 w-48 md:w-64 h-48 md:h-64 rounded-full bg-machine-amber/6 blur-[80px]"
-        style={{ y: useTransform(scrollYProgress, [0, 1], [-30, 60]) }}
-        animate={{ opacity: [0.06, 0.1, 0.06] }}
-        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+        className="absolute bottom-1/3 right-1/4 w-48 md:w-56 h-48 md:h-56 rounded-full bg-machine-dim/8 blur-[80px]"
+        animate={{ opacity: [0.08, 0.15, 0.08] }}
+        transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 1 }}
       />
       
-      {/* Punch card decoration with parallax */}
-      <motion.div 
-        className="absolute -right-20 top-1/3 w-72 h-48 rounded-lg border border-machine-green/10 opacity-[0.06] rotate-12"
-        style={{ y: punchCardY }}
-      >
-        <div className="p-4 grid grid-cols-8 gap-1">
-          {[...Array(48)].map((_, i) => (
-            <motion.div 
-              key={i} 
-              className={`w-2 h-2 rounded-full ${Math.random() > 0.5 ? 'bg-machine-green/30' : 'bg-transparent'}`}
-              animate={{ opacity: [0.3, 0.8, 0.3] }}
-              transition={{ duration: 2, repeat: Infinity, delay: i * 0.05 }}
-            />
-          ))}
-        </div>
-      </motion.div>
-      
-      {/* Terminal Window with parallax */}
+      {/* Terminal Window */}
       <motion.div 
         className="relative z-10 w-full max-w-3xl px-4 md:px-6 mb-16"
         style={{ y: terminalY }}
@@ -116,185 +112,194 @@ export default function MachineEra() {
         <motion.p
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          transition={{ duration: 1 }}
+          transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="font-mono text-xs md:text-sm tracking-[0.4em] text-machine-green/70 uppercase mb-10 text-center"
+          className="font-mono text-xs md:text-sm tracking-[0.5em] text-machine-phosphor/80 uppercase mb-10 text-center"
         >
-          Act II — The Foundation
+          Act II — The Machine
         </motion.p>
         
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          initial={{ opacity: 0, y: 30, scale: 0.98 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="bg-machine-black border border-machine-green/30 rounded-xl overflow-hidden shadow-[0_0_60px_hsl(var(--machine-green)_/_0.1)]"
-          whileHover={{ boxShadow: '0 0 80px hsl(var(--machine-green) / 0.2)' }}
+          className="machine-card crt-curve scanlines overflow-hidden"
         >
-          {/* Terminal header */}
-          <div className="flex items-center gap-2 px-4 py-3 border-b border-machine-green/20 bg-machine-green/5">
-            <motion.div 
-              className="w-3 h-3 rounded-full bg-machine-amber"
-              whileHover={{ scale: 1.2 }}
-            />
-            <motion.div 
-              className="w-3 h-3 rounded-full bg-machine-green"
-              whileHover={{ scale: 1.2 }}
-            />
-            <motion.div 
-              className="w-3 h-3 rounded-full bg-spark-glow"
-              whileHover={{ scale: 1.2 }}
-            />
-            <span className="ml-2 font-mono text-xs text-machine-green/50">raj@machine:~</span>
+          {/* Terminal header - angular design */}
+          <div className="flex items-center gap-2 px-4 py-3 border-b border-machine-phosphor/30 bg-machine-grid/50">
+            <div className="flex gap-2">
+              <motion.div 
+                className="w-3 h-3 rounded-sm bg-machine-amber"
+                whileHover={{ scale: 1.3 }}
+              />
+              <motion.div 
+                className="w-3 h-3 rounded-sm bg-machine-phosphor"
+                whileHover={{ scale: 1.3 }}
+              />
+              <motion.div 
+                className="w-3 h-3 rounded-sm bg-machine-dim"
+                whileHover={{ scale: 1.3 }}
+              />
+            </div>
+            <span className="ml-3 font-mono text-xs text-machine-phosphor/60">raj@machine:~/history$</span>
           </div>
           
           {/* Terminal content */}
-          <div className="p-5 md:p-6 font-mono text-sm md:text-base">
+          <div className="p-5 md:p-6 font-mono text-sm md:text-base bg-machine-black/90 relative z-10">
             {terminalLines.map((line, i) => (
-              <motion.p
+              <motion.div
                 key={i}
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.4, delay: line.delay }}
+                transition={{ duration: 0.3, delay: line.delay }}
                 viewport={{ once: true }}
-                className={`mb-2 ${line.highlight ? 'text-phosphor font-medium' : 'text-machine-green/80'}`}
+                className={`mb-1.5 flex items-center ${line.highlight ? 'machine-glow font-bold' : 'text-machine-phosphor/80'}`}
               >
-                {line.text}
-              </motion.p>
+                <span>{line.text}</span>
+                {line.cursor && (
+                  <span 
+                    className={`ml-1 inline-block w-2.5 h-5 bg-machine-phosphor transition-opacity duration-100 ${cursorVisible ? 'opacity-100' : 'opacity-0'}`}
+                  />
+                )}
+              </motion.div>
             ))}
-            <motion.span 
-              className={`inline-block w-3 h-5 bg-machine-green ${cursorVisible ? 'opacity-100' : 'opacity-0'}`}
-              transition={{ duration: 0.1 }}
-            />
           </div>
         </motion.div>
       </motion.div>
       
-      {/* Hero text */}
+      {/* Hero text - mechanical type */}
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
+        transition={{ duration: 0.7 }}
         viewport={{ once: true }}
         className="relative z-10 text-center px-4 md:px-6 max-w-4xl mb-20"
       >
-        <h2 className="text-4xl md:text-6xl lg:text-7xl font-display font-light tracking-tight mb-8">
-          <span className="text-foreground">From vacuum tubes</span>
+        <h2 className="text-4xl md:text-6xl lg:text-7xl font-mono font-light tracking-tight mb-8">
+          <span className="text-foreground">FROM VACUUM TUBES</span>
           <br />
           <motion.span 
-            className="text-phosphor font-normal"
-            animate={{ 
-              textShadow: [
-                '0 0 10px hsl(var(--machine-green) / 0.5)',
-                '0 0 30px hsl(var(--machine-green) / 0.8)',
-                '0 0 10px hsl(var(--machine-green) / 0.5)'
-              ]
-            }}
-            transition={{ duration: 2, repeat: Infinity }}
+            className="machine-glow font-bold"
           >
-            to silicon dreams
+            TO SILICON DREAMS
           </motion.span>
         </h2>
-        <p className="text-base md:text-lg text-muted-foreground font-light max-w-2xl mx-auto leading-relaxed">
+        <p className="text-base md:text-lg text-machine-phosphor/70 font-mono max-w-2xl mx-auto leading-relaxed">
           The machine era transformed abstract mathematics into physical reality—
           circuits that compute, memory that persists, systems that never forget.
         </p>
       </motion.div>
       
-      {/* Machine Stats */}
+      {/* Machine Stats - angular cards */}
       <motion.div
-        className="relative z-10 w-full max-w-4xl px-4 md:px-6 mb-20"
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        viewport={{ once: true }}
+        className="relative z-10 w-full max-w-4xl px-4 md:px-6 mb-24"
+        style={{ y: statsY }}
       >
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {machineStats.map((stat, i) => (
             <motion.div
               key={stat.label}
-              className="text-center p-4 border border-machine-green/20 rounded-xl bg-machine-green/5"
-              whileHover={{ y: -4, borderColor: 'hsl(var(--machine-green) / 0.5)' }}
-              transition={{ type: "spring", stiffness: 400 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: i * 0.1 }}
+              viewport={{ once: true }}
+              className="machine-card p-5 text-center"
+              whileHover={{ 
+                y: -4, 
+                borderColor: 'hsl(var(--machine-phosphor) / 0.6)',
+              }}
             >
               <motion.div 
-                className="text-2xl md:text-3xl font-mono font-bold text-machine-green mb-2"
+                className="text-2xl md:text-3xl font-mono font-bold text-machine-phosphor mb-2"
                 whileHover={{ scale: 1.1 }}
               >
-                {stat.value}
+                {stat.value}{stat.suffix}
               </motion.div>
-              <div className="text-xs text-muted-foreground font-mono">{stat.label}</div>
+              <div className="text-[10px] md:text-xs text-machine-dim font-mono tracking-wider">{stat.label}</div>
             </motion.div>
           ))}
         </div>
       </motion.div>
       
-      {/* Computing Milestones - Interactive Timeline */}
+      {/* Computing Milestones Timeline */}
       <motion.div 
-        className="relative z-10 w-full max-w-5xl px-4 md:px-6 mb-20"
-        style={{ y: conceptsY }}
+        className="relative z-10 w-full max-w-5xl px-4 md:px-6 mb-24"
       >
         <motion.h3
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="font-mono text-xs tracking-[0.3em] text-machine-green/50 uppercase mb-10 text-center"
+          className="font-mono text-xs tracking-[0.4em] text-machine-phosphor/60 uppercase mb-10 text-center"
         >
-          Milestones of the Machine Age
+          {'>> MILESTONES_OF_THE_MACHINE_AGE <<'}
         </motion.h3>
         
         <InteractiveTimeline events={computingMilestones} variant="horizontal" />
       </motion.div>
       
-      {/* Computing Principles with parallax */}
+      {/* Computing Principles - code blocks */}
       <motion.div 
-        className="relative z-10 w-full max-w-3xl px-4 md:px-6 mb-20"
-        style={{ y: techY }}
+        className="relative z-10 w-full max-w-4xl px-4 md:px-6 mb-24"
+        style={{ y: principlesY }}
       >
         <motion.h3
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="font-mono text-xs tracking-[0.3em] text-machine-green/50 uppercase mb-8 text-center"
+          className="font-mono text-xs tracking-[0.4em] text-machine-phosphor/60 uppercase mb-10 text-center"
         >
-          Fundamental Principles
+          {'>> FUNDAMENTAL_PRINCIPLES <<'}
         </motion.h3>
         
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {computingPrinciples.map((principle, i) => (
             <motion.div
               key={principle.concept}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, x: i % 2 === 0 ? -20 : 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
               viewport={{ once: true }}
-              className="p-5 bg-machine-green/5 border border-machine-green/20 rounded-xl hover:border-machine-green/40 transition-all"
-              whileHover={{ y: -4 }}
+              className="machine-card p-5 group cursor-pointer"
+              whileHover={{ scale: 1.02 }}
             >
-              <h4 className="font-mono text-lg font-bold text-machine-green mb-2">{principle.concept}</h4>
-              <p className="text-sm text-muted-foreground">{principle.desc}</p>
+              <div className="flex items-start justify-between mb-3">
+                <h4 className="font-mono text-lg font-bold text-machine-phosphor group-hover:machine-glow transition-all">
+                  {principle.concept}
+                </h4>
+                <span className="text-[10px] font-mono text-machine-dim bg-machine-grid px-2 py-0.5 rounded">
+                  .SYS
+                </span>
+              </div>
+              <p className="text-sm text-machine-phosphor/60 mb-3 font-mono">{principle.desc}</p>
+              <code className="text-xs text-machine-amber font-mono bg-machine-black/80 px-3 py-1.5 rounded block">
+                {principle.code}
+              </code>
             </motion.div>
           ))}
         </div>
       </motion.div>
       
-      {/* Code Philosophy with parallax */}
+      {/* Code Philosophy */}
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
+        transition={{ duration: 0.7 }}
         viewport={{ once: true }}
         style={{ y: codeY }}
-        className="relative z-10 max-w-2xl mx-auto px-6 text-center"
+        className="relative z-10 max-w-2xl mx-auto px-6"
       >
         <motion.div 
-          className="bg-machine-green/5 border border-machine-green/20 rounded-xl p-8"
-          whileHover={{ scale: 1.01, borderColor: 'hsl(var(--machine-green) / 0.4)' }}
+          className="machine-card crt-curve p-6 md:p-8"
+          whileHover={{ scale: 1.01 }}
         >
-          <pre className="font-mono text-sm text-machine-green/80 text-left overflow-x-auto">
-{`function philosophy() {
+          <div className="flex items-center gap-2 mb-4 pb-3 border-b border-machine-phosphor/20">
+            <span className="text-machine-phosphor text-xs font-mono">philosophy.js</span>
+          </div>
+          <pre className="font-mono text-sm text-machine-phosphor/90 overflow-x-auto">
+{`function buildGreatThings() {
   const approach = {
     clean: true,
     efficient: true,
@@ -303,19 +308,19 @@ export default function MachineEra() {
     tested: true
   };
   
-  return buildSomethingGreat(approach);
+  return execute(approach);
 }`}
           </pre>
         </motion.div>
         
         <motion.p 
-          className="mt-8 text-sm text-muted-foreground font-mono"
+          className="mt-8 text-sm text-machine-phosphor/60 font-mono text-center"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          transition={{ delay: 0.3 }}
+          transition={{ delay: 0.4 }}
           viewport={{ once: true }}
         >
-          "Code is poetry that machines understand."
+          {"// Code is poetry that machines understand."}
         </motion.p>
       </motion.div>
     </section>

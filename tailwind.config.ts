@@ -16,6 +16,7 @@ export default {
       fontFamily: {
         display: ['Space Grotesk', 'sans-serif'],
         mono: ['JetBrains Mono', 'monospace'],
+        serif: ['Playfair Display', 'serif'],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -61,35 +62,42 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
-        // Era-specific colors - Warm palette (no purple/blue)
+        // Era I: The Spark — Warm ember/orange palette
         spark: {
           void: "hsl(var(--spark-void))",
           glow: "hsl(var(--spark-glow))",
           pulse: "hsl(var(--spark-pulse))",
-          secondary: "hsl(var(--spark-secondary))",
+          ember: "hsl(var(--spark-ember))",
+          flame: "hsl(var(--spark-flame))",
+          smoke: "hsl(var(--spark-smoke))",
         },
+        // Era II: The Machine — Retro green phosphor
         machine: {
           black: "hsl(var(--machine-black))",
-          amber: "hsl(var(--machine-amber))",
-          green: "hsl(var(--machine-green))",
           phosphor: "hsl(var(--machine-phosphor))",
-          cyan: "hsl(var(--machine-cyan))",
+          dim: "hsl(var(--machine-dim))",
+          bright: "hsl(var(--machine-bright))",
+          amber: "hsl(var(--machine-amber))",
+          grid: "hsl(var(--machine-grid))",
         },
+        // Era III: The Mind — Cool teal/cyan
         ai: {
-          deep: "hsl(var(--ai-deep))",
+          void: "hsl(var(--ai-void))",
           neural: "hsl(var(--ai-neural))",
           synapse: "hsl(var(--ai-synapse))",
+          pulse: "hsl(var(--ai-pulse))",
           glow: "hsl(var(--ai-glow))",
-          electric: "hsl(var(--ai-electric))",
+          dark: "hsl(var(--ai-dark))",
         },
+        // Era IV: The Architect — Premium gold
         rajai: {
           bg: "hsl(var(--rajai-bg))",
           surface: "hsl(var(--rajai-surface))",
-          text: "hsl(var(--rajai-text))",
+          gold: "hsl(var(--rajai-gold))",
+          cream: "hsl(var(--rajai-cream))",
           muted: "hsl(var(--rajai-muted))",
-          accent: "hsl(var(--rajai-accent))",
-          "accent-soft": "hsl(var(--rajai-accent-soft))",
           highlight: "hsl(var(--rajai-highlight))",
+          warm: "hsl(var(--rajai-warm))",
         },
       },
       borderRadius: {
@@ -106,28 +114,62 @@ export default {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
-        "pulse-glow": {
-          "0%, 100%": { opacity: "0.3", transform: "scale(1)" },
-          "50%": { opacity: "0.8", transform: "scale(1.02)" },
+        // Spark animations
+        "ember-float": {
+          "0%, 100%": { transform: "translateY(0) rotate(0deg)", opacity: "0.6" },
+          "50%": { transform: "translateY(-30px) rotate(10deg)", opacity: "1" },
         },
-        "float": {
-          "0%, 100%": { transform: "translateY(0) rotate(0deg)" },
-          "50%": { transform: "translateY(-20px) rotate(2deg)" },
+        "ember-pulse": {
+          "0%, 100%": { boxShadow: "0 0 20px hsl(35 100% 55% / 0.3)" },
+          "50%": { boxShadow: "0 0 60px hsl(35 100% 55% / 0.6)" },
         },
-        "flicker": {
-          "0%, 100%": { opacity: "1" },
-          "50%": { opacity: "0.85" },
-          "75%": { opacity: "0.92" },
-        },
+        // Machine animations
         "terminal-blink": {
           "0%, 45%": { opacity: "1" },
           "50%, 100%": { opacity: "0" },
         },
+        "scan-line": {
+          "0%": { transform: "translateY(-100%)" },
+          "100%": { transform: "translateY(100%)" },
+        },
+        "glitch": {
+          "0%, 100%": { transform: "translate(0)" },
+          "20%": { transform: "translate(-2px, 2px)" },
+          "40%": { transform: "translate(2px, -2px)" },
+          "60%": { transform: "translate(-2px, -2px)" },
+          "80%": { transform: "translate(2px, 2px)" },
+        },
+        // AI animations
         "neural-pulse": {
           "0%": { transform: "scale(1)", opacity: "0.6" },
           "50%": { transform: "scale(2)", opacity: "0" },
           "100%": { transform: "scale(1)", opacity: "0.6" },
         },
+        "synapse-flow": {
+          "0%": { backgroundPosition: "0% 50%" },
+          "50%": { backgroundPosition: "100% 50%" },
+          "100%": { backgroundPosition: "0% 50%" },
+        },
+        "orb-float": {
+          "0%, 100%": { transform: "translate(0, 0) scale(1)" },
+          "25%": { transform: "translate(10px, -20px) scale(1.05)" },
+          "50%": { transform: "translate(-10px, -30px) scale(1.1)" },
+          "75%": { transform: "translate(-20px, -10px) scale(1.05)" },
+        },
+        // Rajai animations
+        "gold-shimmer": {
+          "0%": { backgroundPosition: "-200% 0" },
+          "100%": { backgroundPosition: "200% 0" },
+        },
+        "elegant-fade": {
+          "0%": { opacity: "0", transform: "translateY(20px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
+        },
+        "breathe": {
+          "0%, 100%": { opacity: "0.4", transform: "scale(0.98)" },
+          "50%": { opacity: "1", transform: "scale(1)" },
+        },
+        // Shared
         "fade-in-up": {
           "0%": { opacity: "0", transform: "translateY(30px)" },
           "100%": { opacity: "1", transform: "translateY(0)" },
@@ -136,32 +178,33 @@ export default {
           "0%": { opacity: "0" },
           "100%": { opacity: "1" },
         },
-        "shimmer": {
-          "0%": { backgroundPosition: "-200% 0" },
-          "100%": { backgroundPosition: "200% 0" },
-        },
-        "orbit": {
-          "0%": { transform: "rotate(0deg) translateX(100px) rotate(0deg)" },
-          "100%": { transform: "rotate(360deg) translateX(100px) rotate(-360deg)" },
-        },
-        "breathe": {
-          "0%, 100%": { opacity: "0.4", transform: "scale(0.98)" },
-          "50%": { opacity: "1", transform: "scale(1)" },
+        "float": {
+          "0%, 100%": { transform: "translateY(0) rotate(0deg)" },
+          "50%": { transform: "translateY(-20px) rotate(2deg)" },
         },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        "pulse-glow": "pulse-glow 5s ease-in-out infinite",
-        "float": "float 8s ease-in-out infinite",
-        "flicker": "flicker 0.12s infinite",
+        // Spark
+        "ember-float": "ember-float 8s ease-in-out infinite",
+        "ember-pulse": "ember-pulse 3s ease-in-out infinite",
+        // Machine
         "terminal-blink": "terminal-blink 1.2s infinite",
+        "scan-line": "scan-line 3s linear infinite",
+        "glitch": "glitch 0.3s ease-in-out",
+        // AI
         "neural-pulse": "neural-pulse 2.5s ease-out infinite",
+        "synapse-flow": "synapse-flow 8s ease infinite",
+        "orb-float": "orb-float 12s ease-in-out infinite",
+        // Rajai
+        "gold-shimmer": "gold-shimmer 3s linear infinite",
+        "elegant-fade": "elegant-fade 0.8s ease-out forwards",
+        "breathe": "breathe 4s ease-in-out infinite",
+        // Shared
         "fade-in-up": "fade-in-up 0.8s ease-out forwards",
         "fade-in": "fade-in 1s ease-out forwards",
-        "shimmer": "shimmer 3s linear infinite",
-        "orbit": "orbit 20s linear infinite",
-        "breathe": "breathe 4s ease-in-out infinite",
+        "float": "float 8s ease-in-out infinite",
       },
     },
   },
