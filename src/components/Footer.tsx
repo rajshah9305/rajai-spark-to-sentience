@@ -38,8 +38,7 @@ export default function Footer({ onEraClick }: FooterProps) {
             >
               <h3 className="text-3xl font-rajai font-bold mb-4 tracking-tight">
                 <span className="raj-signature">RAJ</span>
-                <span className="text-rajai-gold">AI</span>
-                <span className="text-rajai-muted font-light">.org</span>
+                <span className="text-rajai-gold ml-2">SHAH</span>
               </h3>
               <p className="text-rajai-muted text-sm leading-relaxed mb-6 font-body">
                 From Spark to Sentience — A journey through the evolution of technology, 
