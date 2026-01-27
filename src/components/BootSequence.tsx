@@ -6,7 +6,7 @@ interface BootSequenceProps {
 }
 
 const bootLines = [
-  { text: 'RAJAI.SYS v2.0.25', delay: 0 },
+  { text: 'RAJSHAH.SYS v2.0.25', delay: 0 },
   { text: 'Initializing creative processors...', delay: 200 },
   { text: 'Loading experience pathways... OK', delay: 400 },
   { text: 'Calibrating design cores... OK', delay: 600 },
@@ -133,7 +133,7 @@ export default function BootSequence({ onComplete }: BootSequenceProps) {
                   className="w-3 h-3 rounded-full bg-ai-neural/80"
                   whileHover={{ scale: 1.2 }}
                 />
-                <span className="ml-3 font-machine text-xs text-rajai-muted">rajai-terminal</span>
+                <span className="ml-3 font-machine text-xs text-rajai-muted">rajshah-terminal</span>
               </div>
               <motion.button
                 onClick={handleSkip}
@@ -211,7 +211,7 @@ export default function BootSequence({ onComplete }: BootSequenceProps) {
             className="absolute bottom-8 text-center"
           >
             <span className="font-rajai text-xl font-bold tracking-[0.35em]">
-              <span className="raj-signature">RAJ</span><span className="text-rajai-gold">AI</span><span className="text-rajai-muted/60">.ORG</span>
+              <span className="raj-signature">RAJ</span> <span className="text-rajai-gold">SHAH</span>
             </span>
           </motion.div>
 

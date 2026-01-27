@@ -125,6 +125,7 @@ export default function RajaiEra() {
           className="text-5xl md:text-7xl lg:text-9xl font-rajai font-bold tracking-tighter text-center mb-8"
         >
           <span className="raj-signature">RAJ</span>
+          <span className="inline-block w-4 md:w-8" />
           <motion.span 
             className="rajai-glow"
             animate={{ 
@@ -137,7 +138,7 @@ export default function RajaiEra() {
             }}
             transition={{ duration: 3, repeat: Infinity }}
           >
-            AI
+            SHAH
           </motion.span>
         </motion.h2>
         
