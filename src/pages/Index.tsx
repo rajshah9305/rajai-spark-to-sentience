@@ -4,13 +4,13 @@ import BootSequence from '@/components/BootSequence';
 import EraNavigation from '@/components/EraNavigation';
 import SparkEra from '@/components/eras/SparkEra';
 import MachineEra from '@/components/eras/MachineEra';
-import AIEra from '@/components/eras/AIEra';
-import RajaiEra from '@/components/eras/RajaiEra';
+import MindEra from '@/components/eras/MindEra';
+import ArchitectEra from '@/components/eras/ArchitectEra';
 import StoryTransition from '@/components/StoryTransition';
 import Footer from '@/components/Footer';
 
 // 4-Act Story Structure: From idea to architect
-const ERAS = ['Spark', 'Machine', 'AI', 'Rajai'];
+const ERAS = ['Spark', 'Machine', 'Mind', 'Architect'];
 
 const STORY_TRANSITIONS = [
   { from: 'The Spark', to: 'The Machine', text: 'From abstract thought emerged the desire to compute...' },
@@ -104,8 +104,8 @@ export default function Index() {
             className="story-transition bg-gradient-to-b from-machine-dim/5 via-transparent to-ai-neural/8"
           />
           
-          {/* Act III: The Mind (AI) */}
-          <AIEra />
+          {/* Act III: The Mind */}
+          <MindEra />
           <StoryTransition 
             fromEra={STORY_TRANSITIONS[2].from}
             toEra={STORY_TRANSITIONS[2].to}
@@ -114,7 +114,7 @@ export default function Index() {
           />
           
           {/* Act IV: The Architect (Raj Shah) */}
-          <RajaiEra />
+          <ArchitectEra />
         </div>
         
         <Footer onEraClick={handleEraClick} />

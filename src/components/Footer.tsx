@@ -5,7 +5,7 @@ const socialLinks = [
   { icon: Github, label: 'GitHub', href: 'https://github.com/rajshah9305' },
   { icon: Linkedin, label: 'LinkedIn', href: 'https://linkedin.com/in/rajshah' },
   { icon: Twitter, label: 'Twitter', href: 'https://twitter.com/rajshah' },
-  { icon: Mail, label: 'Email', href: 'mailto:hello@rajai.org' },
+  { icon: Mail, label: 'Email', href: 'mailto:hello@rajshah.com' },
 ];
 
 // Updated for 4-act story structure
@@ -13,7 +13,7 @@ const quickLinks = [
   { label: 'The Spark', era: 0, desc: 'Where ideas begin' },
   { label: 'The Machine', era: 1, desc: 'Computing revolution' },
   { label: 'The Mind', era: 2, desc: 'AI emergence' },
-  { label: 'The Architect', era: 3, desc: 'Raj Shah' },
+  { label: 'The Architect', era: 3, desc: 'Building the Future' },
 ];
 
 interface FooterProps {
@@ -111,7 +111,7 @@ export default function Footer({ onEraClick }: FooterProps) {
                 Have a project in mind or just want to say hello? I'd love to hear from you.
               </p>
               <motion.a
-                href="mailto:hello@rajai.org"
+                href="mailto:hello@rajshah.com"
                 className="inline-flex items-center gap-2 px-5 py-2.5 bg-rajai-gold text-rajai-bg rounded-full text-sm font-rajai font-bold hover:bg-rajai-highlight transition-colors"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
