@@ -7,18 +7,17 @@ interface BootSequenceProps {
 
 const bootLines = [
   { text: 'RAJAI.SYS v2.0.25', delay: 0 },
-  { text: 'Initializing quantum processors...', delay: 200 },
-  { text: 'Loading neural pathways... OK', delay: 400 },
-  { text: 'Calibrating creative cores... OK', delay: 600 },
-  { text: 'Syncing experience matrix... OK', delay: 800 },
-  { text: 'Mounting portfolio drives...', delay: 1000 },
+  { text: 'Initializing creative processors...', delay: 200 },
+  { text: 'Loading experience pathways... OK', delay: 400 },
+  { text: 'Calibrating design cores... OK', delay: 600 },
+  { text: 'Syncing portfolio matrix... OK', delay: 800 },
+  { text: 'Mounting story volumes...', delay: 1000 },
   { text: '  /spark    [MOUNTED]', delay: 1150 },
   { text: '  /machine  [MOUNTED]', delay: 1300 },
-  { text: '  /human    [MOUNTED]', delay: 1450 },
-  { text: '  /ai       [MOUNTED]', delay: 1600 },
-  { text: '  /rajai    [MOUNTED]', delay: 1750 },
-  { text: 'All systems operational.', delay: 2000 },
-  { text: 'Welcome to the journey of Raj Shah.', delay: 2400, highlight: true },
+  { text: '  /mind     [MOUNTED]', delay: 1450 },
+  { text: '  /architect [MOUNTED]', delay: 1600 },
+  { text: 'All systems operational.', delay: 1850 },
+  { text: 'Welcome to the story of Raj Shah.', delay: 2200, highlight: true },
 ];
 
 export default function BootSequence({ onComplete }: BootSequenceProps) {
@@ -116,29 +115,29 @@ export default function BootSequence({ onComplete }: BootSequenceProps) {
             initial={{ scale: 0.96, opacity: 0, y: 20 }}
             animate={{ scale: 1, opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="relative w-full max-w-2xl mx-4 md:mx-6 bg-card/90 backdrop-blur-xl rounded-2xl border border-border/60 shadow-2xl overflow-hidden"
+            className="relative w-full max-w-2xl mx-4 md:mx-6 bg-rajai-surface/95 backdrop-blur-xl rounded-xl border border-rajai-gold/25 shadow-2xl overflow-hidden"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Terminal header */}
-            <div className="flex items-center justify-between px-4 py-3 border-b border-border/40 bg-muted/30">
+            <div className="flex items-center justify-between px-4 py-3 border-b border-rajai-gold/20 bg-rajai-warm/40">
               <div className="flex items-center gap-2">
                 <motion.div
-                  className="w-3 h-3 rounded-full bg-destructive/80"
+                  className="w-3 h-3 rounded-full bg-spark-ember/80"
                   whileHover={{ scale: 1.2 }}
                 />
                 <motion.div
-                  className="w-3 h-3 rounded-full bg-primary/80"
+                  className="w-3 h-3 rounded-full bg-rajai-gold/80"
                   whileHover={{ scale: 1.2 }}
                 />
                 <motion.div
-                  className="w-3 h-3 rounded-full bg-machine-green/80"
+                  className="w-3 h-3 rounded-full bg-ai-neural/80"
                   whileHover={{ scale: 1.2 }}
                 />
-                <span className="ml-3 font-mono text-xs text-muted-foreground">rajai-terminal</span>
+                <span className="ml-3 font-machine text-xs text-rajai-muted">rajai-terminal</span>
               </div>
               <motion.button
                 onClick={handleSkip}
-                className="px-3 py-1 text-xs font-mono text-muted-foreground hover:text-foreground border border-border/50 rounded-md hover:bg-muted/50 transition-all"
+                className="px-3 py-1 text-xs font-machine text-rajai-muted hover:text-rajai-gold border border-rajai-gold/30 rounded-md hover:bg-rajai-gold/10 transition-all"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -147,7 +146,7 @@ export default function BootSequence({ onComplete }: BootSequenceProps) {
             </div>
 
             {/* Terminal content */}
-            <div className="p-5 md:p-6 min-h-[320px] font-mono text-sm">
+            <div className="p-5 md:p-6 min-h-[300px] font-machine text-sm">
               {bootLines.slice(0, visibleLines).map((line, index) => (
                 <motion.div
                   key={index}
@@ -156,19 +155,19 @@ export default function BootSequence({ onComplete }: BootSequenceProps) {
                   transition={{ duration: 0.15 }}
                   className={`mb-1.5 flex items-start ${
                     line.highlight 
-                      ? 'text-primary font-medium' 
+                      ? 'text-rajai-gold font-bold' 
                       : line.text.includes('[MOUNTED]') 
-                        ? 'text-machine-green/80' 
+                        ? 'text-machine-phosphor/80' 
                         : line.text.includes('OK')
                           ? 'text-ai-neural/80'
-                          : 'text-muted-foreground'
+                          : 'text-rajai-muted'
                   }`}
                 >
                   {line.text.startsWith('  ') ? (
                     <span className="ml-4">{line.text}</span>
                   ) : (
                     <>
-                      <span className="text-primary/50 mr-2">{'>'}</span>
+                      <span className="text-rajai-gold/50 mr-2">{'>'}</span>
                       <span>{line.text}</span>
                     </>
                   )}
@@ -177,7 +176,7 @@ export default function BootSequence({ onComplete }: BootSequenceProps) {
               
               {/* Blinking cursor */}
               <motion.span
-                className="inline-block w-2 h-4 bg-primary ml-1 rounded-sm"
+                className="inline-block w-2 h-4 bg-rajai-gold ml-1 rounded-sm"
                 animate={{ opacity: cursorVisible ? 1 : 0 }}
                 transition={{ duration: 0.1 }}
               />
@@ -185,19 +184,19 @@ export default function BootSequence({ onComplete }: BootSequenceProps) {
 
             {/* Progress bar */}
             <div className="px-5 md:px-6 pb-5 md:pb-6">
-              <div className="h-1.5 bg-muted/30 rounded-full overflow-hidden">
+              <div className="h-1.5 bg-rajai-warm/50 rounded-full overflow-hidden">
                 <motion.div
-                  className="h-full bg-gradient-to-r from-primary via-ai-neural to-primary rounded-full"
+                  className="h-full bg-gradient-to-r from-spark-glow via-ai-neural to-rajai-gold rounded-full"
                   initial={{ width: '0%' }}
                   animate={{ width: `${(visibleLines / bootLines.length) * 100}%` }}
                   transition={{ duration: 0.3 }}
                 />
               </div>
               <div className="flex justify-between mt-2">
-                <span className="text-xs font-mono text-muted-foreground/50">
+                <span className="text-xs font-machine text-rajai-muted/50">
                   {Math.round((visibleLines / bootLines.length) * 100)}% complete
                 </span>
-                <span className="text-xs font-mono text-muted-foreground/50">
+                <span className="text-xs font-machine text-rajai-muted/50">
                   Click anywhere or press Enter to skip
                 </span>
               </div>
@@ -207,36 +206,36 @@ export default function BootSequence({ onComplete }: BootSequenceProps) {
           {/* Brand watermark */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 0.6, y: 0 }}
+            animate={{ opacity: 0.7, y: 0 }}
             transition={{ delay: 0.5 }}
             className="absolute bottom-8 text-center"
           >
-            <span className="font-display text-lg tracking-[0.4em] text-primary/60">
-              RAJ<span className="text-muted-foreground/60">AI</span>.ORG
+            <span className="font-rajai text-xl font-bold tracking-[0.35em]">
+              <span className="raj-signature">RAJ</span><span className="text-rajai-gold">AI</span><span className="text-rajai-muted/60">.ORG</span>
             </span>
           </motion.div>
 
           {/* Corner decorations */}
           <motion.div 
-            className="absolute top-4 left-4 w-10 h-10 border-l-2 border-t-2 border-primary/20 rounded-tl-lg"
+            className="absolute top-4 left-4 w-10 h-10 border-l-2 border-t-2 border-rajai-gold/25 rounded-tl-lg"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.3 }}
           />
           <motion.div 
-            className="absolute top-4 right-4 w-10 h-10 border-r-2 border-t-2 border-primary/20 rounded-tr-lg"
+            className="absolute top-4 right-4 w-10 h-10 border-r-2 border-t-2 border-rajai-gold/25 rounded-tr-lg"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.4 }}
           />
           <motion.div 
-            className="absolute bottom-4 left-4 w-10 h-10 border-l-2 border-b-2 border-primary/20 rounded-bl-lg"
+            className="absolute bottom-4 left-4 w-10 h-10 border-l-2 border-b-2 border-rajai-gold/25 rounded-bl-lg"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.5 }}
           />
           <motion.div 
-            className="absolute bottom-4 right-4 w-10 h-10 border-r-2 border-b-2 border-primary/20 rounded-br-lg"
+            className="absolute bottom-4 right-4 w-10 h-10 border-r-2 border-b-2 border-rajai-gold/25 rounded-br-lg"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.6 }}

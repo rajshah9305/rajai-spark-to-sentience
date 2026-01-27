@@ -14,9 +14,14 @@ export default {
     },
     extend: {
       fontFamily: {
-        display: ['Space Grotesk', 'sans-serif'],
-        mono: ['JetBrains Mono', 'monospace'],
-        serif: ['Playfair Display', 'serif'],
+        display: ['Syne', 'sans-serif'],
+        mono: ['Space Mono', 'monospace'],
+        serif: ['Cormorant Garamond', 'serif'],
+        body: ['Outfit', 'sans-serif'],
+        spark: ['Cormorant Garamond', 'serif'],
+        machine: ['Space Mono', 'monospace'],
+        ai: ['Outfit', 'sans-serif'],
+        rajai: ['Syne', 'sans-serif'],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -62,7 +67,7 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
-        // Era I: The Spark — Warm ember/orange palette
+        // Era I: The Spark — Warm sunset/fire palette
         spark: {
           void: "hsl(var(--spark-void))",
           glow: "hsl(var(--spark-glow))",
@@ -70,8 +75,9 @@ export default {
           ember: "hsl(var(--spark-ember))",
           flame: "hsl(var(--spark-flame))",
           smoke: "hsl(var(--spark-smoke))",
+          text: "hsl(var(--spark-text))",
         },
-        // Era II: The Machine — Retro green phosphor
+        // Era II: The Machine — Matrix phosphor green
         machine: {
           black: "hsl(var(--machine-black))",
           phosphor: "hsl(var(--machine-phosphor))",
@@ -79,8 +85,9 @@ export default {
           bright: "hsl(var(--machine-bright))",
           amber: "hsl(var(--machine-amber))",
           grid: "hsl(var(--machine-grid))",
+          text: "hsl(var(--machine-text))",
         },
-        // Era III: The Mind — Cool teal/cyan
+        // Era III: The Mind — Deep ocean teal
         ai: {
           void: "hsl(var(--ai-void))",
           neural: "hsl(var(--ai-neural))",
@@ -88,8 +95,9 @@ export default {
           pulse: "hsl(var(--ai-pulse))",
           glow: "hsl(var(--ai-glow))",
           dark: "hsl(var(--ai-dark))",
+          text: "hsl(var(--ai-text))",
         },
-        // Era IV: The Architect — Premium gold
+        // Era IV: The Architect — Luxury champagne gold
         rajai: {
           bg: "hsl(var(--rajai-bg))",
           surface: "hsl(var(--rajai-surface))",
@@ -98,6 +106,7 @@ export default {
           muted: "hsl(var(--rajai-muted))",
           highlight: "hsl(var(--rajai-highlight))",
           warm: "hsl(var(--rajai-warm))",
+          accent: "hsl(var(--rajai-accent))",
         },
       },
       borderRadius: {

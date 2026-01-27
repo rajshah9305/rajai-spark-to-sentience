@@ -112,7 +112,7 @@ export default function RajaiEra() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
           viewport={{ once: true }}
-          className="font-mono text-xs md:text-sm tracking-[0.5em] text-rajai-gold/80 uppercase mb-12 text-center"
+          className="font-rajai text-xs md:text-sm tracking-[0.5em] text-rajai-gold/75 uppercase mb-12 font-semibold"
         >
           Act IV — The Architect
         </motion.p>
@@ -122,22 +122,22 @@ export default function RajaiEra() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.15 }}
           viewport={{ once: true }}
-          className="text-5xl md:text-7xl lg:text-8xl font-serif font-light tracking-tight text-center mb-8"
+          className="text-5xl md:text-7xl lg:text-9xl font-rajai font-bold tracking-tighter text-center mb-8"
         >
-          <span className="text-foreground">Raj</span>
+          <span className="raj-signature">RAJ</span>
           <motion.span 
             className="rajai-glow"
             animate={{ 
-              opacity: [1, 0.8, 1],
+              opacity: [1, 0.85, 1],
               textShadow: [
-                '0 0 10px hsl(45 90% 55% / 0.4)',
-                '0 0 30px hsl(45 90% 55% / 0.6)',
-                '0 0 10px hsl(45 90% 55% / 0.4)',
+                '0 0 15px hsl(42 85% 58% / 0.45)',
+                '0 0 40px hsl(42 85% 58% / 0.65)',
+                '0 0 15px hsl(42 85% 58% / 0.45)',
               ],
             }}
             transition={{ duration: 3, repeat: Infinity }}
           >
-            ai
+            AI
           </motion.span>
         </motion.h2>
         
@@ -148,10 +148,10 @@ export default function RajaiEra() {
           viewport={{ once: true }}
           className="text-center max-w-3xl mx-auto mb-10"
         >
-          <p className="text-lg md:text-xl text-rajai-muted font-light mb-3">
+          <p className="text-lg md:text-xl text-rajai-muted font-rajai font-light mb-3 tracking-wide">
             I don't just use systems.
           </p>
-          <p className="text-xl md:text-2xl text-foreground font-medium">
+          <p className="text-xl md:text-2xl text-rajai-cream font-rajai font-semibold tracking-tight">
             I architect what comes next.
           </p>
         </motion.div>
@@ -191,13 +191,13 @@ export default function RajaiEra() {
           viewport={{ once: true }}
           className="rajai-card rounded-2xl p-8 md:p-12"
         >
-          <h3 className="font-mono text-xs tracking-[0.4em] text-rajai-gold/80 uppercase mb-8">About</h3>
-          <p className="text-lg md:text-xl text-foreground/90 leading-relaxed mb-6 font-light">
-            I'm <span className="text-rajai-gold font-medium">Raj Shah</span>, a software engineer and AI architect with a passion for building technology that makes a genuine difference. 
+          <h3 className="font-rajai text-xs tracking-[0.35em] text-rajai-gold/85 uppercase mb-8 font-semibold">About</h3>
+          <p className="text-lg md:text-xl text-rajai-cream/90 leading-relaxed mb-6 font-body font-light">
+            I'm <span className="raj-signature">Raj Shah</span>, a software engineer and AI architect with a passion for building technology that makes a genuine difference. 
             From full-stack development to machine learning systems, I transform complex challenges into elegant, scalable solutions.
           </p>
-          <p className="text-base md:text-lg text-rajai-muted leading-relaxed">
-            Through <span className="text-foreground font-medium">RAJAI.ORG</span>, I help organizations navigate the AI revolution—from strategy to production. 
+          <p className="text-base md:text-lg text-rajai-muted leading-relaxed font-body">
+            Through <span className="text-rajai-gold font-rajai font-semibold">RAJAI.ORG</span>, I help organizations navigate the AI revolution—from strategy to production. 
             Whether it's architecting intelligent applications, optimizing systems at scale, or exploring new frontiers, 
             I bring deep technical expertise combined with strategic product thinking.
           </p>
@@ -212,7 +212,7 @@ export default function RajaiEra() {
         transition={{ duration: 0.8 }}
         viewport={{ once: true }}
       >
-        <h3 className="font-mono text-xs tracking-[0.4em] text-rajai-gold/80 uppercase mb-12 text-center">
+        <h3 className="font-rajai text-xs tracking-[0.35em] text-rajai-gold/85 uppercase mb-12 text-center font-semibold">
           Technical Expertise
         </h3>
         
@@ -227,7 +227,7 @@ export default function RajaiEra() {
               className="rajai-card rounded-xl p-5"
               whileHover={{ y: -4 }}
             >
-              <h4 className="font-mono text-xs text-rajai-gold mb-4 tracking-wider">{category.category}</h4>
+              <h4 className="font-rajai text-xs text-rajai-gold mb-4 tracking-wider font-semibold">{category.category}</h4>
               <div className="flex flex-wrap gap-2">
                 {category.items.map((item) => (
                   <span 
@@ -253,7 +253,7 @@ export default function RajaiEra() {
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="font-mono text-xs tracking-[0.4em] text-rajai-gold/80 uppercase mb-12 text-center"
+          className="font-rajai text-xs tracking-[0.35em] text-rajai-gold/85 uppercase mb-12 text-center font-semibold"
         >
           Core Values
         </motion.h3>
@@ -279,10 +279,10 @@ export default function RajaiEra() {
               >
                 {value.icon}
               </motion.span>
-              <h4 className="font-display font-medium text-foreground mb-2 group-hover:text-rajai-gold transition-colors">
+              <h4 className="font-rajai font-semibold text-rajai-cream mb-2 group-hover:text-rajai-gold transition-colors">
                 {value.title}
               </h4>
-              <p className="text-sm text-rajai-muted">{value.desc}</p>
+              <p className="text-sm text-rajai-muted font-body">{value.desc}</p>
             </motion.div>
           ))}
         </div>
@@ -298,7 +298,7 @@ export default function RajaiEra() {
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="font-mono text-xs tracking-[0.4em] text-rajai-gold/80 uppercase mb-12 text-center"
+          className="font-rajai text-xs tracking-[0.35em] text-rajai-gold/85 uppercase mb-12 text-center font-semibold"
         >
           Services
         </motion.h3>
@@ -320,15 +320,15 @@ export default function RajaiEra() {
               >
                 {service.icon}
               </motion.span>
-              <h4 className="font-serif text-xl font-medium text-foreground mb-3 group-hover:text-rajai-gold transition-colors duration-500">
+              <h4 className="font-rajai text-xl font-bold text-rajai-cream mb-3 group-hover:text-rajai-gold transition-colors duration-500">
                 {service.title}
               </h4>
-              <p className="text-sm text-rajai-muted mb-5 leading-relaxed">{service.description}</p>
+              <p className="text-sm text-rajai-muted mb-5 leading-relaxed font-body">{service.description}</p>
               <div className="flex flex-wrap justify-center gap-2">
                 {service.features.map((feature) => (
                   <span 
                     key={feature}
-                    className="text-xs font-mono px-3 py-1.5 bg-rajai-gold/10 rounded-md text-rajai-gold/90"
+                    className="text-xs font-rajai px-3 py-1.5 bg-rajai-gold/12 rounded-md text-rajai-gold/90 font-medium"
                   >
                     {feature}
                   </span>

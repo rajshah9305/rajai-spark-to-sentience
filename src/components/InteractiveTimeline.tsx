@@ -14,47 +14,55 @@ interface InteractiveTimelineProps {
   variant?: 'horizontal' | 'vertical';
 }
 
-// Distinct era color schemes
+// Distinct era color and typography schemes
 const eraStyles = {
   spark: {
     bg: 'bg-spark-glow/8',
-    bgHover: 'bg-spark-glow/15',
+    bgHover: 'bg-spark-glow/18',
     border: 'border-spark-glow/25',
-    borderHover: 'border-spark-glow/60',
+    borderHover: 'border-spark-glow/65',
     text: 'text-spark-glow',
+    titleFont: 'font-spark font-medium',
     dot: 'bg-gradient-to-br from-spark-glow to-spark-ember',
-    glow: '0 0 25px hsl(35 100% 55% / 0.5)',
+    glow: '0 0 30px hsl(28 100% 58% / 0.55)',
     line: 'from-spark-glow/60 to-spark-ember/40',
+    cardStyle: 'rounded-2xl',
   },
   machine: {
     bg: 'bg-machine-phosphor/6',
-    bgHover: 'bg-machine-phosphor/12',
-    border: 'border-machine-phosphor/25',
-    borderHover: 'border-machine-phosphor/60',
+    bgHover: 'bg-machine-phosphor/14',
+    border: 'border-machine-phosphor/30',
+    borderHover: 'border-machine-phosphor/70',
     text: 'text-machine-phosphor',
+    titleFont: 'font-machine uppercase tracking-wide',
     dot: 'bg-gradient-to-br from-machine-phosphor to-machine-bright',
-    glow: '0 0 25px hsl(120 100% 45% / 0.5)',
+    glow: '0 0 25px hsl(142 100% 50% / 0.5)',
     line: 'from-machine-phosphor/60 to-machine-dim/40',
+    cardStyle: 'rounded-none',
   },
   ai: {
     bg: 'bg-ai-neural/6',
-    bgHover: 'bg-ai-neural/12',
+    bgHover: 'bg-ai-neural/14',
     border: 'border-ai-neural/25',
     borderHover: 'border-ai-neural/60',
     text: 'text-ai-neural',
+    titleFont: 'font-ai font-medium',
     dot: 'bg-gradient-to-br from-ai-neural to-ai-synapse',
-    glow: '0 0 25px hsl(175 80% 45% / 0.5)',
+    glow: '0 0 30px hsl(172 75% 48% / 0.5)',
     line: 'from-ai-neural/60 to-ai-pulse/40',
+    cardStyle: 'rounded-xl',
   },
   rajai: {
     bg: 'bg-rajai-gold/6',
-    bgHover: 'bg-rajai-gold/12',
+    bgHover: 'bg-rajai-gold/14',
     border: 'border-rajai-gold/25',
     borderHover: 'border-rajai-gold/60',
     text: 'text-rajai-gold',
+    titleFont: 'font-rajai font-semibold',
     dot: 'bg-gradient-to-br from-rajai-gold to-rajai-highlight',
-    glow: '0 0 25px hsl(45 90% 55% / 0.5)',
+    glow: '0 0 30px hsl(42 85% 58% / 0.55)',
     line: 'from-rajai-gold/60 to-rajai-highlight/40',
+    cardStyle: 'rounded-xl',
   },
 };
 
@@ -102,7 +110,7 @@ export default function InteractiveTimeline({ events, variant = 'horizontal' }: 
                 
                 {/* Content Card */}
                 <motion.div
-                  className={`p-5 rounded-xl border transition-all duration-300 ${
+                  className={`p-5 ${style.cardStyle} border transition-all duration-300 ${
                     isInteracted ? `${style.bgHover} ${style.borderHover}` : `${style.bg} ${style.border}`
                   }`}
                   whileHover={{ x: 10 }}
@@ -116,9 +124,9 @@ export default function InteractiveTimeline({ events, variant = 'horizontal' }: 
                         {event.icon}
                       </motion.span>
                     )}
-                    <span className={`font-mono text-sm font-medium ${style.text}`}>{event.year}</span>
+                    <span className={`font-mono text-xs font-medium ${style.text}`}>{event.year}</span>
                   </div>
-                  <h4 className="font-display font-medium text-foreground mb-1 text-lg">{event.title}</h4>
+                  <h4 className={`${style.titleFont} text-foreground mb-1 text-lg`}>{event.title}</h4>
                   
                   <AnimatePresence>
                     {isInteracted && (
@@ -180,7 +188,7 @@ export default function InteractiveTimeline({ events, variant = 'horizontal' }: 
               
               {/* Content Card */}
               <motion.div
-                className={`p-5 rounded-xl border h-full transition-all duration-300 ${
+                className={`p-5 ${style.cardStyle} border h-full transition-all duration-300 ${
                   isInteracted ? `${style.bgHover} ${style.borderHover}` : `${style.bg} ${style.border}`
                 }`}
                 animate={{ y: isInteracted ? -10 : 0 }}
@@ -195,9 +203,9 @@ export default function InteractiveTimeline({ events, variant = 'horizontal' }: 
                       {event.icon}
                     </motion.span>
                   )}
-                  <span className={`font-mono text-xs font-medium ${style.text}`}>{event.year}</span>
+                  <span className={`font-mono text-[10px] font-medium ${style.text}`}>{event.year}</span>
                 </div>
-                <h4 className="font-display font-medium text-foreground text-sm mb-1">{event.title}</h4>
+                <h4 className={`${style.titleFont} text-foreground text-sm mb-1`}>{event.title}</h4>
                 
                 <AnimatePresence>
                   {isInteracted && (

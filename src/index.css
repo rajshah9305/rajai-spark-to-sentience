@@ -1,4 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Playfair+Display:wght@400;500;600&display=swap');
+/* ══════════════════════════════════════════════════════════════════════════
+   RAJ SHAH — PORTFOLIO DESIGN SYSTEM
+   "From Spark to Sentience" — A Journey Through Computing Evolution
+   ══════════════════════════════════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Outfit:wght@200;300;400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -7,140 +12,153 @@
 @layer base {
   :root {
     /* ══════════════════════════════════════════════════════════════════
-       ERA I: THE SPARK — Warm ember glow with deep burnt orange/amber
-       Design: Organic, flowing, philosophical
+       ERA I: THE SPARK — Warm sunset/fire palette
+       Typography: Cormorant Garamond (elegant, philosophical)
+       Design: Organic, flowing, handcrafted, renaissance-inspired
     ══════════════════════════════════════════════════════════════════ */
-    --spark-void: 20 30% 3%;
-    --spark-glow: 35 100% 55%;
-    --spark-pulse: 25 95% 50%;
-    --spark-ember: 15 90% 45%;
-    --spark-flame: 30 100% 60%;
-    --spark-smoke: 25 20% 20%;
+    --spark-void: 15 35% 4%;
+    --spark-glow: 28 100% 58%;
+    --spark-pulse: 18 95% 52%;
+    --spark-ember: 8 85% 48%;
+    --spark-flame: 38 100% 65%;
+    --spark-smoke: 20 25% 15%;
+    --spark-text: 35 40% 92%;
     
     /* ══════════════════════════════════════════════════════════════════
-       ERA II: THE MACHINE — Retro phosphor green terminal
-       Design: Angular, structured, mechanical
+       ERA II: THE MACHINE — Matrix/phosphor green terminal
+       Typography: Space Mono (mechanical, precise)
+       Design: Brutalist, grid-based, high-contrast, retro-tech
     ══════════════════════════════════════════════════════════════════ */
-    --machine-black: 120 15% 3%;
-    --machine-phosphor: 120 100% 45%;
-    --machine-dim: 120 60% 25%;
-    --machine-bright: 120 100% 55%;
-    --machine-amber: 45 100% 50%;
-    --machine-grid: 120 40% 15%;
+    --machine-black: 140 20% 3%;
+    --machine-phosphor: 142 100% 50%;
+    --machine-dim: 140 50% 28%;
+    --machine-bright: 138 100% 60%;
+    --machine-amber: 48 100% 55%;
+    --machine-grid: 140 35% 12%;
+    --machine-text: 140 15% 85%;
     
     /* ══════════════════════════════════════════════════════════════════
-       ERA III: THE MIND — Cool teal/cyan neural patterns
-       Design: Fluid, intelligent, futuristic
+       ERA III: THE MIND — Deep ocean teal/aquamarine
+       Typography: Outfit (clean, futuristic, approachable)
+       Design: Fluid, organic tech, bioluminescent, flowing
     ══════════════════════════════════════════════════════════════════ */
-    --ai-void: 190 40% 4%;
-    --ai-neural: 175 80% 45%;
-    --ai-synapse: 185 90% 50%;
-    --ai-pulse: 170 75% 55%;
-    --ai-glow: 180 85% 60%;
-    --ai-dark: 190 50% 8%;
+    --ai-void: 185 45% 4%;
+    --ai-neural: 172 75% 48%;
+    --ai-synapse: 178 85% 55%;
+    --ai-pulse: 168 70% 58%;
+    --ai-glow: 175 80% 62%;
+    --ai-dark: 185 40% 8%;
+    --ai-text: 175 25% 90%;
     
     /* ══════════════════════════════════════════════════════════════════
-       ERA IV: THE ARCHITECT — Premium gold/cream sophisticated
-       Design: Refined, professional, authoritative
+       ERA IV: THE ARCHITECT — Premium champagne/gold noir
+       Typography: Syne (bold, distinctive, architectural)
+       Design: Luxury, editorial, gallery-like, sophisticated
     ══════════════════════════════════════════════════════════════════ */
-    --rajai-bg: 40 15% 5%;
-    --rajai-surface: 40 12% 10%;
-    --rajai-gold: 45 90% 55%;
-    --rajai-cream: 45 30% 90%;
-    --rajai-muted: 40 15% 50%;
-    --rajai-highlight: 50 100% 65%;
-    --rajai-warm: 35 25% 15%;
+    --rajai-bg: 35 20% 5%;
+    --rajai-surface: 38 18% 9%;
+    --rajai-gold: 42 85% 58%;
+    --rajai-cream: 42 35% 92%;
+    --rajai-muted: 38 18% 52%;
+    --rajai-highlight: 48 95% 68%;
+    --rajai-warm: 32 22% 14%;
+    --rajai-accent: 25 80% 55%;
     
     /* ══════════════════════════════════════════════════════════════════
-       CORE DESIGN SYSTEM
+       CORE DESIGN SYSTEM — Unified Raj Shah Brand
     ══════════════════════════════════════════════════════════════════ */
-    --background: 25 25% 4%;
-    --foreground: 40 15% 96%;
+    --background: 30 22% 4%;
+    --foreground: 38 25% 95%;
     
-    --card: 30 18% 8%;
-    --card-foreground: 40 15% 96%;
+    --card: 32 20% 8%;
+    --card-foreground: 38 25% 95%;
     
-    --popover: 30 18% 8%;
-    --popover-foreground: 40 15% 96%;
+    --popover: 32 20% 8%;
+    --popover-foreground: 38 25% 95%;
     
-    --primary: 35 100% 55%;
-    --primary-foreground: 30 20% 5%;
+    --primary: 42 85% 58%;
+    --primary-foreground: 35 25% 5%;
     
-    --secondary: 30 15% 15%;
-    --secondary-foreground: 40 15% 96%;
+    --secondary: 32 18% 14%;
+    --secondary-foreground: 38 25% 95%;
     
-    --muted: 30 12% 18%;
-    --muted-foreground: 35 15% 55%;
+    --muted: 32 15% 18%;
+    --muted-foreground: 38 18% 55%;
     
-    --accent: 175 75% 50%;
-    --accent-foreground: 30 20% 5%;
+    --accent: 172 70% 50%;
+    --accent-foreground: 35 25% 5%;
     
-    --destructive: 0 85% 60%;
+    --destructive: 0 80% 55%;
     --destructive-foreground: 0 0% 98%;
     
-    --border: 30 15% 18%;
-    --input: 30 15% 18%;
-    --ring: 35 100% 55%;
+    --border: 32 18% 18%;
+    --input: 32 18% 18%;
+    --ring: 42 85% 58%;
     
     --radius: 0.75rem;
     
-    /* Typography */
-    --font-display: 'Space Grotesk', sans-serif;
-    --font-mono: 'JetBrains Mono', monospace;
-    --font-serif: 'Playfair Display', serif;
+    /* ══════════════════════════════════════════════════════════════════
+       TYPOGRAPHY SYSTEM — Era-Specific Fonts
+    ══════════════════════════════════════════════════════════════════ */
+    --font-display: 'Syne', sans-serif;
+    --font-mono: 'Space Mono', monospace;
+    --font-serif: 'Cormorant Garamond', serif;
+    --font-body: 'Outfit', sans-serif;
     
     /* ══════════════════════════════════════════════════════════════════
        ERA-SPECIFIC GRADIENTS
     ══════════════════════════════════════════════════════════════════ */
-    --gradient-spark: radial-gradient(ellipse 80% 60% at 50% 40%, 
-      hsl(35 100% 55% / 0.15) 0%, 
-      hsl(15 90% 45% / 0.08) 40%, 
-      transparent 70%);
+    --gradient-spark: radial-gradient(ellipse 90% 70% at 50% 35%, 
+      hsl(28 100% 58% / 0.18) 0%, 
+      hsl(8 85% 48% / 0.1) 45%, 
+      transparent 75%);
     
-    --gradient-machine: linear-gradient(180deg, 
-      hsl(120 15% 3%) 0%, 
-      hsl(120 40% 15% / 0.1) 50%, 
-      hsl(120 15% 3%) 100%);
+    --gradient-machine: 
+      linear-gradient(180deg, hsl(140 20% 3%) 0%, hsl(140 35% 12% / 0.15) 50%, hsl(140 20% 3%) 100%),
+      repeating-linear-gradient(0deg, transparent, transparent 2px, hsl(142 100% 50% / 0.03) 2px, hsl(142 100% 50% / 0.03) 4px);
     
-    --gradient-ai: radial-gradient(ellipse 60% 50% at 30% 30%, 
-      hsl(175 80% 45% / 0.12) 0%, 
-      transparent 50%), 
-      radial-gradient(ellipse 50% 40% at 70% 70%, 
-      hsl(185 90% 50% / 0.08) 0%, 
-      transparent 50%);
+    --gradient-ai: 
+      radial-gradient(ellipse 70% 55% at 25% 25%, hsl(172 75% 48% / 0.15) 0%, transparent 55%),
+      radial-gradient(ellipse 55% 45% at 75% 75%, hsl(178 85% 55% / 0.1) 0%, transparent 55%);
     
-    --gradient-rajai: linear-gradient(160deg, 
-      hsl(40 15% 5%) 0%, 
-      hsl(40 12% 8%) 50%, 
-      hsl(40 15% 5%) 100%);
+    --gradient-rajai: linear-gradient(165deg, 
+      hsl(35 20% 5%) 0%, 
+      hsl(38 18% 7%) 50%, 
+      hsl(35 20% 5%) 100%);
     
     /* ══════════════════════════════════════════════════════════════════
        ERA-SPECIFIC SHADOWS
     ══════════════════════════════════════════════════════════════════ */
-    --shadow-spark: 0 0 80px hsl(35 100% 55% / 0.3), 
-                    0 0 160px hsl(15 90% 45% / 0.15);
+    --shadow-spark: 
+      0 0 100px hsl(28 100% 58% / 0.35),
+      0 0 200px hsl(8 85% 48% / 0.18),
+      inset 0 0 60px hsl(28 100% 58% / 0.05);
     
-    --shadow-machine: 0 0 60px hsl(120 100% 45% / 0.2), 
-                      0 0 120px hsl(120 100% 55% / 0.1);
+    --shadow-machine: 
+      0 0 50px hsl(142 100% 50% / 0.25),
+      0 4px 20px hsl(0 0% 0% / 0.6);
     
-    --shadow-ai: 0 0 100px hsl(175 80% 45% / 0.25), 
-                 0 0 200px hsl(185 90% 50% / 0.1);
+    --shadow-ai: 
+      0 0 120px hsl(172 75% 48% / 0.28),
+      0 0 240px hsl(178 85% 55% / 0.12);
     
-    --shadow-rajai: 0 0 80px hsl(45 90% 55% / 0.15), 
-                    0 0 40px hsl(40 15% 5% / 0.8);
+    --shadow-rajai: 
+      0 0 100px hsl(42 85% 58% / 0.18),
+      0 25px 80px hsl(35 20% 5% / 0.9);
     
-    --shadow-card: 0 8px 40px hsl(0 0% 0% / 0.4), 
-                   0 2px 10px hsl(0 0% 0% / 0.2);
+    --shadow-card: 
+      0 10px 50px hsl(0 0% 0% / 0.45),
+      0 2px 12px hsl(0 0% 0% / 0.25);
     
     /* Sidebar */
-    --sidebar-background: 30 20% 5%;
-    --sidebar-foreground: 40 15% 96%;
-    --sidebar-primary: 35 100% 55%;
-    --sidebar-primary-foreground: 30 20% 5%;
-    --sidebar-accent: 30 15% 15%;
-    --sidebar-accent-foreground: 40 15% 96%;
-    --sidebar-border: 30 15% 18%;
-    --sidebar-ring: 35 100% 55%;
+    --sidebar-background: 35 22% 5%;
+    --sidebar-foreground: 38 25% 95%;
+    --sidebar-primary: 42 85% 58%;
+    --sidebar-primary-foreground: 35 25% 5%;
+    --sidebar-accent: 32 18% 14%;
+    --sidebar-accent-foreground: 38 25% 95%;
+    --sidebar-border: 32 18% 18%;
+    --sidebar-ring: 42 85% 58%;
   }
 }
 
@@ -155,87 +173,122 @@
   
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: var(--font-display);
+    font-family: var(--font-body);
+    letter-spacing: -0.01em;
   }
   
   ::selection {
-    background: hsl(var(--primary) / 0.3);
+    background: hsl(var(--primary) / 0.35);
     color: hsl(var(--foreground));
   }
+  
+  /* Era-specific font classes */
+  .font-spark { font-family: var(--font-serif); }
+  .font-machine { font-family: var(--font-mono); }
+  .font-ai { font-family: var(--font-body); }
+  .font-rajai { font-family: var(--font-display); }
 }
 
 @layer components {
   /* ══════════════════════════════════════════════════════════════════
-     ERA I: SPARK — Warm, organic, flowing
+     ERA I: SPARK — Renaissance warmth, organic calligraphy
+     Font: Cormorant Garamond — Elegant, philosophical, timeless
   ══════════════════════════════════════════════════════════════════ */
   .era-spark {
     background: hsl(var(--spark-void));
     background-image: var(--gradient-spark);
+    color: hsl(var(--spark-text));
   }
   
   .spark-glow {
     color: hsl(var(--spark-glow));
     text-shadow: 
-      0 0 10px hsl(var(--spark-glow) / 0.8),
-      0 0 30px hsl(var(--spark-glow) / 0.5),
-      0 0 60px hsl(var(--spark-ember) / 0.3);
+      0 0 15px hsl(var(--spark-glow) / 0.85),
+      0 0 40px hsl(var(--spark-glow) / 0.5),
+      0 0 80px hsl(var(--spark-ember) / 0.35);
   }
   
   .spark-card {
-    background: linear-gradient(135deg, 
-      hsl(var(--spark-smoke) / 0.6) 0%, 
-      hsl(var(--spark-void) / 0.8) 100%);
-    border: 1px solid hsl(var(--spark-glow) / 0.2);
-    border-radius: 1.5rem;
-    backdrop-filter: blur(20px);
+    background: linear-gradient(145deg, 
+      hsl(var(--spark-smoke) / 0.65) 0%, 
+      hsl(var(--spark-void) / 0.85) 100%);
+    border: 1px solid hsl(var(--spark-glow) / 0.18);
+    border-radius: 2rem;
+    backdrop-filter: blur(25px);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   }
   
   .spark-card:hover {
     border-color: hsl(var(--spark-glow) / 0.5);
     box-shadow: var(--shadow-spark);
+    transform: translateY(-4px);
   }
   
   .spark-badge {
-    background: hsl(var(--spark-glow) / 0.1);
-    border: 1px solid hsl(var(--spark-glow) / 0.3);
+    background: hsl(var(--spark-glow) / 0.12);
+    border: 1px solid hsl(var(--spark-glow) / 0.35);
     color: hsl(var(--spark-flame));
     border-radius: 9999px;
+    font-family: var(--font-serif);
+    font-style: italic;
+    letter-spacing: 0.02em;
+    transition: all 0.4s ease;
   }
   
   .spark-badge:hover {
-    background: hsl(var(--spark-glow) / 0.2);
-    border-color: hsl(var(--spark-glow));
-    box-shadow: 0 0 30px hsl(var(--spark-glow) / 0.4);
+    background: hsl(var(--spark-glow) / 0.25);
+    border-color: hsl(var(--spark-glow) / 0.8);
+    box-shadow: 0 0 40px hsl(var(--spark-glow) / 0.45);
+    transform: translateY(-2px) scale(1.02);
+  }
+  
+  /* Spark-specific animations */
+  @keyframes ember-drift {
+    0%, 100% { 
+      transform: translateY(0) rotate(0deg); 
+      opacity: 0.6; 
+    }
+    50% { 
+      transform: translateY(-25px) rotate(10deg); 
+      opacity: 1; 
+    }
+  }
+  
+  .ember-float {
+    animation: ember-drift 6s ease-in-out infinite;
   }
 
   /* ══════════════════════════════════════════════════════════════════
-     ERA II: MACHINE — Angular, mechanical, retro terminal
+     ERA II: MACHINE — Brutalist terminal, high contrast matrix
+     Font: Space Mono — Mechanical precision, typewriter aesthetic
   ══════════════════════════════════════════════════════════════════ */
   .era-machine {
     background: hsl(var(--machine-black));
     background-image: var(--gradient-machine);
+    color: hsl(var(--machine-text));
   }
   
   .machine-glow {
     color: hsl(var(--machine-phosphor));
     text-shadow: 
-      0 0 8px hsl(var(--machine-phosphor) / 0.9),
-      0 0 25px hsl(var(--machine-phosphor) / 0.6),
-      0 0 50px hsl(var(--machine-phosphor) / 0.3);
-    animation: phosphor-flicker 0.1s infinite;
+      0 0 5px hsl(var(--machine-phosphor)),
+      0 0 15px hsl(var(--machine-phosphor) / 0.8),
+      0 0 35px hsl(var(--machine-phosphor) / 0.5),
+      0 0 55px hsl(var(--machine-phosphor) / 0.3);
+    animation: phosphor-pulse 2s ease-in-out infinite;
   }
   
-  @keyframes phosphor-flicker {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.97; }
-    75% { opacity: 0.99; }
+  @keyframes phosphor-pulse {
+    0%, 100% { opacity: 1; filter: brightness(1); }
+    50% { opacity: 0.92; filter: brightness(1.15); }
   }
   
   .machine-card {
     background: hsl(var(--machine-black));
-    border: 1px solid hsl(var(--machine-phosphor) / 0.3);
-    border-radius: 0.5rem;
+    border: 2px solid hsl(var(--machine-phosphor) / 0.35);
+    border-radius: 0;
     position: relative;
+    clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
   }
   
   .machine-card::before {
@@ -244,26 +297,50 @@
     top: 0;
     left: 0;
     right: 0;
-    height: 3px;
+    height: 4px;
     background: linear-gradient(90deg, 
-      transparent, 
-      hsl(var(--machine-phosphor) / 0.8), 
-      transparent);
+      hsl(var(--machine-phosphor) / 0.3), 
+      hsl(var(--machine-phosphor) / 0.9),
+      hsl(var(--machine-phosphor) / 0.3));
+    animation: scan-header 3s linear infinite;
+  }
+  
+  @keyframes scan-header {
+    0% { opacity: 0.5; }
+    50% { opacity: 1; }
+    100% { opacity: 0.5; }
+  }
+  
+  .machine-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: hsl(var(--machine-phosphor) / 0.5);
   }
   
   .machine-card:hover {
-    border-color: hsl(var(--machine-phosphor) / 0.6);
+    border-color: hsl(var(--machine-phosphor) / 0.7);
     box-shadow: var(--shadow-machine);
   }
   
   .machine-badge {
-    background: hsl(var(--machine-phosphor) / 0.08);
-    border: 1px solid hsl(var(--machine-phosphor) / 0.4);
+    background: hsl(var(--machine-phosphor) / 0.1);
+    border: 1px solid hsl(var(--machine-phosphor) / 0.5);
     color: hsl(var(--machine-phosphor));
-    border-radius: 0.25rem;
+    border-radius: 0;
     font-family: var(--font-mono);
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.12em;
+    font-size: 0.7rem;
+    padding: 0.5rem 1rem;
+  }
+  
+  .machine-badge:hover {
+    background: hsl(var(--machine-phosphor) / 0.2);
+    box-shadow: 0 0 20px hsl(var(--machine-phosphor) / 0.4);
   }
   
   .scanlines::after {
@@ -274,99 +351,115 @@
       0deg,
       transparent,
       transparent 2px,
-      hsl(0 0% 0% / 0.08) 2px,
-      hsl(0 0% 0% / 0.08) 4px
+      hsl(0 0% 0% / 0.12) 2px,
+      hsl(0 0% 0% / 0.12) 4px
     );
     pointer-events: none;
     z-index: 1;
   }
   
   .crt-curve {
-    border-radius: 1rem;
+    border-radius: 0.5rem;
     box-shadow: 
-      inset 0 0 60px hsl(var(--machine-phosphor) / 0.05),
-      inset 0 0 100px hsl(0 0% 0% / 0.3);
+      inset 0 0 80px hsl(var(--machine-phosphor) / 0.08),
+      inset 0 0 150px hsl(0 0% 0% / 0.4);
   }
 
   /* ══════════════════════════════════════════════════════════════════
-     ERA III: AI — Fluid, futuristic, neural patterns
+     ERA III: AI — Bioluminescent ocean, flowing intelligence
+     Font: Outfit — Modern, clean, approachable futurism
   ══════════════════════════════════════════════════════════════════ */
   .era-ai {
     background: hsl(var(--ai-void));
     background-image: var(--gradient-ai);
+    color: hsl(var(--ai-text));
   }
   
   .ai-glow {
     color: hsl(var(--ai-neural));
     text-shadow: 
-      0 0 12px hsl(var(--ai-neural) / 0.9),
-      0 0 40px hsl(var(--ai-synapse) / 0.5),
-      0 0 80px hsl(var(--ai-glow) / 0.3);
+      0 0 15px hsl(var(--ai-neural)),
+      0 0 45px hsl(var(--ai-synapse) / 0.6),
+      0 0 90px hsl(var(--ai-glow) / 0.35);
   }
   
   .ai-card {
-    background: linear-gradient(145deg, 
-      hsl(var(--ai-dark) / 0.8) 0%, 
-      hsl(var(--ai-void) / 0.6) 100%);
-    border: 1px solid hsl(var(--ai-neural) / 0.2);
-    border-radius: 1rem;
-    backdrop-filter: blur(24px);
+    background: linear-gradient(155deg, 
+      hsl(var(--ai-dark) / 0.75) 0%, 
+      hsl(var(--ai-void) / 0.55) 100%);
+    border: 1px solid hsl(var(--ai-neural) / 0.22);
+    border-radius: 1.5rem;
+    backdrop-filter: blur(30px);
     position: relative;
     overflow: hidden;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   }
   
   .ai-card::before {
     content: '';
     position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
+    top: -100%;
+    left: -100%;
+    width: 300%;
+    height: 300%;
     background: radial-gradient(
       circle at center,
-      hsl(var(--ai-neural) / 0.03) 0%,
-      transparent 50%
+      hsl(var(--ai-neural) / 0.04) 0%,
+      transparent 45%
     );
-    animation: ai-pulse 8s ease-in-out infinite;
+    animation: neural-wave 10s ease-in-out infinite;
   }
   
-  @keyframes ai-pulse {
-    0%, 100% { transform: translate(-25%, -25%) scale(1); opacity: 0.5; }
-    50% { transform: translate(-25%, -25%) scale(1.5); opacity: 1; }
+  @keyframes neural-wave {
+    0%, 100% { transform: translate(-20%, -20%) rotate(0deg); opacity: 0.4; }
+    50% { transform: translate(-30%, -30%) rotate(180deg); opacity: 0.8; }
   }
   
   .ai-card:hover {
-    border-color: hsl(var(--ai-neural) / 0.5);
+    border-color: hsl(var(--ai-neural) / 0.55);
     box-shadow: var(--shadow-ai);
+    transform: translateY(-6px);
   }
   
   .ai-badge {
     background: linear-gradient(135deg, 
-      hsl(var(--ai-neural) / 0.1) 0%, 
-      hsl(var(--ai-synapse) / 0.1) 100%);
-    border: 1px solid hsl(var(--ai-neural) / 0.3);
+      hsl(var(--ai-neural) / 0.12) 0%, 
+      hsl(var(--ai-synapse) / 0.12) 100%);
+    border: 1px solid hsl(var(--ai-neural) / 0.35);
     color: hsl(var(--ai-glow));
     border-radius: 9999px;
+    font-family: var(--font-body);
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    transition: all 0.4s ease;
   }
   
   .ai-badge:hover {
     background: linear-gradient(135deg, 
-      hsl(var(--ai-neural) / 0.2) 0%, 
-      hsl(var(--ai-synapse) / 0.2) 100%);
-    border-color: hsl(var(--ai-neural));
-    box-shadow: 0 0 30px hsl(var(--ai-neural) / 0.3);
+      hsl(var(--ai-neural) / 0.25) 0%, 
+      hsl(var(--ai-synapse) / 0.25) 100%);
+    border-color: hsl(var(--ai-neural) / 0.8);
+    box-shadow: 0 0 35px hsl(var(--ai-neural) / 0.35);
+    transform: translateY(-2px);
   }
   
   .neural-line {
     background: linear-gradient(90deg, 
       transparent 0%, 
-      hsl(var(--ai-neural) / 0.6) 50%, 
+      hsl(var(--ai-neural) / 0.7) 50%, 
       transparent 100%);
     height: 1px;
   }
+  
+  /* Synaptic pulse animation */
+  @keyframes synapse-fire {
+    0%, 100% { opacity: 0.2; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.05); }
+  }
 
   /* ══════════════════════════════════════════════════════════════════
-     ERA IV: RAJAI — Premium, sophisticated, authoritative
+     ERA IV: RAJAI — Luxury editorial, gallery sophistication
+     Font: Syne — Bold, architectural, distinctive identity
   ══════════════════════════════════════════════════════════════════ */
   .era-rajai {
     background: hsl(var(--rajai-bg));
@@ -376,18 +469,19 @@
   .rajai-glow {
     color: hsl(var(--rajai-gold));
     text-shadow: 
-      0 0 8px hsl(var(--rajai-gold) / 0.6),
-      0 0 20px hsl(var(--rajai-highlight) / 0.3);
+      0 0 12px hsl(var(--rajai-gold) / 0.7),
+      0 0 30px hsl(var(--rajai-highlight) / 0.4);
   }
   
   .rajai-card {
-    background: linear-gradient(165deg, 
+    background: linear-gradient(170deg, 
       hsl(var(--rajai-surface)) 0%, 
       hsl(var(--rajai-warm)) 100%);
-    border: 1px solid hsl(var(--rajai-gold) / 0.15);
-    border-radius: 1rem;
-    backdrop-filter: blur(30px);
+    border: 1px solid hsl(var(--rajai-gold) / 0.18);
+    border-radius: 1.25rem;
+    backdrop-filter: blur(35px);
     position: relative;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   }
   
   .rajai-card::before {
@@ -396,15 +490,15 @@
     inset: 0;
     border-radius: inherit;
     padding: 1px;
-    background: linear-gradient(135deg, 
-      hsl(var(--rajai-gold) / 0.3) 0%, 
-      transparent 50%, 
-      hsl(var(--rajai-gold) / 0.1) 100%);
+    background: linear-gradient(145deg, 
+      hsl(var(--rajai-gold) / 0.4) 0%, 
+      transparent 40%, 
+      hsl(var(--rajai-gold) / 0.15) 100%);
     -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
     opacity: 0;
-    transition: opacity 0.4s ease;
+    transition: opacity 0.5s ease;
   }
   
   .rajai-card:hover::before {
@@ -412,44 +506,76 @@
   }
   
   .rajai-card:hover {
-    border-color: hsl(var(--rajai-gold) / 0.3);
+    border-color: hsl(var(--rajai-gold) / 0.4);
     box-shadow: var(--shadow-rajai);
+    transform: translateY(-6px);
   }
   
   .rajai-badge {
-    background: hsl(var(--rajai-gold) / 0.1);
-    border: 1px solid hsl(var(--rajai-gold) / 0.25);
+    background: hsl(var(--rajai-gold) / 0.12);
+    border: 1px solid hsl(var(--rajai-gold) / 0.3);
     color: hsl(var(--rajai-gold));
-    border-radius: 0.5rem;
-    font-weight: 500;
+    border-radius: 0.6rem;
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    transition: all 0.4s ease;
   }
   
   .rajai-badge:hover {
-    background: hsl(var(--rajai-gold) / 0.15);
-    border-color: hsl(var(--rajai-gold) / 0.5);
+    background: hsl(var(--rajai-gold) / 0.2);
+    border-color: hsl(var(--rajai-gold) / 0.6);
+    transform: translateY(-2px);
   }
   
   .gold-shimmer {
     background: linear-gradient(
-      90deg,
+      105deg,
       hsl(var(--rajai-gold) / 0) 0%,
-      hsl(var(--rajai-gold) / 0.3) 50%,
+      hsl(var(--rajai-gold) / 0.35) 50%,
       hsl(var(--rajai-gold) / 0) 100%
     );
-    background-size: 200% 100%;
-    animation: shimmer 3s linear infinite;
+    background-size: 250% 100%;
+    animation: shimmer 4s ease-in-out infinite;
   }
   
   @keyframes shimmer {
-    0% { background-position: -200% 0; }
-    100% { background-position: 200% 0; }
+    0% { background-position: -250% 0; }
+    100% { background-position: 250% 0; }
+  }
+  
+  /* Rajai signature underline */
+  .rajai-underline {
+    position: relative;
+  }
+  
+  .rajai-underline::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, 
+      hsl(var(--rajai-gold)), 
+      hsl(var(--rajai-highlight)),
+      hsl(var(--rajai-accent)));
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .rajai-underline:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
   }
 
   /* ══════════════════════════════════════════════════════════════════
-     SHARED COMPONENTS
+     SHARED TYPOGRAPHY & COMPONENTS
   ══════════════════════════════════════════════════════════════════ */
   .font-display {
     font-family: var(--font-display);
+    font-weight: 600;
   }
   
   .font-mono {
@@ -460,37 +586,65 @@
     font-family: var(--font-serif);
   }
   
+  .font-body {
+    font-family: var(--font-body);
+  }
+  
   .card-glass {
-    background: hsl(var(--card) / 0.7);
-    backdrop-filter: blur(24px);
-    border: 1px solid hsl(var(--border) / 0.6);
+    background: hsl(var(--card) / 0.65);
+    backdrop-filter: blur(28px);
+    border: 1px solid hsl(var(--border) / 0.55);
     box-shadow: var(--shadow-card);
+    transition: all 0.4s ease;
   }
   
   .card-glass:hover {
-    border-color: hsl(var(--primary) / 0.3);
+    border-color: hsl(var(--primary) / 0.35);
+    transform: translateY(-4px);
   }
   
   .link-animate {
     position: relative;
+    display: inline-block;
   }
   
   .link-animate::after {
     content: '';
     position: absolute;
-    bottom: -2px;
+    bottom: -3px;
     left: 0;
     width: 100%;
-    height: 1px;
+    height: 2px;
     background: linear-gradient(90deg, hsl(var(--primary)), hsl(var(--accent)));
     transform: scaleX(0);
     transform-origin: right;
-    transition: transform 0.3s ease;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   }
   
   .link-animate:hover::after {
     transform: scaleX(1);
     transform-origin: left;
+  }
+  
+  /* RAJ SHAH Signature Text Treatment */
+  .raj-signature {
+    font-family: var(--font-display);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    background: linear-gradient(135deg, 
+      hsl(var(--rajai-gold)) 0%, 
+      hsl(var(--rajai-highlight)) 50%,
+      hsl(var(--rajai-gold)) 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradient-shift 4s ease infinite;
+  }
+  
+  @keyframes gradient-shift {
+    0%, 100% { background-position: 0% center; }
+    50% { background-position: 100% center; }
   }
 }
 

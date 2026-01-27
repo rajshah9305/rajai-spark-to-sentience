@@ -7,11 +7,11 @@ interface EraNavigationProps {
   onEraClick: (index: number) => void;
 }
 
-// 4-Act Story Structure - distinct colors per era
+// 4-Act Story Structure - RAJ SHAH journey
 const eraIcons: Record<string, string> = {
-  Spark: '🔥',
-  Machine: '⚙️',
-  AI: '🧠',
+  Spark: '✦',
+  Machine: '◈',
+  AI: '◎',
   Rajai: '◆',
 };
 
@@ -19,30 +19,34 @@ const eraLabels: Record<string, string> = {
   Spark: 'The Spark',
   Machine: 'The Machine',
   AI: 'The Mind',
-  Rajai: 'The Architect',
+  Rajai: 'Raj Shah',
 };
 
-// Completely distinct color gradients per era
-const eraStyles: Record<string, { gradient: string; glow: string; text: string }> = {
+// Completely distinct visual styles per era
+const eraStyles: Record<string, { gradient: string; glow: string; text: string; font: string }> = {
   Spark: {
     gradient: 'from-spark-glow via-spark-ember to-spark-flame',
-    glow: 'shadow-[0_0_20px_hsl(var(--spark-glow)/0.5)]',
+    glow: 'shadow-[0_0_25px_hsl(var(--spark-glow)/0.55)]',
     text: 'text-spark-glow',
+    font: 'font-spark italic',
   },
   Machine: {
     gradient: 'from-machine-phosphor via-machine-bright to-machine-dim',
     glow: 'shadow-[0_0_20px_hsl(var(--machine-phosphor)/0.5)]',
     text: 'text-machine-phosphor',
+    font: 'font-machine uppercase tracking-widest',
   },
   AI: {
     gradient: 'from-ai-neural via-ai-synapse to-ai-glow',
-    glow: 'shadow-[0_0_20px_hsl(var(--ai-neural)/0.5)]',
+    glow: 'shadow-[0_0_25px_hsl(var(--ai-neural)/0.5)]',
     text: 'text-ai-neural',
+    font: 'font-ai font-light tracking-wide',
   },
   Rajai: {
-    gradient: 'from-rajai-gold via-rajai-highlight to-rajai-gold',
-    glow: 'shadow-[0_0_20px_hsl(var(--rajai-gold)/0.5)]',
+    gradient: 'from-rajai-gold via-rajai-highlight to-rajai-accent',
+    glow: 'shadow-[0_0_30px_hsl(var(--rajai-gold)/0.55)]',
     text: 'text-rajai-gold',
+    font: 'font-rajai font-bold tracking-tight',
   },
 };
 
@@ -64,7 +68,7 @@ export default function EraNavigation({ currentEra, eras, onEraClick }: EraNavig
               transition={{ type: "spring", stiffness: 400, damping: 25 }}
             >
               <motion.span 
-                className={`text-xs font-mono uppercase tracking-widest transition-all duration-300 ${
+                className={`text-[10px] uppercase tracking-widest transition-all duration-300 ${style.font} ${
                   isActive ? `opacity-100 ${style.text}` : 'opacity-0 group-hover:opacity-70 text-muted-foreground'
                 }`}
                 initial={{ x: 10, opacity: 0 }}
@@ -143,7 +147,7 @@ export default function EraNavigation({ currentEra, eras, onEraClick }: EraNavig
                     initial={{ opacity: 0, width: 0 }}
                     animate={{ opacity: 1, width: 'auto' }}
                     exit={{ opacity: 0, width: 0 }}
-                    className={`ml-1.5 text-xs font-mono ${style.text} whitespace-nowrap`}
+                    className={`ml-1.5 text-[10px] ${style.font} ${style.text} whitespace-nowrap`}
                   >
                     {eraLabels[era]}
                   </motion.span>
@@ -170,7 +174,7 @@ export default function EraNavigation({ currentEra, eras, onEraClick }: EraNavig
         transition={{ duration: 1.5, times: [0, 0.2, 0.8, 1] }}
         className="fixed top-6 left-1/2 -translate-x-1/2 z-40 pointer-events-none"
       >
-        <span className={`font-mono text-xs tracking-[0.3em] uppercase ${eraStyles[eras[currentEra]]?.text || 'text-muted-foreground'}/60`}>
+        <span className={`${eraStyles[eras[currentEra]]?.font || 'font-body'} text-xs tracking-[0.25em] uppercase ${eraStyles[eras[currentEra]]?.text || 'text-muted-foreground'}/60`}>
           Act {['I', 'II', 'III', 'IV'][currentEra]} — {eraLabels[eras[currentEra]] || eras[currentEra]}
         </span>
       </motion.div>
