@@ -1,6 +1,6 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
-import ParticleField from '@/components/ParticleField';
+import SparkBackground from './SparkBackground';
 import InteractiveTimeline from '@/components/InteractiveTimeline';
 
 // Act I: The Spark - The birth of ideas and curiosity
@@ -33,54 +33,20 @@ export default function SparkEra() {
     offset: ["start end", "end start"]
   });
   
-  // Organic, flowing parallax transforms
-  const heroY = useTransform(scrollYProgress, [0, 1], [80, -80]);
-  const symbolsY = useTransform(scrollYProgress, [0, 1], [40, -120]);
-  const glowScale = useTransform(scrollYProgress, [0, 0.5, 1], [0.9, 1.3, 1]);
+  // Smooth parallax transforms
+  const heroY = useTransform(scrollYProgress, [0, 0.5], [0, -50]);
+  const symbolsY = useTransform(scrollYProgress, [0, 1], [20, -100]);
   const timelineY = useTransform(scrollYProgress, [0, 1], [50, -50]);
-  const quoteY = useTransform(scrollYProgress, [0, 1], [30, -60]);
-  const conceptsRotate = useTransform(scrollYProgress, [0, 1], [-2, 2]);
+  const quoteY = useTransform(scrollYProgress, [0.6, 1], [50, -20]);
 
   return (
     <section 
       ref={containerRef}
-      className="relative min-h-[250vh] flex flex-col items-center justify-start overflow-hidden era-spark pt-32 pb-20"
+      className="relative min-h-[220vh] flex flex-col items-center justify-start overflow-hidden era-spark pt-32 pb-20"
     >
-      <ParticleField color="#f59e0b" />
+      <SparkBackground />
       
-      {/* Layered ember glows - organic shapes */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-        <motion.div 
-          className="absolute w-[600px] h-[600px] rounded-full bg-gradient-radial from-spark-glow/20 via-spark-ember/10 to-transparent blur-[120px]"
-          style={{ scale: glowScale }}
-          animate={{ 
-            opacity: [0.2, 0.35, 0.2],
-            rotate: [0, 10, 0],
-          }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-        />
-        <motion.div 
-          className="absolute w-[400px] h-[300px] rounded-[60%_40%_70%_30%] bg-spark-pulse/15 blur-[100px]"
-          style={{ y: useTransform(scrollYProgress, [0, 1], [-40, 60]) }}
-          animate={{ 
-            opacity: [0.1, 0.25, 0.1],
-            rotate: [0, -15, 0],
-            scale: [1, 1.1, 1],
-          }}
-          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-        />
-        <motion.div 
-          className="absolute w-[300px] h-[200px] rounded-[40%_60%_30%_70%] bg-spark-flame/12 blur-[80px]"
-          style={{ y: useTransform(scrollYProgress, [0, 1], [20, -80]), x: 100 }}
-          animate={{ 
-            opacity: [0.08, 0.2, 0.08],
-            rotate: [0, 20, 0],
-          }}
-          transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-        />
-      </div>
-      
-      {/* Floating mathematical symbols with organic movement */}
+      {/* Floating mathematical symbols - Positioned on sides to avoid text overlap */}
       <motion.div 
         className="absolute inset-0 pointer-events-none"
         style={{ y: symbolsY }}
@@ -88,22 +54,22 @@ export default function SparkEra() {
         {['∑', '∫', 'π', '∞', 'Δ', 'λ', '∂', 'φ', 'Ω', '∇'].map((symbol, i) => (
           <motion.span
             key={i}
-            className="absolute text-spark-glow/12 text-4xl md:text-6xl font-spark select-none ember-float"
+            className="absolute text-spark-glow/10 text-5xl md:text-7xl font-spark select-none mix-blend-screen"
             style={{
-              left: `${8 + (i * 9)}%`,
-              top: `${15 + (i % 4) * 20}%`,
-              animationDelay: `${i * 0.4}s`,
+              left: i % 2 === 0 ? `${5 + Math.random() * 10}%` : undefined,
+              right: i % 2 !== 0 ? `${5 + Math.random() * 10}%` : undefined,
+              top: `${10 + (i * 8)}%`,
             }}
             animate={{
-              opacity: [0.08, 0.22, 0.08],
-              rotate: [0, 10, -10, 0],
-              scale: [1, 1.12, 1],
+              opacity: [0.1, 0.2, 0.1],
+              y: [0, -30, 0],
+              rotate: [0, 5, -5, 0]
             }}
             transition={{
-              duration: 8 + i * 0.5,
+              duration: 10 + i,
               repeat: Infinity,
               ease: "easeInOut",
-              delay: i * 0.3,
+              delay: i * 0.5,
             }}
           >
             {symbol}
@@ -111,42 +77,44 @@ export default function SparkEra() {
         ))}
       </motion.div>
       
-      {/* Hero Content with flowing animation */}
+      {/* Hero Content */}
       <motion.div 
-        className="relative z-10 text-center px-4 md:px-6 max-w-4xl"
+        className="relative z-10 text-center px-4 md:px-6 max-w-5xl mb-32"
         style={{ y: heroY }}
       >
-        <motion.p
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.2, ease: "easeOut" }}
+          transition={{ duration: 1, ease: "easeOut" }}
           viewport={{ once: true }}
-          className="font-spark text-xs md:text-sm tracking-[0.4em] text-spark-glow/70 uppercase mb-12 italic"
+          className="inline-block mb-8"
         >
-          Act I — The Spark
-        </motion.p>
+           <span className="font-spark text-xs md:text-sm tracking-[0.4em] text-spark-glow/90 uppercase border-b border-spark-glow/30 pb-2">
+            Act I — The Spark
+          </span>
+        </motion.div>
         
         <motion.h2
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
           viewport={{ once: true }}
-          className="text-4xl md:text-6xl lg:text-7xl font-spark font-light tracking-tight text-spark-text mb-10 leading-[1.15]"
+          className="text-5xl md:text-7xl lg:text-8xl font-spark font-light tracking-tight text-spark-text mb-12 leading-[1.1]"
         >
           In the beginning,
           <br />
           <motion.span 
-            className="spark-glow font-medium inline-block"
+            className="spark-glow font-normal inline-block mt-2"
             animate={{ 
               textShadow: [
-                '0 0 25px hsl(28 100% 58% / 0.5)',
-                '0 0 70px hsl(28 100% 58% / 0.8)',
-                '0 0 25px hsl(28 100% 58% / 0.5)'
-              ],
+                "0 0 20px rgba(234,88,12,0.3)",
+                "0 0 40px rgba(234,88,12,0.6)",
+                "0 0 20px rgba(234,88,12,0.3)"
+              ]
             }}
             transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
           >
-            there was an idea
+            there was an idea.
           </motion.span>
         </motion.h2>
         
@@ -155,82 +123,35 @@ export default function SparkEra() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.4 }}
           viewport={{ once: true }}
-          className="text-base md:text-lg text-spark-text/70 font-spark font-light max-w-2xl mx-auto mb-16 leading-relaxed italic"
+          className="text-lg md:text-xl text-spark-text/80 font-spark font-light max-w-2xl mx-auto leading-relaxed"
         >
           Before circuits and silicon, before algorithms and AI—there was pure thought. 
           The eternal human desire to extend the mind, to capture lightning in logic.
         </motion.p>
-        
-        {/* Origin concepts - organic flowing badges */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 0.6 }}
-          viewport={{ once: true }}
-          className="flex flex-wrap justify-center gap-3 md:gap-4"
-        >
-          {originConcepts.map((item, i) => (
-            <motion.span
-              key={item.label}
-              className="spark-badge px-5 md:px-6 py-2.5 md:py-3 font-mono text-xs md:text-sm cursor-pointer transition-all duration-500"
-              initial={{ opacity: 0, y: 30, scale: 0.9 }}
-              whileInView={{ opacity: 1, y: 0, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 * i, duration: 0.6, ease: "easeOut" }}
-              whileHover={{ 
-                scale: 1.1,
-                y: -5,
-              }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <motion.span 
-                className="mr-2 inline-block"
-                animate={{ rotate: [0, 10, -10, 0] }}
-                transition={{ duration: 3, repeat: Infinity, delay: i * 0.5 }}
-              >
-                {item.icon}
-              </motion.span>
-              {item.label}
-            </motion.span>
-          ))}
-        </motion.div>
       </motion.div>
       
-      {/* Philosophical Questions - floating thought bubbles */}
+      {/* Philosophical Questions - More organic layout */}
       <motion.div
-        className="relative z-10 w-full max-w-4xl px-4 md:px-6 mt-24 mb-20"
+        className="relative z-10 w-full max-w-6xl px-4 md:px-6 mb-32"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 1 }}
         viewport={{ once: true }}
       >
-        <motion.h3
-          className="font-mono text-xs tracking-[0.4em] text-spark-glow/60 uppercase mb-10 text-center"
-        >
-          The Questions That Started It All
-        </motion.h3>
-        <div className="flex flex-wrap justify-center gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 text-center">
           {philosophicalQuestions.map((question, i) => (
             <motion.div
               key={question}
-              className="spark-card px-6 py-4 text-spark-flame/90 font-serif italic text-sm md:text-base cursor-pointer"
-              initial={{ opacity: 0, y: 30, rotate: -2 }}
-              whileInView={{ opacity: 1, y: 0, rotate: 0 }}
+              className="group relative p-6 cursor-default"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.15, duration: 0.7 }}
-              whileHover={{ 
-                scale: 1.05, 
-                rotate: 2,
-                y: -8,
-              }}
-              animate={{
-                y: [0, -5, 0],
-              }}
-              style={{
-                animationDelay: `${i * 0.5}s`,
-              }}
+              transition={{ delay: i * 0.15, duration: 0.8 }}
             >
-              "{question}"
+              <div className="absolute inset-0 bg-spark-glow/5 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+              <p className="relative z-10 font-serif italic text-lg md:text-xl text-spark-text/70 group-hover:text-spark-text transition-colors duration-300">
+                "{question}"
+              </p>
             </motion.div>
           ))}
         </div>
@@ -238,7 +159,7 @@ export default function SparkEra() {
       
       {/* Interactive Timeline */}
       <motion.div 
-        className="relative z-10 w-full max-w-5xl px-4 md:px-6 mb-24"
+        className="relative z-10 w-full max-w-5xl px-4 md:px-6 mb-32"
         style={{ y: timelineY }}
       >
         <motion.h3
@@ -246,7 +167,7 @@ export default function SparkEra() {
           whileInView={{ opacity: 1 }}
           transition={{ duration: 1 }}
           viewport={{ once: true }}
-          className="font-mono text-xs tracking-[0.4em] text-spark-glow/60 uppercase mb-12 text-center"
+          className="font-mono text-xs tracking-[0.4em] text-spark-glow/60 uppercase mb-16 text-center"
         >
           The Evolution of Thought
         </motion.h3>
@@ -254,10 +175,9 @@ export default function SparkEra() {
         <InteractiveTimeline events={evolutionTimeline} variant="vertical" />
       </motion.div>
       
-      {/* Origin Concepts Grid with organic shapes */}
+      {/* Origin Concepts Grid - Refined */}
       <motion.div 
-        className="relative z-10 w-full max-w-5xl px-4 md:px-6 mb-24"
-        style={{ rotate: conceptsRotate }}
+        className="relative z-10 w-full max-w-5xl px-4 md:px-6 mb-32"
       >
         <motion.h3
           initial={{ opacity: 0 }}
@@ -269,67 +189,57 @@ export default function SparkEra() {
           The Elements of Creation
         </motion.h3>
         
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {originConcepts.map((concept, i) => (
             <motion.div
               key={concept.label}
-              initial={{ opacity: 0, scale: 0.8, y: 40 }}
+              initial={{ opacity: 0, scale: 0.95, y: 30 }}
               whileInView={{ opacity: 1, scale: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: i * 0.12, ease: "easeOut" }}
+              transition={{ duration: 0.6, delay: i * 0.1, ease: "easeOut" }}
               viewport={{ once: true }}
-              className="spark-card text-center p-6 md:p-8 cursor-pointer group"
-              whileHover={{ 
-                y: -12, 
-                scale: 1.05,
-                rotate: 2,
-              }}
+              className="relative p-8 text-center group"
             >
-              <motion.span 
-                className="text-4xl md:text-5xl mb-4 block"
-                animate={{ 
-                  scale: [1, 1.15, 1],
-                  rotate: [0, 5, -5, 0]
-                }}
-                transition={{ duration: 5, repeat: Infinity, delay: i * 0.6 }}
-              >
-                {concept.icon}
-              </motion.span>
-              <h4 className="font-serif font-medium text-foreground group-hover:text-spark-glow transition-colors duration-500 text-lg mb-2">
-                {concept.label}
-              </h4>
-              <p className="text-sm text-muted-foreground">{concept.desc}</p>
+              <div className="absolute inset-0 border border-spark-glow/20 bg-spark-void/40 backdrop-blur-sm transition-all duration-500 group-hover:border-spark-glow/50 group-hover:bg-spark-glow/5"
+                   style={{ borderRadius: "2rem 0 2rem 0" }} // Organic leaf-like shape
+              />
+
+              <div className="relative z-10">
+                <motion.div
+                  className="text-4xl md:text-5xl mb-6 inline-block"
+                  whileHover={{ scale: 1.1, rotate: 10 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                >
+                  {concept.icon}
+                </motion.div>
+                <h4 className="font-serif font-medium text-2xl text-spark-text group-hover:text-spark-glow transition-colors duration-300 mb-3">
+                  {concept.label}
+                </h4>
+                <p className="text-sm text-spark-text/60 font-light leading-relaxed">{concept.desc}</p>
+              </div>
             </motion.div>
           ))}
         </div>
       </motion.div>
       
-      {/* Quote with organic flow */}
+      {/* Quote & Transition Cue */}
       <motion.div
-        initial={{ opacity: 0, y: 50 }}
+        initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1.2, ease: "easeOut" }}
+        transition={{ duration: 1, ease: "easeOut" }}
         viewport={{ once: true }}
         style={{ y: quoteY }}
-        className="relative z-10 max-w-3xl mx-auto px-6 text-center"
+        className="relative z-10 max-w-3xl mx-auto px-6 text-center pb-20"
       >
-        <motion.div 
-          className="text-6xl md:text-7xl text-spark-glow/20 font-serif mb-6"
-          animate={{ 
-            scale: [1, 1.1, 1], 
-            rotate: [0, 5, 0],
-            opacity: [0.2, 0.4, 0.2],
-          }}
-          transition={{ duration: 5, repeat: Infinity }}
-        >
+        <div className="text-6xl md:text-7xl text-spark-glow/20 font-serif mb-6 leading-none">
           "
-        </motion.div>
-        <p className="text-xl md:text-2xl lg:text-3xl font-serif font-light text-foreground/90 leading-relaxed italic">
+        </div>
+        <p className="text-2xl md:text-3xl lg:text-4xl font-serif font-light text-spark-text/90 leading-tight italic">
           The spark of curiosity is the most precious gift we're born with.
           <br />
-          <span className="spark-glow">Never let it fade.</span>
+          <span className="spark-glow text-shadow-glow">Never let it fade.</span>
         </p>
         <motion.p 
-          className="mt-8 text-sm text-muted-foreground font-mono tracking-wider"
+          className="mt-8 text-sm text-spark-text/50 font-mono tracking-wider"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ delay: 0.6 }}
@@ -337,6 +247,19 @@ export default function SparkEra() {
         >
           — Origin Philosophy
         </motion.p>
+
+        {/* Transition visual cue */}
+        <motion.div
+          className="mt-24 flex flex-col items-center justify-center opacity-50"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 0.5 }}
+          transition={{ delay: 1, duration: 1.5 }}
+        >
+          <div className="w-[1px] h-20 bg-gradient-to-b from-spark-glow/0 via-spark-glow/50 to-emerald-500/50" />
+          <span className="text-[10px] font-mono tracking-widest text-emerald-500/50 mt-4 uppercase">
+            Entering The Machine Age
+          </span>
+        </motion.div>
       </motion.div>
     </section>
   );
