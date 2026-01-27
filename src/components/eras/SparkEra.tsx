@@ -88,19 +88,19 @@ export default function SparkEra() {
         {['∑', '∫', 'π', '∞', 'Δ', 'λ', '∂', 'φ', 'Ω', '∇'].map((symbol, i) => (
           <motion.span
             key={i}
-            className="absolute text-spark-glow/10 text-4xl md:text-6xl font-serif select-none"
+            className="absolute text-spark-glow/12 text-4xl md:text-6xl font-spark select-none ember-float"
             style={{
               left: `${8 + (i * 9)}%`,
               top: `${15 + (i % 4) * 20}%`,
+              animationDelay: `${i * 0.4}s`,
             }}
             animate={{
-              y: [0, -30, 0],
-              opacity: [0.08, 0.2, 0.08],
-              rotate: [0, 8, -8, 0],
-              scale: [1, 1.1, 1],
+              opacity: [0.08, 0.22, 0.08],
+              rotate: [0, 10, -10, 0],
+              scale: [1, 1.12, 1],
             }}
             transition={{
-              duration: 7 + i * 0.5,
+              duration: 8 + i * 0.5,
               repeat: Infinity,
               ease: "easeInOut",
               delay: i * 0.3,
@@ -121,7 +121,7 @@ export default function SparkEra() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2, ease: "easeOut" }}
           viewport={{ once: true }}
-          className="font-mono text-xs md:text-sm tracking-[0.5em] text-spark-glow/80 uppercase mb-12"
+          className="font-spark text-xs md:text-sm tracking-[0.4em] text-spark-glow/70 uppercase mb-12 italic"
         >
           Act I — The Spark
         </motion.p>
@@ -131,17 +131,17 @@ export default function SparkEra() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
           viewport={{ once: true }}
-          className="text-4xl md:text-6xl lg:text-7xl font-serif font-light tracking-tight text-foreground mb-10 leading-tight"
+          className="text-4xl md:text-6xl lg:text-7xl font-spark font-light tracking-tight text-spark-text mb-10 leading-[1.15]"
         >
           In the beginning,
           <br />
           <motion.span 
-            className="spark-glow font-normal inline-block"
+            className="spark-glow font-medium inline-block"
             animate={{ 
               textShadow: [
-                '0 0 20px hsl(35 100% 55% / 0.5)',
-                '0 0 60px hsl(35 100% 55% / 0.8)',
-                '0 0 20px hsl(35 100% 55% / 0.5)'
+                '0 0 25px hsl(28 100% 58% / 0.5)',
+                '0 0 70px hsl(28 100% 58% / 0.8)',
+                '0 0 25px hsl(28 100% 58% / 0.5)'
               ],
             }}
             transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
@@ -155,7 +155,7 @@ export default function SparkEra() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.4 }}
           viewport={{ once: true }}
-          className="text-base md:text-lg text-muted-foreground font-light max-w-2xl mx-auto mb-16 leading-relaxed"
+          className="text-base md:text-lg text-spark-text/70 font-spark font-light max-w-2xl mx-auto mb-16 leading-relaxed italic"
         >
           Before circuits and silicon, before algorithms and AI—there was pure thought. 
           The eternal human desire to extend the mind, to capture lightning in logic.

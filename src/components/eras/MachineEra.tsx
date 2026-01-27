@@ -114,9 +114,9 @@ export default function MachineEra() {
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="font-mono text-xs md:text-sm tracking-[0.5em] text-machine-phosphor/80 uppercase mb-10 text-center"
+          className="font-machine text-[10px] md:text-xs tracking-[0.6em] text-machine-phosphor/70 uppercase mb-10 text-center"
         >
-          Act II — The Machine
+          [ ACT II — THE MACHINE ]
         </motion.p>
         
         <motion.div
@@ -176,16 +176,16 @@ export default function MachineEra() {
         viewport={{ once: true }}
         className="relative z-10 text-center px-4 md:px-6 max-w-4xl mb-20"
       >
-        <h2 className="text-4xl md:text-6xl lg:text-7xl font-mono font-light tracking-tight mb-8">
-          <span className="text-foreground">FROM VACUUM TUBES</span>
+        <h2 className="text-3xl md:text-5xl lg:text-6xl font-machine font-bold tracking-tight mb-8 uppercase">
+          <span className="text-machine-text">FROM VACUUM TUBES</span>
           <br />
           <motion.span 
-            className="machine-glow font-bold"
+            className="machine-glow"
           >
             TO SILICON DREAMS
           </motion.span>
         </h2>
-        <p className="text-base md:text-lg text-machine-phosphor/70 font-mono max-w-2xl mx-auto leading-relaxed">
+        <p className="text-sm md:text-base text-machine-phosphor/60 font-machine max-w-2xl mx-auto leading-relaxed tracking-wide">
           The machine era transformed abstract mathematics into physical reality—
           circuits that compute, memory that persists, systems that never forget.
         </p>

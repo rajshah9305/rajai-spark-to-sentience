@@ -128,7 +128,7 @@ export default function AIEra() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
           viewport={{ once: true }}
-          className="font-mono text-xs md:text-sm tracking-[0.5em] text-ai-neural/80 uppercase mb-12"
+          className="font-ai text-xs md:text-sm tracking-[0.4em] text-ai-neural/70 uppercase mb-12 font-medium"
         >
           Act III — The Mind
         </motion.p>
@@ -138,7 +138,7 @@ export default function AIEra() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.15 }}
           viewport={{ once: true }}
-          className="text-4xl md:text-6xl lg:text-7xl font-display font-light tracking-tight text-foreground mb-10 leading-tight"
+          className="text-4xl md:text-6xl lg:text-7xl font-ai font-extralight tracking-tight text-ai-text mb-10 leading-[1.1]"
         >
           And then machines
           <br />
@@ -146,9 +146,9 @@ export default function AIEra() {
             className="ai-glow font-medium inline-block"
             animate={{ 
               textShadow: [
-                '0 0 20px hsl(175 80% 45% / 0.5)',
-                '0 0 50px hsl(175 80% 45% / 0.8)',
-                '0 0 20px hsl(175 80% 45% / 0.5)'
+                '0 0 25px hsl(172 75% 48% / 0.5)',
+                '0 0 60px hsl(172 75% 48% / 0.8)',
+                '0 0 25px hsl(172 75% 48% / 0.5)'
               ],
             }}
             transition={{ duration: 3, repeat: Infinity }}
@@ -162,7 +162,7 @@ export default function AIEra() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.3 }}
           viewport={{ once: true }}
-          className="text-base md:text-lg text-muted-foreground font-light max-w-2xl mx-auto mb-14 leading-relaxed"
+          className="text-base md:text-lg text-ai-text/60 font-ai font-light max-w-2xl mx-auto mb-14 leading-relaxed"
         >
           The emergence of artificial intelligence marks humanity's boldest attempt—
           to create minds from mathematics, consciousness from computation.
