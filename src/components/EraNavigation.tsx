@@ -11,15 +11,15 @@ interface EraNavigationProps {
 const eraIcons: Record<string, string> = {
   Spark: '✦',
   Machine: '◈',
-  AI: '◎',
-  Rajai: '◆',
+  Mind: '◎',
+  Architect: '◆',
 };
 
 const eraLabels: Record<string, string> = {
   Spark: 'The Spark',
   Machine: 'The Machine',
-  AI: 'The Mind',
-  Rajai: 'Raj Shah',
+  Mind: 'The Mind',
+  Architect: 'The Architect',
 };
 
 // Completely distinct visual styles per era
@@ -36,13 +36,13 @@ const eraStyles: Record<string, { gradient: string; glow: string; text: string; 
     text: 'text-machine-phosphor',
     font: 'font-machine uppercase tracking-widest',
   },
-  AI: {
+  Mind: {
     gradient: 'from-ai-neural via-ai-synapse to-ai-glow',
     glow: 'shadow-[0_0_25px_hsl(var(--ai-neural)/0.5)]',
     text: 'text-ai-neural',
     font: 'font-ai font-light tracking-wide',
   },
-  Rajai: {
+  Architect: {
     gradient: 'from-rajai-gold via-rajai-highlight to-rajai-accent',
     glow: 'shadow-[0_0_30px_hsl(var(--rajai-gold)/0.55)]',
     text: 'text-rajai-gold',

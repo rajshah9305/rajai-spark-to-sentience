@@ -6,11 +6,11 @@ import GitHubProjects from '@/components/GitHubProjects';
 const signals = [
   { icon: Github, label: 'GitHub', href: 'https://github.com/rajshah9305', username: '@rajshah9305' },
   { icon: Linkedin, label: 'LinkedIn', href: 'https://linkedin.com/in/rajshah', username: 'Raj Shah' },
-  { icon: Mail, label: 'Email', href: 'mailto:hello@rajai.org', username: 'hello@rajai.org' },
+  { icon: Mail, label: 'Email', href: 'mailto:hello@rajshah.com', username: 'hello@rajshah.com' },
 ];
 
 const timeline = [
-  { year: '2025', event: 'Founded RAJAI.ORG', desc: 'AI-first development studio focused on intelligent solutions', icon: Zap },
+  { year: '2025', event: 'Founded RAJ SHAH', desc: 'AI-first development studio focused on intelligent solutions', icon: Zap },
   { year: '2024', event: 'Senior AI Engineer', desc: 'Leading ML infrastructure and AI product development', icon: Code },
   { year: '2023', event: 'Full-Stack Architect', desc: 'Designing and scaling enterprise-grade systems', icon: Briefcase },
   { year: '2022', event: 'Software Engineer', desc: 'Building production applications at scale', icon: GraduationCap },
@@ -72,6 +72,14 @@ export default function RajaiEra() {
       ref={containerRef}
       className="relative min-h-[350vh] flex flex-col items-center justify-start overflow-hidden era-rajai py-20 md:py-24"
     >
+      {/* Subtle Noise Texture */}
+      <div
+        className="absolute inset-0 opacity-[0.03] pointer-events-none mix-blend-overlay z-0"
+        style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+        }}
+      />
+
       {/* Subtle premium grid */}
       <div 
         className="absolute inset-0 opacity-[0.015]"
@@ -198,7 +206,7 @@ export default function RajaiEra() {
             From full-stack development to machine learning systems, I transform complex challenges into elegant, scalable solutions.
           </p>
           <p className="text-base md:text-lg text-rajai-muted leading-relaxed font-body">
-            Through <span className="text-rajai-gold font-rajai font-semibold">RAJAI.ORG</span>, I help organizations navigate the AI revolution—from strategy to production. 
+            I help organizations navigate the AI revolution—from strategy to production.
             Whether it's architecting intelligent applications, optimizing systems at scale, or exploring new frontiers, 
             I bring deep technical expertise combined with strategic product thinking.
           </p>

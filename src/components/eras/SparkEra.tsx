@@ -47,35 +47,6 @@ export default function SparkEra() {
     >
       <SparkBackground />
       
-      {/* Floating mathematical symbols with refined movement */}
-      <motion.div 
-        className="absolute inset-0 pointer-events-none"
-        style={{ y: symbolsY }}
-      >
-        {['∑', '∫', 'π', '∞', 'Δ', 'λ', '∂', 'φ', 'Ω', '∇'].map((symbol, i) => (
-          <motion.span
-            key={i}
-            className="absolute text-spark-glow/10 text-4xl md:text-6xl font-spark select-none"
-            style={{
-              left: `${8 + (i * 9)}%`,
-              top: `${15 + (i % 4) * 20}%`,
-            }}
-            animate={{
-              opacity: [0.05, 0.15, 0.05],
-              y: [0, -20, 0],
-            }}
-            transition={{
-              duration: 8 + i * 0.5,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: i * 0.3,
-            }}
-          >
-            {symbol}
-          </motion.span>
-        ))}
-      </motion.div>
-      
       {/* Hero Content */}
       <motion.div 
         className="relative z-10 text-center px-4 md:px-6 max-w-4xl"
