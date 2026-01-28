@@ -120,7 +120,7 @@ export default function RajaiEra() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
           viewport={{ once: true }}
-          className="font-rajai text-xs md:text-sm tracking-[0.5em] text-rajai-gold/75 uppercase mb-12 font-semibold"
+          className="era-label font-rajai text-rajai-gold/75 font-semibold"
         >
           Act IV — The Architect
         </motion.p>
@@ -158,7 +158,7 @@ export default function RajaiEra() {
           className="text-center max-w-3xl mx-auto mb-10"
         >
           <p className="text-lg md:text-xl text-rajai-muted font-rajai font-light mb-3 tracking-wide">
-            I don't just use systems.
+            Synthesizing Spark, Machine, and Mind.
           </p>
           <p className="text-xl md:text-2xl text-rajai-cream font-rajai font-semibold tracking-tight">
             I architect what comes next.
@@ -202,8 +202,8 @@ export default function RajaiEra() {
         >
           <h3 className="font-rajai text-xs tracking-[0.35em] text-rajai-gold/85 uppercase mb-8 font-semibold">About</h3>
           <p className="text-lg md:text-xl text-rajai-cream/90 leading-relaxed mb-6 font-body font-light">
-            I'm <span className="raj-signature">Raj Shah</span>, a software engineer and AI architect with a passion for building technology that makes a genuine difference. 
-            From full-stack development to machine learning systems, I transform complex challenges into elegant, scalable solutions.
+            I'm <span className="raj-signature">Raj Shah</span>. My work stands at the convergence of human creativity and machine intelligence.
+            As an AI architect and engineer, I don't just build software—I design ecosystems where technology amplifies human potential.
           </p>
           <p className="text-base md:text-lg text-rajai-muted leading-relaxed font-body">
             I help organizations navigate the AI revolution—from strategy to production.

@@ -57,7 +57,7 @@ export default function SparkEra() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: "easeOut" }}
           viewport={{ once: true }}
-          className="font-spark text-xs md:text-sm tracking-[0.4em] text-spark-glow/80 uppercase mb-12 italic"
+          className="era-label font-spark text-spark-glow/80 italic"
         >
           Act I — The Spark
         </motion.p>
@@ -67,9 +67,9 @@ export default function SparkEra() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
           viewport={{ once: true }}
-          className="text-4xl md:text-6xl lg:text-7xl font-spark font-light tracking-tight text-spark-text mb-10 leading-[1.15]"
+          className="era-heading font-spark text-spark-text"
         >
-          In the beginning,
+          It began with
           <br />
           <motion.span 
             className="spark-glow font-medium inline-block"
@@ -78,7 +78,7 @@ export default function SparkEra() {
             }}
             transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
           >
-            there was an idea
+            a spark
           </motion.span>
         </motion.h2>
         
@@ -89,8 +89,8 @@ export default function SparkEra() {
           viewport={{ once: true }}
           className="text-base md:text-lg text-spark-text/80 font-spark font-light max-w-2xl mx-auto mb-16 leading-relaxed"
         >
-          Before circuits and silicon, before algorithms and AI—there was pure thought. 
-          The eternal human desire to extend the mind, to capture lightning in logic.
+          Before silicon, before code—there was pure thought.
+          The eternal human drive to understand, to capture lightning in logic, and to extend the reach of the mind.
         </motion.p>
         
         {/* Origin concepts */}

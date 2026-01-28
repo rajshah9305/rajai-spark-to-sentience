@@ -136,7 +136,7 @@ export default function AIEra() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
           viewport={{ once: true }}
-          className="font-ai text-xs md:text-sm tracking-[0.4em] text-ai-neural/70 uppercase mb-12 font-medium"
+          className="era-label font-ai text-ai-neural/70"
         >
           Act III — The Mind
         </motion.p>
@@ -146,7 +146,7 @@ export default function AIEra() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.15 }}
           viewport={{ once: true }}
-          className="text-4xl md:text-6xl lg:text-7xl font-ai font-extralight tracking-tight text-ai-text mb-10 leading-[1.1]"
+          className="era-heading font-ai font-extralight text-ai-text"
         >
           And then machines
           <br />
@@ -172,8 +172,8 @@ export default function AIEra() {
           viewport={{ once: true }}
           className="text-base md:text-lg text-ai-text/60 font-ai font-light max-w-2xl mx-auto mb-14 leading-relaxed"
         >
-          The emergence of artificial intelligence marks humanity's boldest attempt—
-          to create minds from mathematics, consciousness from computation.
+          From the Machine emerged the Mind. A new form of intelligence that learns, adapts, and dreams.
+          Humanity's boldest attempt to create consciousness from computation.
         </motion.p>
         
         {/* AI capabilities badges - fluid design */}
