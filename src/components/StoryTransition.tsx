@@ -19,7 +19,7 @@ export default function StoryTransition({ fromEra, toEra, transitionText, classN
     >
       {/* Connecting line */}
       <motion.div 
-        className="absolute top-0 left-1/2 w-px h-full bg-gradient-to-b from-transparent via-primary/30 to-transparent"
+        className="absolute top-0 left-1/2 w-px h-full bg-gradient-to-b from-transparent via-rajai-gold/20 to-transparent"
         initial={{ scaleY: 0 }}
         whileInView={{ scaleY: 1 }}
         viewport={{ once: true }}
@@ -29,7 +29,7 @@ export default function StoryTransition({ fromEra, toEra, transitionText, classN
       {/* Transition content */}
       <div className="relative z-10 px-8">
         <motion.p 
-          className="text-muted-foreground text-sm font-mono uppercase tracking-widest mb-4"
+          className="era-label text-muted-foreground mb-4"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -39,7 +39,7 @@ export default function StoryTransition({ fromEra, toEra, transitionText, classN
         </motion.p>
         
         <motion.p 
-          className="text-xl md:text-2xl text-foreground/80 max-w-lg italic font-light"
+          className="text-xl md:text-2xl text-foreground/80 max-w-lg italic font-light leading-relaxed"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -51,11 +51,11 @@ export default function StoryTransition({ fromEra, toEra, transitionText, classN
       
       {/* Scroll indicator */}
       <motion.div 
-        className="absolute bottom-8"
-        animate={{ y: [0, 10, 0] }}
+        className="absolute bottom-16"
+        animate={{ y: [0, 10, 0], opacity: [0.5, 1, 0.5] }}
         transition={{ duration: 2, repeat: Infinity }}
       >
-        <ChevronDown className="w-6 h-6 text-primary/50" />
+        <ChevronDown className="w-5 h-5 text-rajai-gold/50" />
       </motion.div>
     </motion.div>
   );
