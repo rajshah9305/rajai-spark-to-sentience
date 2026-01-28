@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
-import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
+import { motion, useScroll, useTransform, AnimatePresence, useInView } from 'framer-motion';
 import BootSequence from '@/components/BootSequence';
 import EraNavigation from '@/components/EraNavigation';
 import SparkEra from '@/components/eras/SparkEra';
@@ -24,25 +24,33 @@ export default function Index() {
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll();
   
+  // Refs for specific Era sections for precise tracking
+  const sparkRef = useRef(null);
+  const machineRef = useRef(null);
+  const mindRef = useRef(null);
+  const architectRef = useRef(null);
+
+  // Track visibility of each era (trigger when 30% visible)
+  const isSparkInView = useInView(sparkRef, { amount: 0.3 });
+  const isMachineInView = useInView(machineRef, { amount: 0.3 });
+  const isMindInView = useInView(mindRef, { amount: 0.3 });
+  const isArchitectInView = useInView(architectRef, { amount: 0.3 });
+
+  // Sync currentEra state with visible section
   useEffect(() => {
     if (showBoot) return;
     
-    const unsubscribe = scrollYProgress.on('change', (latest) => {
-      // Account for transitions between eras (7 total sections)
-      const totalSections = ERAS.length + STORY_TRANSITIONS.length;
-      const sectionIndex = Math.floor(latest * totalSections);
-      // Map section to era (0,1 -> 0, 2,3 -> 1, 4,5 -> 2, 6 -> 3)
-      const eraIndex = Math.min(Math.floor(sectionIndex / 2), ERAS.length - 1);
-      setCurrentEra(eraIndex);
-    });
-    
-    return () => unsubscribe();
-  }, [scrollYProgress, showBoot]);
+    // Check in reverse order so later sections take precedence if multiple are visible
+    if (isArchitectInView) setCurrentEra(3);
+    else if (isMindInView) setCurrentEra(2);
+    else if (isMachineInView) setCurrentEra(1);
+    else if (isSparkInView) setCurrentEra(0);
+  }, [isSparkInView, isMachineInView, isMindInView, isArchitectInView, showBoot]);
   
   const handleEraClick = useCallback((index: number) => {
-    const sections = document.querySelectorAll('section, .story-transition');
-    const targetSection = index * 2; // Account for transitions
-    sections[targetSection]?.scrollIntoView({ behavior: 'smooth' });
+    const eraIds = ['era-spark', 'era-machine', 'era-mind', 'era-architect'];
+    const element = document.getElementById(eraIds[index]);
+    element?.scrollIntoView({ behavior: 'smooth' });
   }, []);
   
   const handleBootComplete = useCallback(() => {
@@ -87,7 +95,9 @@ export default function Index() {
         {/* Story content with transitions */}
         <div className="scroll-snap-container">
           {/* Act I: The Spark */}
-          <SparkEra />
+          <section id="era-spark" ref={sparkRef}>
+            <SparkEra />
+          </section>
           <StoryTransition 
             fromEra={STORY_TRANSITIONS[0].from}
             toEra={STORY_TRANSITIONS[0].to}
@@ -96,7 +106,9 @@ export default function Index() {
           />
           
           {/* Act II: The Machine */}
-          <MachineEra />
+          <section id="era-machine" ref={machineRef}>
+            <MachineEra />
+          </section>
           <StoryTransition 
             fromEra={STORY_TRANSITIONS[1].from}
             toEra={STORY_TRANSITIONS[1].to}
@@ -105,7 +117,9 @@ export default function Index() {
           />
           
           {/* Act III: The Mind */}
-          <MindEra />
+          <section id="era-mind" ref={mindRef}>
+            <MindEra />
+          </section>
           <StoryTransition 
             fromEra={STORY_TRANSITIONS[2].from}
             toEra={STORY_TRANSITIONS[2].to}
@@ -114,7 +128,9 @@ export default function Index() {
           />
           
           {/* Act IV: The Architect (Raj Shah) */}
-          <ArchitectEra />
+          <section id="era-architect" ref={architectRef}>
+            <ArchitectEra />
+          </section>
         </div>
         
         <Footer onEraClick={handleEraClick} />

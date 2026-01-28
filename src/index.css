@@ -700,3 +700,31 @@
     50% { transform: translateY(-20px); }
   }
 }
+
+/* ══════════════════════════════════════════════════════════════════
+   CUSTOM SCROLLBAR
+══════════════════════════════════════════════════════════════════ */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--background));
+  border-left: 1px solid hsl(var(--border) / 0.5);
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted-foreground) / 0.3);
+  border: 2px solid hsl(var(--background));
+  border-radius: 9999px;
+  transition: all 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--rajai-gold) / 0.8);
+}
+
+::-webkit-scrollbar-corner {
+  background: hsl(var(--background));
+}
